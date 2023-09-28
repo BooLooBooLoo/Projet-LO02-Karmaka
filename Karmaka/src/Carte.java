@@ -14,7 +14,7 @@ public class Carte {
 
     public static void main(String[] args) {
         Carte carte = new Carte();
-        carte.setCout(3);
+        carte.setCout(4);
         System.out.println(carte.getCout());
 
     }
