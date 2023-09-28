@@ -2,7 +2,15 @@ package Karmaka.src;
 
 public class Carte {
     
+    private String nom;
     private int cout;
+    enum couleur{
+        bleu, 
+        vert, 
+        rouge
+    };
+
+    private couleur type;
 
     public int getCout(){
         return cout;
@@ -12,10 +20,19 @@ public class Carte {
         cout = value;
     }
 
-    public static void main(String[] args) {
-        Carte carte = new Carte();
-        carte.setCout(4);
-        System.out.println(carte.getCout());
+    public couleur getType(){
+        return type;
+    }
 
+    public void setType(couleur value){
+        type = value;
+    }
+
+    public String getNom(){
+        return nom;
+    }
+
+    public void setNom(String value){
+        nom = value;
     }
 }
