@@ -1,7 +1,6 @@
 package Karmaka.src;
 
 public class Carte {
-    /*j'aime eclipse wallah*/
     private String nom;
     private int cout;
     enum couleur{
