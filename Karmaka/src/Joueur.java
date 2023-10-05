@@ -1,13 +1,24 @@
 package Karmaka.src;
 
 import java.util.List;
+
+import Karmaka.src.Partie.echelle;
+
 import java.util.ArrayList;
 
 public class Joueur {
     private List<Carte> main = new ArrayList<Carte>();
     private int anneaux;
+    private echelle echelleKarmique;
+    
 
-    public List<Carte> getMain(){
+    public echelle getEchelleKarmique() {
+		return echelleKarmique;
+	}
+	public void setEchelleKarmique(echelle echelleKarmique) {
+		this.echelleKarmique = echelleKarmique;
+	}
+	public List<Carte> getMain(){
         return main;
     }
     public void setMain(List<Carte> value){

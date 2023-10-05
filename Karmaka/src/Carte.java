@@ -6,7 +6,8 @@ public class Carte {
     enum couleur{
         bleu, 
         vert, 
-        rouge
+        rouge,
+        mosaique
     };
 
     private couleur type;
@@ -35,3 +36,4 @@ public class Carte {
         nom = value;
     }
 }
+
