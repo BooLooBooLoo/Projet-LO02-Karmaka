@@ -4,7 +4,7 @@ public class Carte {
     private String nom;
     private int cout;
  
-    private Couleur.couleur type;
+    private Couleur type;
 
     public int getCout(){
         return cout;
@@ -14,11 +14,11 @@ public class Carte {
         cout = value;
     }
 
-    public Couleur.couleur getType(){
+    public Couleur getType(){
         return type;
     }
 
-    public void setType(Couleur.couleur value){
+    public void setType(Couleur value){
         type = value;
     }
 
@@ -29,5 +29,8 @@ public class Carte {
     public void setNom(String value){
         nom = value;
     }
+
+	
+
 }
 

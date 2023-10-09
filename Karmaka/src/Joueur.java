@@ -8,13 +8,13 @@ public class Joueur {
     private List<Carte> main = new ArrayList<Carte>();
     private Pile pile = new Pile();
     private int anneaux;
-    private Echelle.echelle echelleKarmique;
+    private Echelle echelleKarmique;
     
     //Echelle Karmique
-    public Echelle.echelle getEchelleKarmique() {
+    public Echelle getEchelleKarmique() {
 		return echelleKarmique;
 	}
-	public void setEchelleKarmique(Echelle.echelle echelleKarmique) {
+	public void setEchelleKarmique(Echelle echelleKarmique) {
 		this.echelleKarmique = echelleKarmique;
 	}
 	

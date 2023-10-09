@@ -35,7 +35,7 @@ public class Partie {
 	}
 	
 	public void setupEchelleKarmique(Joueur joueur){
-		joueur.setEchelleKarmique(Echelle.echelle.bousier);
+		joueur.setEchelleKarmique(Echelle.BOUSIER);
 	}
 	
 	public Pile setupSource() {
@@ -44,15 +44,15 @@ public class Partie {
 		
 		//Création des cartes de jeu
 		Carte carte = new Carte();
-		carte.setType(Couleur.couleur.rouge);
+		carte.setType(Couleur.ROUGE);
 		carte.setNom("Panique");
 		carte.setCout(1);
 		Carte carte2 = new Carte();
-		carte2.setType(Couleur.couleur.rouge);
+		carte2.setType(Couleur.ROUGE);
 		carte2.setNom("Crise");
 		carte2.setCout(2);
 		Carte carte3 = new Carte();
-		carte3.setType(Couleur.couleur.rouge);
+		carte3.setType(Couleur.ROUGE);
 		carte3.setNom("Bassesse");
 		carte3.setCout(3);
 		
