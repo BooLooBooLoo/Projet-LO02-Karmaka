@@ -8,7 +8,7 @@ import java.util.List;
 public class Partie {
 	
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
-	private Joueur tour;
+	private Joueur tour = null;
 	
 	public Joueur getTour() {
 		return tour;
@@ -94,9 +94,18 @@ public class Partie {
 		}
 	}
 	
-	public void choisirPremierJoueur() {
-		double rand = Math.random();
-		Joueur j = (rand >= 0.5) ? getJoueurs().get(0) : getJoueurs().get(1);
+	public void choisirJoueur() {
+		if (this.tour == null) {
+			double rand = Math.random();
+			System.out.println(rand);
+			System.out.println(rand >= 0.5);
+			Joueur j = (rand >= 0.5) ? getJoueurs().get(0) : getJoueurs().get(1);
+			this.tour = j;
+		} else {
+			Joueur j = (joueurs.indexOf(tour) >= joueurs.size()-1) ? joueurs.get(0) : joueurs.get(joueurs.indexOf(tour) + 1);
+			this.tour = j;
+		}
+		
 	}
 	
 	public static void main(String[] args) {
@@ -121,6 +130,7 @@ public class Partie {
 		for (int i = 0; i < source.getCartes().size();i++) {
 			System.out.println(source.getCartes().get(i).getNom());
 		}
+		
 		
 	}
 

@@ -9,8 +9,15 @@ public class Joueur {
     private Pile pile = new Pile();
     private int anneaux;
     private Echelle echelleKarmique;
+    private String nom;
     
-    //Echelle Karmique
+    public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	//Echelle Karmique
     public Echelle getEchelleKarmique() {
 		return echelleKarmique;
 	}
