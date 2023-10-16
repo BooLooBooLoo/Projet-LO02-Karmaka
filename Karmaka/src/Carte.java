@@ -1,10 +1,11 @@
 package Karmaka.src;
 
 public class Carte {
-    private String nom;
-    private int cout;
- 
-    private Couleur type;
+	
+    protected String nom;
+    protected int cout;
+    protected Couleur type;
+    protected String description;
 
     public int getCout(){
         return cout;
