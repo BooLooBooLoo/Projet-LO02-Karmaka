@@ -1,22 +1,16 @@
 package Karmaka.src;
 
-import java.util.List;
-
-import java.util.ArrayList;
-
-public class Joueur {
-    private List<Carte> main = new ArrayList<Carte>();
-    private Pile pile = new Pile();
-    private int anneaux;
-    private Echelle echelleKarmique;
-    private String nom;
+public abstract class Joueur {
+    protected Pile main = new Pile();
+    protected Pile pile = new Pile();
+    protected Pile vieFuture = new Pile();
+    protected int anneaux;
+    protected Echelle echelleKarmique;
     
-    public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    
+    public abstract String jouer();
+    
+    
 	//Echelle Karmique
     public Echelle getEchelleKarmique() {
 		return echelleKarmique;
@@ -25,21 +19,17 @@ public class Joueur {
 		this.echelleKarmique = echelleKarmique;
 	}
 	
-	//Main
-	public List<Carte> getMain(){
-        return main;
-    }
-    public void setMain(List<Carte> value){
-        main = value;
-    }
-    public void addCarteMain(Carte carte){
-        main.add(carte);
-    }
-    public void removeCarteMain(Carte carte){
-        main.remove(carte);
-    }
-    
-    //Pile
+	
+    //Main
+    public Pile getMain() {
+		return main;
+	}
+	public void setMain(Pile main) {
+		this.main = main;
+	}
+
+
+	//Pile
 	public Pile getPile() {
 		return pile;
 	}
@@ -60,4 +50,9 @@ public class Joueur {
 	public void setAnneaux(int value){
         anneaux = value;
     }
+	
+	public String choisirCarte() {
+		
+		return "";
+	}
 }

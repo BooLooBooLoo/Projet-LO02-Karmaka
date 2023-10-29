@@ -10,8 +10,23 @@ public class Partie {
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
 	private Joueur tour = null;
 	private Pile source = new Pile();
+	private Pile defausse = new Pile();
 	
-	
+	public Pile getSource() {
+		return source;
+	}
+
+	public void setSource(Pile source) {
+		this.source = source;
+	}
+
+	public Pile getDefausse() {
+		return defausse;
+	}
+
+	public void setDefausse(Pile defausse) {
+		this.defausse = defausse;
+	}
 	
 	public Joueur getTour() {
 		return tour;
@@ -30,8 +45,8 @@ public class Partie {
 	}
 
 	public List<Joueur> setupJoueur() {
-		Joueur joueur = new Joueur();
-		Joueur bot = new Joueur();
+		Joueur joueur = new Human();
+		Joueur bot = new Bot();
 		joueurs.add(joueur);
 		joueurs.add(bot);
 		return joueurs;
@@ -42,8 +57,6 @@ public class Partie {
 	}
 	
 	public Pile setupSource() {
-		//Initialisation de la pile "source"
-		Pile source = new Pile();
 		
 		//Création des cartes de jeu
 		Carte carte = new Panique();
@@ -78,7 +91,7 @@ public class Partie {
 	public void setupPileEtMain(Pile source) {
 		for (int i = 0; i < joueurs.size();i++) {
 			for (int j = 0; j < 4; j++) {
-				joueurs.get(i).addCarteMain(source.getCartes().get(0));
+				joueurs.get(i).getMain().addCarte(source.getCartes().get(0));
 				source.removeCarte(source.getCartes().get(0));
 			}
 			for (int j = 0; j < 2; j++) {
@@ -108,24 +121,26 @@ public class Partie {
 		partie.setJoueurs(partie.setupJoueur());
 		partie.setupEchelleKarmique(partie.getJoueurs().get(0));
 		partie.setupEchelleKarmique(partie.getJoueurs().get(1));
-		Pile source = partie.setupSource();
+		partie.setupSource();
 		System.out.println("Source :");
-		for (int i = 0; i < source.getCartes().size();i++) {
-			System.out.println(source.getCartes().get(i).getNom());
+		for (int i = 0; i < partie.getSource().getCartes().size();i++) {
+			System.out.println(partie.getSource().getCartes().get(i).getNom());
 		}
-		partie.setupPileEtMain(source);
+		partie.setupPileEtMain(partie.getSource());
 		for (int i = 0; i < partie.getJoueurs().size();i++){
 			System.out.println("Joueur "+i+" :");
-			for (int j = 0; j < partie.getJoueurs().get(i).getMain().size();j++) {
-				System.out.println(partie.getJoueurs().get(i).getMain().get(j).getNom());
+			for (int j = 0; j < partie.getJoueurs().get(i).getMain().getCartes().size();j++) {
+				System.out.println(partie.getJoueurs().get(i).getMain().getCartes().get(j).getNom());
 			}
 		}
 		System.out.println("Source :");
-		for (int i = 0; i < source.getCartes().size();i++) {
-			System.out.println(source.getCartes().get(i).getNom());
+		for (int i = 0; i < partie.getSource().getCartes().size();i++) {
+			System.out.println(partie.getSource().getCartes().get(i).getNom());
 		}
 		
 		
 	}
+
+	
 
 }
