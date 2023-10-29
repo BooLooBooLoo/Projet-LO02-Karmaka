@@ -14,7 +14,7 @@ public abstract class Carte {
     	this.type = type;
     }
     
-    public abstract void effet();
+    public abstract void effet(Partie partie);
     
     public int getCout(){
         return cout;

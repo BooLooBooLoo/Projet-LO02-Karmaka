@@ -62,12 +62,13 @@ public class Partie {
 		Carte carte = new Panique();
 		Carte carte2 = new Deni();
 		Carte carte3 = new Crise();
+		Carte carte4 = new Transmigration();
 		
 		//Ajouter les cartes à la source
-		source.addCarte(carte3);
-		source.addCarte(carte3);
-		source.addCarte(carte3);
-		source.addCarte(carte2);
+		source.addCarte(carte4);
+		source.addCarte(carte4);
+		source.addCarte(carte4);
+		source.addCarte(carte4);
 		source.addCarte(carte2);
 		source.addCarte(carte);
 		source.addCarte(carte);
@@ -140,7 +141,5 @@ public class Partie {
 			System.out.println(partie.getJoueurs().get(0).getMain().getCartes().get(j).getNom());
 		}
 	}
-
 	
-
 }

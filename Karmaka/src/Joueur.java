@@ -52,7 +52,16 @@ public abstract class Joueur {
 	public void setAnneaux(int value){
         anneaux = value;
     }
-	
+	public Pile getVieFuture() {
+		return vieFuture;
+	}
+
+
+	public void setVieFuture(Pile vieFuture) {
+		this.vieFuture = vieFuture;
+	}
+
+
 	public Carte choisirCarte() {
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
 			System.out.println(getMain().getCartes().get(i).getNom());
