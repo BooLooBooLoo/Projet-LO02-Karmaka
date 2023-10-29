@@ -52,7 +52,7 @@ public abstract class Joueur {
     }
 	
 	public String choisirCarte() {
-		
+		System.out.println("Test");
 		return "";
 	}
 }
