@@ -3,12 +3,15 @@ package Karmaka.src;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import Cartes.*;
 
 public class Partie {
 	
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
 	private Joueur tour = null;
+	private Pile source = new Pile();
+	
+	
 	
 	public Joueur getTour() {
 		return tour;
@@ -43,18 +46,9 @@ public class Partie {
 		Pile source = new Pile();
 		
 		//Création des cartes de jeu
-		Carte carte = new Carte();
-		carte.setType(Couleur.ROUGE);
-		carte.setNom("Panique");
-		carte.setCout(1);
-		Carte carte2 = new Carte();
-		carte2.setType(Couleur.ROUGE);
-		carte2.setNom("Crise");
-		carte2.setCout(2);
-		Carte carte3 = new Carte();
-		carte3.setType(Couleur.ROUGE);
-		carte3.setNom("Bassesse");
-		carte3.setCout(3);
+		Carte carte = new Panique();
+		Carte carte2 = new Deni();
+		Carte carte3 = new Crise();
 		
 		//Ajouter les cartes à la source
 		source.addCarte(carte3);
