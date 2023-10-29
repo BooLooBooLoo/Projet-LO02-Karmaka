@@ -52,7 +52,9 @@ public abstract class Joueur {
     }
 	
 	public String choisirCarte() {
-		System.out.println("Test");
+		for (int i = 0; i < getMain().getCartes().size(); i++) {
+			System.out.println(getMain().getCartes().get(i));
+		}
 		return "";
 	}
 }

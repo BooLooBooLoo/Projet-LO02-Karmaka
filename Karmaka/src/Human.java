@@ -16,8 +16,6 @@ public class Human extends Joueur{
 	public String jouer() {
 		String action = new String();
 		// TODO Auto-generated method stub
-		System.out.println(action);
-		System.out.println(action != "Passer");
 		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 	    System.out.println("Entrer votre action (Passer/Oeuvre/Pouvoir/VieFuture)");
 
@@ -39,5 +37,7 @@ public class Human extends Joueur{
 	public static void main(String[] args) {
 		Human human = new Human();
 		human.jouer();
+		System.out.println("next");
+		human.choisirCarte();
 	}
 }
