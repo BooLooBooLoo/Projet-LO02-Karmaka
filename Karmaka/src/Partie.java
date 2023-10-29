@@ -133,12 +133,12 @@ public class Partie {
 				System.out.println(partie.getJoueurs().get(i).getMain().getCartes().get(j).getNom());
 			}
 		}
-		System.out.println("Source :");
-		for (int i = 0; i < partie.getSource().getCartes().size();i++) {
-			System.out.println(partie.getSource().getCartes().get(i).getNom());
+		
+		partie.getJoueurs().get(0).choisirCarte();
+		System.out.println("Joueur 0 :");
+		for (int j = 0; j < partie.getJoueurs().get(0).getMain().getCartes().size();j++) {
+			System.out.println(partie.getJoueurs().get(0).getMain().getCartes().get(j).getNom());
 		}
-		
-		
 	}
 
 	

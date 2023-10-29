@@ -1,5 +1,7 @@
 package Karmaka.src;
 
+import java.util.Scanner;
+
 public abstract class Joueur {
     protected Pile main = new Pile();
     protected Pile pile = new Pile();
@@ -51,10 +53,26 @@ public abstract class Joueur {
         anneaux = value;
     }
 	
-	public String choisirCarte() {
+	public Carte choisirCarte() {
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
-			System.out.println(getMain().getCartes().get(i));
+			System.out.println(getMain().getCartes().get(i).getNom());
 		}
-		return "";
+		Carte carteAJouer = null;
+		String action = new String();
+		// TODO Auto-generated method stub
+		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+	    System.out.println("Entrer la carte à jouer (son nom)");
+
+	    action  = myObj.nextLine();  // Read user input
+	    System.out.println(action);
+		myObj.close();
+		for (int i = 0; i < getMain().getCartes().size(); i++) {
+			if (action.equals(getMain().getCartes().get(i).getNom())) {
+				carteAJouer = getMain().getCartes().get(i);
+				getMain().removeCarte(carteAJouer);
+				break;
+			}
+		}
+		return carteAJouer;
 	}
 }

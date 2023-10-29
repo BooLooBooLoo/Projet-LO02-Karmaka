@@ -33,11 +33,4 @@ public class Human extends Joueur{
 	    }
 		return null;
 	}
-	
-	public static void main(String[] args) {
-		Human human = new Human();
-		human.jouer();
-		System.out.println("next");
-		human.choisirCarte();
-	}
 }
