@@ -26,6 +26,7 @@ public class Transmigration extends Carte{
 		}
 		System.out.println("Choisir une carte à placer dans votre main.");
 		String carteSelect = sc.nextLine();
+		sc.close();
 		// Trouver la carte sélectionnée
 		int indiceCarteSelect = -1;
 		for(int i=0; i<VieFuture.getCartes().size(); i++) {
