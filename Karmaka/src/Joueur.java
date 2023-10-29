@@ -6,11 +6,23 @@ public abstract class Joueur {
     protected Pile main = new Pile();
     protected Pile pile = new Pile();
     protected Pile vieFuture = new Pile();
+    protected Pile oeuvre = new Pile();
     protected int anneaux;
     protected Echelle echelleKarmique;
+    protected Carte derniereCarteJoue;
     
     
-    public abstract String jouer();
+    public Carte getDerniereCarteJoue() {
+		return derniereCarteJoue;
+	}
+
+
+	public void setDerniereCarteJoue(Carte derniereCarteJoue) {
+		this.derniereCarteJoue = derniereCarteJoue;
+	}
+
+
+	public abstract String jouer();
     
     
 	//Echelle Karmique
@@ -83,5 +95,33 @@ public abstract class Joueur {
 			}
 		}
 		return carteAJouer;
+	}
+	
+	public void piocher() {
+		if (getPile().getCartes().size() > 0) {
+			int rand = (int) Math.round(Math.random());
+			Carte temp = getPile().getCartes().get(rand);
+			getPile().removeCarte(temp);
+			getMain().addCarte(temp);
+		}
+	}
+
+	public Pile getVieFuture() {
+		return vieFuture;
+	}
+
+
+	public void setVieFuture(Pile vieFuture) {
+		this.vieFuture = vieFuture;
+	}
+
+
+	public Pile getOeuvre() {
+		return oeuvre;
+	}
+
+
+	public void setOeuvre(Pile oeuvre) {
+		this.oeuvre = oeuvre;
 	}
 }

@@ -3,6 +3,8 @@ package Karmaka.src;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+
 import Cartes.*;
 
 public class Partie {
@@ -112,6 +114,32 @@ public class Partie {
 		} else {
 			Joueur j = (joueurs.indexOf(tour) >= joueurs.size()-1) ? joueurs.get(0) : joueurs.get(joueurs.indexOf(tour) + 1);
 			this.tour = j;
+		}
+		
+	}
+	
+	public void coutKarmique(Carte carte) {
+		String action = new String();
+		// TODO Auto-generated method stub
+		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+	    System.out.println("Voulez-vous récuperer la carte suivante (Y/N) :"+carte.getNom());
+
+	    action  = myObj.nextLine();  // Read user input
+	    System.out.println(action);
+		myObj.close();
+		if (action.equals("Y")) {
+			getJoueurs().get(1 - getJoueurs().indexOf(getTour())).getVieFuture().addCarte(carte);
+		}
+	}
+	
+	public void tourDeJeu(Joueur joueur) {
+		joueur.piocher();
+		String temp = joueur.jouer();
+		while (temp.equals(null)) {
+			temp = joueur.jouer();
+		}
+		if (temp.equals("Pouvoir")) {
+			coutKarmique(joueur.getDerniereCarteJoue());
 		}
 		
 	}
