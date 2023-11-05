@@ -65,6 +65,7 @@ public class Partie {
 		Carte carte2 = new Deni();
 		Carte carte3 = new Crise();
 		Carte carte4 = new Transmigration();
+		Carte carte5 = new Destinee();
 		
 		//Ajouter les cartes à la source
 		source.addCarte(carte4);
@@ -83,6 +84,10 @@ public class Partie {
 		source.addCarte(carte);
 		source.addCarte(carte);
 		source.addCarte(carte);
+		source.addCarte(carte5);
+		source.addCarte(carte5);
+		source.addCarte(carte5);
+		source.addCarte(carte5);
 		
 		//Mélanger les cartes
 		List<Carte> cartes = source.getCartes();
@@ -126,7 +131,7 @@ public class Partie {
 
 	    action  = myObj.nextLine();  // Read user input
 	    System.out.println(action);
-		myObj.close();
+		//myObj.close();
 		if (action.equals("Y")) {
 			getJoueurs().get(1 - getJoueurs().indexOf(getTour())).getVieFuture().addCarte(carte);
 		}
@@ -134,9 +139,9 @@ public class Partie {
 	
 	public void tourDeJeu(Joueur joueur) {
 		joueur.piocher();
-		String temp = joueur.jouer();
+		String temp = joueur.jouer(this);
 		while (temp.equals(null)) {
-			temp = joueur.jouer();
+			temp = joueur.jouer(this);
 		}
 		if (temp.equals("Pouvoir")) {
 			coutKarmique(joueur.getDerniereCarteJoue());
@@ -163,11 +168,16 @@ public class Partie {
 			}
 		}
 		
-		partie.getJoueurs().get(0).choisirCarte();
 		System.out.println("Joueur 0 :");
 		for (int j = 0; j < partie.getJoueurs().get(0).getMain().getCartes().size();j++) {
 			System.out.println(partie.getJoueurs().get(0).getMain().getCartes().get(j).getNom());
 		}
+		
+		partie.choisirJoueur();
+		System.out.println(partie.getTour());
+		partie.tourDeJeu(partie.getTour());
+		System.out.println("OUT 2");
+		
 	}
 	
 }

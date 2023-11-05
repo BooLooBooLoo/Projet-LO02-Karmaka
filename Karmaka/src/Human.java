@@ -7,7 +7,7 @@ public class Human extends Joueur{
 	private String nom;
 	
 	@Override
-	public String jouer() {
+	public String jouer(Partie partie) {
 		String bool = new String();
 		String action = new String();
 		// TODO Auto-generated method stub
@@ -16,7 +16,7 @@ public class Human extends Joueur{
 
 	    action  = myObj.nextLine();  // Read user input
 	    System.out.println(action);
-		myObj.close();
+		//myObj.close();
 		bool = null;
 	    if (action.equals("Passer")) {
 	    	if (getPile().getCartes().size() > 0) {
@@ -27,7 +27,7 @@ public class Human extends Joueur{
 	    } else if (action.equals("Pouvoir")) {
 	    	Carte temp = choisirCarte();
 	    	setDerniereCarteJoue(temp);
-	    	temp.effet();
+	    	temp.effet(partie);
 	    	bool = "Pouvoir";
 	    } else if (action.equals("Oeuvre")) {
 	    	Carte temp = choisirCarte();

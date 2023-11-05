@@ -22,7 +22,7 @@ public abstract class Joueur {
 	}
 
 
-	public abstract String jouer();
+	public abstract String jouer(Partie partie);
     
     
 	//Echelle Karmique
@@ -32,8 +32,7 @@ public abstract class Joueur {
 	public void setEchelleKarmique(Echelle echelleKarmique) {
 		this.echelleKarmique = echelleKarmique;
 	}
-	
-	
+			
     //Main
     public Pile getMain() {
 		return main;
@@ -64,15 +63,6 @@ public abstract class Joueur {
 	public void setAnneaux(int value){
         anneaux = value;
     }
-	public Pile getVieFuture() {
-		return vieFuture;
-	}
-
-
-	public void setVieFuture(Pile vieFuture) {
-		this.vieFuture = vieFuture;
-	}
-
 
 	public Carte choisirCarte() {
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
@@ -80,13 +70,10 @@ public abstract class Joueur {
 		}
 		Carte carteAJouer = null;
 		String action = new String();
-		// TODO Auto-generated method stub
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	    System.out.println("Entrer la carte à jouer (son nom)");
-
-	    action  = myObj.nextLine();  // Read user input
-	    System.out.println(action);
-		myObj.close();
+		Scanner myObj = new Scanner(System.in);
+		System.out.println("Entrer la carte à jouer (son nom)");
+		action  = myObj.nextLine();
+		System.out.println("OUT");
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
 			if (action.equals(getMain().getCartes().get(i).getNom())) {
 				carteAJouer = getMain().getCartes().get(i);
@@ -94,6 +81,7 @@ public abstract class Joueur {
 				break;
 			}
 		}
+		System.out.println("Fin choix");
 		return carteAJouer;
 	}
 	
@@ -107,6 +95,9 @@ public abstract class Joueur {
 	}
 
 	public Pile getVieFuture() {
+		for(int i=0; i<vieFuture.getCartes().size(); i++) {
+			System.out.println(vieFuture.getCartes().get(i).getNom());
+		}
 		return vieFuture;
 	}
 

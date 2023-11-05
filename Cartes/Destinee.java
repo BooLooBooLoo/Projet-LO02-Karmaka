@@ -30,6 +30,7 @@ public class Destinee extends Carte{
 		}
 		System.out.println("Combien de carte à ajouter dans la Vie Future?");
 		int nbCarte = sc.nextInt();
+		sc.nextLine();
 		for(int i=0; i<nbCarte; i++) {
 			System.out.println("Choisir une carte à placer dans votre main.");
 			String carteSelect = sc.nextLine();
@@ -48,7 +49,7 @@ public class Destinee extends Carte{
 				VieFuture.addCarte(Source.getCartes().get(indiceCarteSelect));
 			}		
 		}
-		sc.close();
+		//sc.close();
 		Main.removeCarte(this);
 		}
 }
