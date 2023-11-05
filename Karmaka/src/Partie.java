@@ -117,7 +117,7 @@ public class Partie {
 		}
 		
 	}
-	
+	//Coût Karmique
 	public void coutKarmique(Carte carte) {
 		String action = new String();
 		// TODO Auto-generated method stub
