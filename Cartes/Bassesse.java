@@ -2,6 +2,7 @@ package Cartes;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Partie;
 
 public class Bassesse extends Carte{
 	
@@ -10,7 +11,7 @@ public class Bassesse extends Carte{
 	}
 
 	@Override
-	public void effet() {
+	public void effet(Partie partie) {
 		// TODO Auto-generated method stub
 		System.out.println("J'aime la pêche");
 	}
