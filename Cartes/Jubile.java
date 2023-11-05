@@ -44,7 +44,8 @@ public class Jubile extends Carte{
 			if(indiceCarteSelect == -1) {
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");
 			} else {
-				Oeuvre.addCarte(Main.getCartes().get(indiceCarteSelect));
+				Carte carte = Main.getCartes().get(indiceCarteSelect);
+				partie.deplacerCarte(Main, Oeuvre, carte);
 			}		
 		}
 		sc.close();
