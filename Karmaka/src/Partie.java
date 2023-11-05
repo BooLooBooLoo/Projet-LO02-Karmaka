@@ -13,6 +13,7 @@ public class Partie {
 	private Joueur tour = null;
 	private Pile source = new Pile();
 	private Pile defausse = new Pile();
+	private boolean win = false;
 	
 	public Pile getSource() {
 		return source;
@@ -48,7 +49,9 @@ public class Partie {
 
 	public List<Joueur> setupJoueur() {
 		Joueur joueur = new Human();
+		joueur.setNom("Jean");
 		Joueur bot = new Bot();
+		bot.setNom("Charles");
 		joueurs.add(joueur);
 		joueurs.add(bot);
 		return joueurs;
@@ -138,17 +141,169 @@ public class Partie {
 	}
 	
 	public void tourDeJeu(Joueur joueur) {
-		joueur.piocher();
-		String temp = joueur.jouer(this);
-		while (temp.equals(null)) {
-			temp = joueur.jouer(this);
+		if (joueur.getMain().getCartes().size() == 0 && joueur.getPile().getCartes().size() == 0) {
+			reincarnation(joueur);
+		} else {
+			joueur.piocher();
+			String temp = joueur.jouer(this);
+			while (temp.equals(null)) {
+				temp = joueur.jouer(this);
+			}
+			if (temp.equals("Pouvoir")) {
+				coutKarmique(joueur.getDerniereCarteJoue());
+			}
 		}
-		if (temp.equals("Pouvoir")) {
-			coutKarmique(joueur.getDerniereCarteJoue());
-		}
-		
+		System.out.println("Fin du tour de : "+joueur.getNom());
 	}
 	
+	public void gestionDeLaPartie() {
+		choisirJoueur();
+		tourDeJeu(tour);
+		if (!win) {
+			gestionDeLaPartie();
+		}
+	}
+	
+	public void reincarnation(Joueur joueur) {
+		switch (joueur.getEchelleKarmique()) {
+		case BOUSIER :
+			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 4) {
+				joueur.setEchelleKarmique(Echelle.SERPENT);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			} else {
+				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			}
+			break;
+		case SERPENT :
+			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 5) {
+				joueur.setEchelleKarmique(Echelle.SERPENT);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			} else {
+				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			}
+			break;
+		case LOUP :
+			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 6) {
+				joueur.setEchelleKarmique(Echelle.SERPENT);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			} else {
+				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			}
+			break;
+		case SINGE :
+			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 7) {
+				this.setWin(true);
+				System.out.println(joueur.getNom() + " a gagné cette partie !");
+			} else {
+				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
+					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
+				}
+				joueur.getOeuvre().getCartes().clear();
+				for (int i = 0; i < joueur.getVieFuture().getCartes().size(); i++) {
+					joueur.getMain().addCarte(joueur.getVieFuture().getCartes().get(i));
+				}
+				joueur.getVieFuture().getCartes().clear();
+				if (joueur.getMain().getCartes().size() < 6) {
+					for (int i = 0; i < 6 - joueur.getMain().getCartes().size(); i++) {
+						joueur.getMain().addCarte(source.getCartes().get(0));
+						source.removeCarte(source.getCartes().get(0));
+					}
+				}
+			}
+			break;
+		}
+	}
+	
+	public boolean isWin() {
+		return win;
+	}
+
+	public void setWin(boolean win) {
+		this.win = win;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partie partie = new Partie();
@@ -157,26 +312,13 @@ public class Partie {
 		partie.setupEchelleKarmique(partie.getJoueurs().get(1));
 		partie.setupSource();
 		System.out.println("Source :");
-		for (int i = 0; i < partie.getSource().getCartes().size();i++) {
-			System.out.println(partie.getSource().getCartes().get(i).getNom());
-		}
+		System.out.println(partie.getSource().toString());
 		partie.setupPileEtMain(partie.getSource());
 		for (int i = 0; i < partie.getJoueurs().size();i++){
 			System.out.println("Joueur "+i+" :");
-			for (int j = 0; j < partie.getJoueurs().get(i).getMain().getCartes().size();j++) {
-				System.out.println(partie.getJoueurs().get(i).getMain().getCartes().get(j).getNom());
-			}
+			System.out.println(partie.getJoueurs().get(i).getMain().toString());
 		}
-		
-		System.out.println("Joueur 0 :");
-		for (int j = 0; j < partie.getJoueurs().get(0).getMain().getCartes().size();j++) {
-			System.out.println(partie.getJoueurs().get(0).getMain().getCartes().get(j).getNom());
-		}
-		
-		partie.choisirJoueur();
-		System.out.println(partie.getTour());
-		partie.tourDeJeu(partie.getTour());
-		System.out.println("OUT 2");
+		partie.gestionDeLaPartie();
 		
 	}
 	

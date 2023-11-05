@@ -6,8 +6,20 @@ public abstract class Joueur {
     protected Pile main = new Pile();
     protected Pile pile = new Pile();
     protected Pile vieFuture = new Pile();
-    protected Pile oeuvre = new Pile();
-    protected int anneaux;
+    protected Oeuvre oeuvre = new Oeuvre();
+    protected String nom;
+    
+    public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	protected int anneaux;
     protected Echelle echelleKarmique;
     protected Carte derniereCarteJoue;
     
@@ -65,15 +77,12 @@ public abstract class Joueur {
     }
 
 	public Carte choisirCarte() {
-		for (int i = 0; i < getMain().getCartes().size(); i++) {
-			System.out.println(getMain().getCartes().get(i).getNom());
-		}
+		System.out.println(getMain().toString());
 		Carte carteAJouer = null;
 		String action = new String();
 		Scanner myObj = new Scanner(System.in);
 		System.out.println("Entrer la carte à jouer (son nom)");
 		action  = myObj.nextLine();
-		System.out.println("OUT");
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
 			if (action.equals(getMain().getCartes().get(i).getNom())) {
 				carteAJouer = getMain().getCartes().get(i);
@@ -87,7 +96,7 @@ public abstract class Joueur {
 	
 	public void piocher() {
 		if (getPile().getCartes().size() > 0) {
-			int rand = (int) Math.round(Math.random());
+			int rand = (int) Math.floor(Math.random()) * getPile().getCartes().size();
 			Carte temp = getPile().getCartes().get(rand);
 			getPile().removeCarte(temp);
 			getMain().addCarte(temp);
@@ -107,12 +116,12 @@ public abstract class Joueur {
 	}
 
 
-	public Pile getOeuvre() {
+	public Oeuvre getOeuvre() {
 		return oeuvre;
 	}
 
 
-	public void setOeuvre(Pile oeuvre) {
+	public void setOeuvre(Oeuvre oeuvre) {
 		this.oeuvre = oeuvre;
 	}
 }

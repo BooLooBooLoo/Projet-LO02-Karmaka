@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Human extends Joueur{
 	
-	private String nom;
+	
 	
 	@Override
 	public String jouer(Partie partie) {
@@ -43,11 +43,4 @@ public class Human extends Joueur{
 		return bool;
 	}
 
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
 }

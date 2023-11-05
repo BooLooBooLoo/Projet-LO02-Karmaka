@@ -4,7 +4,7 @@ public class Bot extends Joueur{
 
 	@Override
 	public String jouer(Partie partie) {
-		// TODO Auto-generated method stub
+		System.out.println("Le bot est en train de jouer...");
 		return "";
 	}
 

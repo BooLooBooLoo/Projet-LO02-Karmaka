@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pile {
-    private List<Carte> cartes = new ArrayList<Carte>();
+    protected List<Carte> cartes = new ArrayList<Carte>();
 
     public List<Carte> getCartes(){
         return cartes;
@@ -21,5 +21,15 @@ public class Pile {
     public void removeCarte(Carte carte){
         cartes.remove(carte);
     }
-
+    
+    public String toString() {
+		String str = new String();
+		str += "[";
+		for (int i = 0; i < cartes.size(); i++) {
+			str+= new String(cartes.get(i).getNom())+", ";
+		}
+		str+= "]";
+		return str;
+		
+	}
 }
