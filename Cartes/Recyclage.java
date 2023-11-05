@@ -1,4 +1,4 @@
-package Cartes;
+	package Cartes;
 
 import java.util.Scanner;
 
@@ -16,7 +16,8 @@ public class Recyclage extends Carte{
 	@Override
 	public void effet(Partie partie) {
 		// Déclaration des variables utilisés dans cette classe
-		Pile Main = partie.getTour().getMain();
+		Pile vieFuture = partie.getTour().getVieFuture();
+		Pile main = partie.getTour().getMain();
 		Pile Defausse = partie.getDefausse();
 		Scanner sc = new Scanner(System.in);
 		// Syso et Scan 
@@ -39,9 +40,9 @@ public class Recyclage extends Carte{
 		if(indiceCarteSelect == -1) {
 			System.out.println("Erreur! (La carte n'est pas trouvé...)");
 		} else {
-			Main.addCarte(Defausse.getCartes().get(indiceCarteSelect));
-			Main.removeCarte(this);
+			Carte carte = Defausse.getCartes().get(indiceCarteSelect);
+			partie.deplacerCarte(Defausse, main, carte);
+			main.removeCarte(this);
 		}
 	}
-
 }

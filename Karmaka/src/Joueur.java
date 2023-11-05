@@ -87,7 +87,7 @@ public abstract class Joueur {
 	
 	public void piocher() {
 		if (getPile().getCartes().size() > 0) {
-			int rand = (int) Math.round(Math.random());
+			int rand = (int) Math.floor(Math.random()*pile.getCartes().size());
 			Carte temp = getPile().getCartes().get(rand);
 			getPile().removeCarte(temp);
 			getMain().addCarte(temp);

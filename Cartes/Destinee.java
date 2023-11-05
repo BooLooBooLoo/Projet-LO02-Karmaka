@@ -46,7 +46,8 @@ public class Destinee extends Carte{
 			if(indiceCarteSelect == -1) {
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");
 			} else {
-				VieFuture.addCarte(Source.getCartes().get(indiceCarteSelect));
+				Carte carte = Source.getCartes().get(indiceCarteSelect);
+				partie.deplacerCarte(Source, VieFuture, carte);
 			}		
 		}
 		//sc.close();

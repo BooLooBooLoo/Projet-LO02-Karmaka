@@ -58,6 +58,11 @@ public class Partie {
 		joueur.setEchelleKarmique(Echelle.BOUSIER);
 	}
 	
+	public void deplacerCarte(Pile pileSource, Pile pileCible, Carte carte) {
+		pileCible.addCarte(carte);
+		pileSource.removeCarte(carte);
+	}
+	
 	public Pile setupSource() {
 		
 		//Création des cartes de jeu
@@ -65,7 +70,7 @@ public class Partie {
 		Carte carte2 = new Deni();
 		Carte carte3 = new Crise();
 		Carte carte4 = new Transmigration();
-		Carte carte5 = new Destinee();
+		Carte carte5 = new Semis();
 		
 		//Ajouter les cartes à la source
 		source.addCarte(carte4);

@@ -39,8 +39,8 @@ public class Transmigration extends Carte{
 		if(indiceCarteSelect == -1) {
 			System.out.println("Erreur! (La carte n'est pas trouvé...)");
 		} else {
-			Main.addCarte(VieFuture.getCartes().get(indiceCarteSelect));
-			VieFuture.removeCarte(VieFuture.getCartes().get(indiceCarteSelect));
+			Carte carte = VieFuture.getCartes().get(indiceCarteSelect);
+			partie.deplacerCarte(VieFuture, Main, carte);
 			Main.removeCarte(this);
 		}
 	}

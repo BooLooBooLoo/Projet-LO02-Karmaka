@@ -1,7 +1,11 @@
 package Cartes;
 
+import java.util.Scanner;
+
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Partie;
+import Karmaka.src.Pile;
 
 public class Semis extends Carte{
 	
@@ -10,8 +14,40 @@ public class Semis extends Carte{
 	}
 
 	@Override
-	public void effet() {
-		// TODO Auto-generated method stub
-		System.out.println("J'aime la pêche");
+	public void effet(Partie partie) {
+		// Déclaration des variables utilisés dans cette classe
+		Pile main = partie.getTour().getMain();
+		Pile vieFuture = partie.getTour().getVieFuture();
+		Scanner sc = new Scanner(System.in);
+		// Syso et Scan 
+		System.out.println("Vous piochez deux cartes de la source.");
+		for(int i=0; i<2; i++) {
+			partie.getTour().piocher();
+		}
+		main.removeCarte(this);
+		System.out.println("Voici votre main :");
+		for(int i=0; i<main.getCartes().size(); i++) {
+			System.out.println(main.getCartes().get(i).getNom());
+		}
+		for(int i=0; i<2; i++) {
+			System.out.println("Choisir une carte à mettre dans votre vie future :");
+			String carteSelect = sc.nextLine();
+			// Trouver la carte sélectionnée
+			int indiceCarteSelect = -1;
+			for(int j=0; i<main.getCartes().size(); j++) {
+				if(main.getCartes().get(j).getNom().equals(carteSelect)) {
+					indiceCarteSelect = j;
+					break;
+				}
+			}
+		// Modification objet "partie"
+		if(indiceCarteSelect == -1) {
+			System.out.println("Erreur! (La carte n'est pas trouvé...)");
+		} else {
+			Carte carte = main.getCartes().get(indiceCarteSelect);
+			partie.deplacerCarte(main, vieFuture, carte);
+			main.removeCarte(this);
+		}
 	}
+}
 }
