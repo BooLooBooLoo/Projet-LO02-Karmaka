@@ -66,6 +66,17 @@ public class Partie {
 		pileSource.removeCarte(carte);
 	}
 	
+	public Joueur getAdversaire() {
+		Joueur adversaire = null;
+		for(int i=0; i<this.getJoueurs().size(); i++) {
+			if(this.tour != this.getJoueurs().get(i)) {
+				adversaire = this.getJoueurs().get(i);
+				break;
+			}
+		}
+		return adversaire;
+	}
+	
 	public Pile setupSource() {
 		
 		//Création des cartes de jeu
@@ -73,7 +84,7 @@ public class Partie {
 		Carte carte2 = new Deni();
 		Carte carte3 = new Crise();
 		Carte carte4 = new Transmigration();
-		Carte carte5 = new Semis();
+		Carte carte5 = new Vol();
 		
 		//Ajouter les cartes à la source
 		source.addCarte(carte4);
@@ -316,6 +327,7 @@ public class Partie {
 		partie.setupEchelleKarmique(partie.getJoueurs().get(0));
 		partie.setupEchelleKarmique(partie.getJoueurs().get(1));
 		partie.setupSource();
+		partie.getJoueurs().get(1).getOeuvre().addCarte(new Semis());
 		System.out.println("Source :");
 		System.out.println(partie.getSource().toString());
 		partie.setupPileEtMain(partie.getSource());

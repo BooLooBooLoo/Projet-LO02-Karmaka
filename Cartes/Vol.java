@@ -1,7 +1,12 @@
 package Cartes;
 
+import java.util.Scanner;
+
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Joueur;
+import Karmaka.src.Partie;
+import Karmaka.src.Pile;
 
 public class Vol extends Carte{
 	
@@ -10,8 +15,16 @@ public class Vol extends Carte{
 	}
 
 	@Override
-	public void effet() {
-		// TODO Auto-generated method stub
-		System.out.println("J'aime la pêche");
+	public void effet(Partie partie) {
+		// Déclaration des variables utilisés dans cette classe
+				Joueur adversaire = partie.getAdversaire();
+				Pile oeuvreAdverse = adversaire.getOeuvre();
+				Pile main = partie.getTour().getMain();
+				// Syso et Scan 
+				System.out.println("Vol de l'oeuvre exposée (la première visible de la pile) adverse.");
+				System.out.println("Carte volée : " + oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1).getNom());
+				// Modification objet "partie"
+				partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
+				main.removeCarte(this);
 	}
 }

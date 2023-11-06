@@ -48,7 +48,6 @@ public class Jubile extends Carte{
 				partie.deplacerCarte(Main, Oeuvre, carte);
 			}		
 		}
-		sc.close();
 		Main.removeCarte(this);
 		}
 }
