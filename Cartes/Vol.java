@@ -20,11 +20,17 @@ public class Vol extends Carte{
 				Joueur adversaire = partie.getAdversaire();
 				Pile oeuvreAdverse = adversaire.getOeuvre();
 				Pile main = partie.getTour().getMain();
-				// Syso et Scan 
-				System.out.println("Vol de l'oeuvre exposée (la première visible de la pile) adverse.");
-				System.out.println("Carte volée : " + oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1).getNom());
-				// Modification objet "partie"
-				partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
-				main.removeCarte(this);
+				// Check si Oeuvre contient au moins une carte 
+				if(oeuvreAdverse.getCartes().isEmpty()) {
+					System.out.println("Il n'y a pas de carte à voler. Veuillez jouer une autre carte.");
+					// partie.getTour().jouer(partie);
+				} else {
+					// Effet de la carte
+					System.out.println("Vol de l'oeuvre exposée (la première visible de la pile) adverse.");
+					System.out.println("Carte volée : " + oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1).getNom());
+					// Modification objet "partie"
+					partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
+					main.removeCarte(this);
+				}
 	}
 }
