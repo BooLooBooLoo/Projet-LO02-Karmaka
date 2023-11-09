@@ -17,6 +17,7 @@ public class Bassesse extends Carte{
 		Joueur adversaire = partie.getAdversaire();
 		Pile mainAdverse = adversaire.getMain();
 		Pile main = partie.getTour().getMain();
+		Pile defausse = partie.getDefausse();
 		// Check si on peut voler
 		if(mainAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à défausser. Veuillez jouer une autre carte.");
@@ -33,7 +34,7 @@ public class Bassesse extends Carte{
 					System.out.println("On défausse l'oeuvre visible adverse.");
 					System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 					// Modification objet "partie"
-					mainAdverse.removeCarte(carteDefausse);
+					partie.deplacerCarte(mainAdverse, defausse, carteDefausse);
 				}
 			}
 			// Modification objet "partie"

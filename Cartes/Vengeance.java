@@ -19,6 +19,7 @@ public class Vengeance extends Carte{
 		Joueur adversaire = partie.getAdversaire();
 		Pile oeuvreAdverse = adversaire.getOeuvre();
 		Pile main = partie.getTour().getMain();
+		Pile defausse = partie.getDefausse();
 		// Check si on peut voler
 		if(oeuvreAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à voler. Veuillez jouer une autre carte.");
@@ -30,7 +31,7 @@ public class Vengeance extends Carte{
 			System.out.println("On défausse l'oeuvre visible adverse.");
 			System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 			// Modification objet "partie"
-			oeuvreAdverse.removeCarte(carteDefausse);
+			partie.deplacerCarte(oeuvreAdverse, defausse, carteDefausse);;
 			main.removeCarte(this);
 			}
 		}

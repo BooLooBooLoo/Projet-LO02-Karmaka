@@ -17,6 +17,7 @@ public class Fournaise extends Carte{
 		Joueur adversaire = partie.getAdversaire();
 		Pile vieFutureAdverse = adversaire.getOeuvre();
 		Pile main = partie.getTour().getMain();
+		Pile defausse = partie.getDefausse();
 		// Check si on peut voler
 		if(vieFutureAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à défausser. Veuillez jouer une autre carte.");
@@ -32,7 +33,7 @@ public class Fournaise extends Carte{
 					System.out.println("On défausse l'oeuvre visible adverse.");
 					System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 					// Modification objet "partie"
-					vieFutureAdverse.removeCarte(carteDefausse);
+					partie.deplacerCarte(vieFutureAdverse, defausse, carteDefausse);
 				}
 			}
 			// Modification objet "partie"
