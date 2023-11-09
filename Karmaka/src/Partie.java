@@ -111,9 +111,9 @@ public class Partie {
 	public Pile setupSource() {
 		
 		//Création des cartes de jeu
-		Carte carte = new Panique();
+		Carte carte = new Vengeance();
 		Carte carte2 = new Sauvetage();
-		Carte carte3 = new Crise();
+		Carte carte3 = new Bassesse();
 		Carte carte4 = new Transmigration();
 		Carte carte5 = new Vol();
 		
@@ -223,8 +223,6 @@ public class Partie {
 	}
 	
 	public void gestionDeLaPartie() {
-		
-		
 		choisirJoueur();
 		tourDeJeu(tour);
 		if (!win) {
