@@ -35,6 +35,7 @@ public abstract class Joueur {
 
 
 	public abstract String jouer(Partie partie);
+	public abstract String rejouer(Partie partie);
     
     
 	//Echelle Karmique

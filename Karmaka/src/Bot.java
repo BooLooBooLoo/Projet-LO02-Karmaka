@@ -8,4 +8,10 @@ public class Bot extends Joueur{
 		return "";
 	}
 
+	@Override
+	public String rejouer(Partie partie) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

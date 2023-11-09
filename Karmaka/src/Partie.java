@@ -84,7 +84,7 @@ public class Partie {
 		Carte carte2 = new Deni();
 		Carte carte3 = new Crise();
 		Carte carte4 = new Transmigration();
-		Carte carte5 = new Longevite();
+		Carte carte5 = new Vol();
 		
 		//Ajouter les cartes à la source
 		source.addCarte(carte4);
