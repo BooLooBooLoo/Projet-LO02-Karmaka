@@ -9,6 +9,10 @@ public abstract class Joueur {
     protected Oeuvre oeuvre = new Oeuvre();
     protected String nom;
     
+    public Joueur(String nom) {
+    	this.nom = nom;
+    }
+    
     public String getNom() {
 		return nom;
 	}
@@ -125,4 +129,7 @@ public abstract class Joueur {
 	public void setOeuvre(Oeuvre oeuvre) {
 		this.oeuvre = oeuvre;
 	}
+
+
+	protected abstract void coutKarmique(Carte carte, Partie partie);
 }

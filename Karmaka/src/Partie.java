@@ -5,10 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JLabel;
+
 import Cartes.*;
 
 public class Partie {
 	
+	private static int nbrTour = 0;
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
 	private Joueur tour = null;
 	private Pile source = new Pile();
@@ -48,12 +51,40 @@ public class Partie {
 	}
 
 	public List<Joueur> setupJoueur() {
-		Joueur joueur = new Human();
-		joueur.setNom("Jean");
-		Joueur bot = new Bot();
-		bot.setNom("Charles");
-		joueurs.add(joueur);
-		joueurs.add(bot);
+		String action = new String();
+		// TODO Auto-generated method stub
+		for (int i = 0; i < 2; i++) {
+			Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+		    System.out.println("Bot ou Humain : B/H");
+		    action  = myObj.nextLine();
+		    if (action.equals("B")) {
+		    	System.out.println("Donnez un nom à ce joueur");
+			    String nom  = myObj.nextLine();
+			    System.out.println("Choisissez sa stratégie : (A/N/D/IA)");
+			    String strat  = myObj.nextLine();
+			    Joueur joueur = new Bot(nom, "IA");
+			    switch (strat) {
+			    case "A":
+			    	joueur = new Bot(nom, "Aggressif");
+			    	break;
+			    case "N":
+			    	joueur =  new Bot(nom, "Neutre");
+			    	break;
+			    case "D":
+			    	joueur =  new Bot(nom, "Défensif");
+			    	break;
+			    case "IA":
+			    	joueur =  new Bot(nom, "IA");
+			    	break;
+			    }
+			    joueurs.add(joueur);
+		    } else if (action.equals("H")) {
+		    	System.out.println("Donnez un nom à ce joueur");
+			    action  = myObj.nextLine();
+		    	Joueur joueur = new Human(action);
+		    	joueurs.add(joueur);
+		    }
+		}
 		return joueurs;
 	}
 	
@@ -81,32 +112,35 @@ public class Partie {
 		
 		//Création des cartes de jeu
 		Carte carte = new Panique();
-		Carte carte2 = new Deni();
+		Carte carte2 = new Sauvetage();
 		Carte carte3 = new Crise();
 		Carte carte4 = new Transmigration();
 		Carte carte5 = new Vol();
 		
+		for (int i = 0; i < 5; i++) {
+			source.addCarte(carte4);
+			source.addCarte(carte4);
+			source.addCarte(carte4);
+			source.addCarte(carte4);
+			source.addCarte(carte2);
+			source.addCarte(carte);
+			source.addCarte(carte);
+			source.addCarte(carte);
+			source.addCarte(carte3);
+			source.addCarte(carte3);
+			source.addCarte(carte3);
+			source.addCarte(carte2);
+			source.addCarte(carte2);
+			source.addCarte(carte);
+			source.addCarte(carte);
+			source.addCarte(carte);
+			source.addCarte(carte5);
+			source.addCarte(carte5);
+			source.addCarte(carte5);
+			source.addCarte(carte5);
+		}
 		//Ajouter les cartes à la source
-		source.addCarte(carte4);
-		source.addCarte(carte4);
-		source.addCarte(carte4);
-		source.addCarte(carte4);
-		source.addCarte(carte2);
-		source.addCarte(carte);
-		source.addCarte(carte);
-		source.addCarte(carte);
-		source.addCarte(carte3);
-		source.addCarte(carte3);
-		source.addCarte(carte3);
-		source.addCarte(carte2);
-		source.addCarte(carte2);
-		source.addCarte(carte);
-		source.addCarte(carte);
-		source.addCarte(carte);
-		source.addCarte(carte5);
-		source.addCarte(carte5);
-		source.addCarte(carte5);
-		source.addCarte(carte5);
+		
 		
 		//Mélanger les cartes
 		List<Carte> cartes = source.getCartes();
@@ -129,6 +163,7 @@ public class Partie {
 	}
 	
 	public void choisirJoueur() {
+		nbrTour++;
 		if (this.tour == null) {
 			double rand = Math.random();
 			System.out.println(rand);
@@ -142,38 +177,54 @@ public class Partie {
 		
 	}
 	//Coût Karmique
-	public void coutKarmique(Carte carte) {
-		String action = new String();
-		// TODO Auto-generated method stub
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	    System.out.println("Voulez-vous récuperer la carte suivante (Y/N) :"+carte.getNom());
-
-	    action  = myObj.nextLine();  // Read user input
-	    System.out.println(action);
-		//myObj.close();
-		if (action.equals("Y")) {
-			getJoueurs().get(1 - getJoueurs().indexOf(getTour())).getVieFuture().addCarte(carte);
-		}
-	}
+	
 	
 	public void tourDeJeu(Joueur joueur) {
+		
+        afficher();
 		String temp = "";
 		if (joueur.getMain().getCartes().size() == 0 && joueur.getPile().getCartes().size() == 0) {
 			reincarnation(joueur);
 		} else {
 			joueur.piocher();
 			temp = joueur.jouer(this);
-			while (temp.equals(null)) {
+			while (temp == null) {
 				temp = joueur.jouer(this);
 			}
 			if (temp.equals("Pouvoir")) {
-				coutKarmique(joueur.getDerniereCarteJoue());
+				getAdversaire().coutKarmique(joueur.getDerniereCarteJoue(), this);
 			}
 		}
 		System.out.println("Fin du tour de : "+joueur.getNom());
 	}
 	
+	public void afficher() {
+		System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println("________TOUR "+nbrTour+" : "+tour.getNom()+"________");
+		System.out.println("__Echelle Karmique__");
+		System.out.println(joueurs.get(0).getNom()+" : "+joueurs.get(0).getEchelleKarmique());
+		System.out.println(joueurs.get(1).getNom()+" : "+joueurs.get(1).getEchelleKarmique());
+		System.out.println("__Pile__");
+		System.out.println("Source : "+this.source.getCartes().size());
+		System.out.println("Fosse : "+this.defausse.getCartes().size());
+		System.out.println("__Oeuvres__");
+		System.out.println(joueurs.get(0).getNom()+" : "+joueurs.get(0).getOeuvre().toString());
+		System.out.println(joueurs.get(1).getNom()+" : "+joueurs.get(1).getOeuvre().toString());
+		System.out.println("__Vie Future__");
+		System.out.println(joueurs.get(0).getNom()+" : "+joueurs.get(0).getVieFuture().toString());
+		System.out.println(joueurs.get(1).getNom()+" : "+joueurs.get(1).getVieFuture().toString());
+		System.out.println("__Mains__");
+		System.out.println(joueurs.get(0).getNom()+" : "+joueurs.get(0).getMain().toString());
+		System.out.println(joueurs.get(1).getNom()+" : "+joueurs.get(1).getMain().toString());
+		System.out.println("__Anneaux__");
+		System.out.println(joueurs.get(0).getNom()+" : "+joueurs.get(0).getAnneaux());
+		System.out.println(joueurs.get(1).getNom()+" : "+joueurs.get(1).getAnneaux());
+	}
+	
 	public void gestionDeLaPartie() {
+		
+		
 		choisirJoueur();
 		tourDeJeu(tour);
 		if (!win) {
@@ -181,11 +232,22 @@ public class Partie {
 		}
 	}
 	
+	public void setupPartie() {
+		setJoueurs(setupJoueur());
+		setupEchelleKarmique(getJoueurs().get(0));
+		setupEchelleKarmique(getJoueurs().get(1));
+		setupSource();
+		setupPileEtMain(getSource());
+		
+	}
+	
 	public void reincarnation(Joueur joueur) {
+		System.out.println("Vous allez vous réincarnez !");
 		switch (joueur.getEchelleKarmique()) {
 		case BOUSIER :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 4) {
 				joueur.setEchelleKarmique(Echelle.SERPENT);
+				System.out.println("Vous vous êtes réincarné en serpent");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -202,6 +264,7 @@ public class Partie {
 				}
 			} else {
 				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				System.out.println("Vous n'avez pas de quoi évoluer...");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -220,7 +283,8 @@ public class Partie {
 			break;
 		case SERPENT :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 5) {
-				joueur.setEchelleKarmique(Echelle.SERPENT);
+				joueur.setEchelleKarmique(Echelle.LOUP);
+				System.out.println("Vous vous êtes réincarné en loup");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -237,6 +301,7 @@ public class Partie {
 				}
 			} else {
 				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				System.out.println("Vous n'avez pas de quoi évoluer...");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -255,7 +320,8 @@ public class Partie {
 			break;
 		case LOUP :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 6) {
-				joueur.setEchelleKarmique(Echelle.SERPENT);
+				joueur.setEchelleKarmique(Echelle.SINGE);
+				System.out.println("Vous vous êtes réincarné en serpent");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -272,6 +338,7 @@ public class Partie {
 				}
 			} else {
 				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				System.out.println("Vous n'avez pas de quoi évoluer...");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -291,9 +358,11 @@ public class Partie {
 		case SINGE :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 7) {
 				this.setWin(true);
+				System.out.println("Vous avez atteint la transcendance");
 				System.out.println(joueur.getNom() + " a gagné cette partie !");
 			} else {
 				joueur.setAnneaux(joueur.getAnneaux() + 1);
+				System.out.println("Vous n'avez pas de quoi évoluer...");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
 					defausse.addCarte(joueur.getOeuvre().getCartes().get(i));
 				}
@@ -324,18 +393,7 @@ public class Partie {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partie partie = new Partie();
-		partie.setJoueurs(partie.setupJoueur());
-		partie.setupEchelleKarmique(partie.getJoueurs().get(0));
-		partie.setupEchelleKarmique(partie.getJoueurs().get(1));
-		partie.setupSource();
-		// partie.getJoueurs().get(1).getOeuvre().addCarte(new Semis());
-		System.out.println("Source :");
-		System.out.println(partie.getSource().toString());
-		partie.setupPileEtMain(partie.getSource());
-		for (int i = 0; i < partie.getJoueurs().size();i++){
-			System.out.println("Joueur "+i+" :");
-			System.out.println(partie.getJoueurs().get(i).getMain().toString());
-		}
+		partie.setupPartie();
 		partie.gestionDeLaPartie();
 		
 	}

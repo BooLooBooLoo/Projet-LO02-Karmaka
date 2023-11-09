@@ -6,6 +6,11 @@ public class Human extends Joueur{
 	
 	
 	
+	public Human(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String jouer(Partie partie) {
 		String bool = new String();
@@ -77,6 +82,39 @@ public class Human extends Joueur{
 	    }
 		return bool;
 		
+	}
+	public Carte choisirCarte() {
+		System.out.println(getMain().toString());
+		Carte carteAJouer = null;
+		String action = new String();
+		Scanner myObj = new Scanner(System.in);
+		System.out.println("Entrer la carte à jouer (son nom)");
+		action  = myObj.nextLine();
+		for (int i = 0; i < getMain().getCartes().size(); i++) {
+			if (action.equals(getMain().getCartes().get(i).getNom())) {
+				carteAJouer = getMain().getCartes().get(i);
+				getMain().removeCarte(carteAJouer);
+				break;
+			}
+		}
+		System.out.println("Fin choix");
+		return carteAJouer;
+	}
+	
+	public void coutKarmique(Carte carte, Partie partie) {
+		String action = new String();
+		// TODO Auto-generated method stub
+		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+	    System.out.println("Voulez-vous récuperer la carte suivante (Y/N) :"+carte.getNom());
+
+	    action  = myObj.nextLine();  // Read user input
+	    System.out.println(action);
+		//myObj.close();
+		if (action.equals("Y")) {
+			partie.getAdversaire().getVieFuture().addCarte(carte);
+		}else if (action.equals("N")) {
+			partie.getDefausse().addCarte(carte);
+		}
 	}
 
 }

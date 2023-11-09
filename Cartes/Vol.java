@@ -23,7 +23,7 @@ public class Vol extends Carte{
 				// Check si Oeuvre contient au moins une carte 
 				if(oeuvreAdverse.getCartes().isEmpty()) {
 					System.out.println("Il n'y a pas de carte à voler. Veuillez jouer une autre carte.");
-					partie.getTour().jouer(partie);
+					partie.getTour().rejouer(partie);
 				} else {
 					// Effet de la carte
 					System.out.println("Vol de l'oeuvre exposée (la première visible de la pile) adverse.");
