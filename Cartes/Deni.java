@@ -2,6 +2,8 @@ package Cartes;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Partie;
+import Karmaka.src.Pile;
 
 public class Deni extends Carte{
 	
@@ -10,8 +12,9 @@ public class Deni extends Carte{
 	}
 
 	@Override
-	public void effet() {
-		// TODO Auto-generated method stub
-		System.out.println("J'aime la bite");
+	public void effet(Partie partie) {
+		// Variables utilisées
+		Pile main = partie.getTour().getMain();
+		Pile defausse = partie.getDefausse();
 	}
 }
