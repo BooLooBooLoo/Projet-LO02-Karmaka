@@ -157,11 +157,12 @@ public class Partie {
 	}
 	
 	public void tourDeJeu(Joueur joueur) {
+		String temp = "";
 		if (joueur.getMain().getCartes().size() == 0 && joueur.getPile().getCartes().size() == 0) {
 			reincarnation(joueur);
 		} else {
 			joueur.piocher();
-			String temp = joueur.jouer(this);
+			temp = joueur.jouer(this);
 			while (temp.equals(null)) {
 				temp = joueur.jouer(this);
 			}
