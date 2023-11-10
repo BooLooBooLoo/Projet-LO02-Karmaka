@@ -15,7 +15,7 @@ public class Bot extends Joueur{
 			strat = new Neutre();
 			break;
 		case "Défensif":
-			strat = new Défensif();
+			strat = new Defensif();
 			break;
 		case "IA":
 			strat = new IA();
