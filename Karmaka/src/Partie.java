@@ -5,10 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.JLabel;
-
 import Cartes.*;
 
+/**
+ * La classe {@code Partie} représente une session de jeu du jeu de cartes "Karmaka".
+ * Elle comprend des méthodes et des fonctionnalités pour configurer le jeu, gérer les tours,
+ * traiter les actions des joueurs et déterminer le gagnant.
+ *
+ * @author Ali MIKOU & Hoang-Viet LE
+ * @version 1.0
+ */
 public class Partie {
 	
 	private static int nbrTour = 0;
@@ -54,36 +60,44 @@ public class Partie {
 		String action = new String();
 		// TODO Auto-generated method stub
 		for (int i = 0; i < 2; i++) {
-			Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		    System.out.println("Bot ou Humain : B/H");
-		    action  = myObj.nextLine();
-		    if (action.equals("B")) {
-		    	System.out.println("Donnez un nom à ce joueur");
-			    String nom  = myObj.nextLine();
-			    System.out.println("Choisissez sa stratégie : (A/N/D/IA)");
-			    String strat  = myObj.nextLine();
-			    Joueur joueur = new Bot(nom, "IA");
-			    switch (strat) {
-			    case "A":
-			    	joueur = new Bot(nom, "Aggressif");
-			    	break;
-			    case "N":
-			    	joueur =  new Bot(nom, "Neutre");
-			    	break;
-			    case "D":
-			    	joueur =  new Bot(nom, "Défensif");
-			    	break;
-			    case "IA":
-			    	joueur =  new Bot(nom, "IA");
-			    	break;
-			    }
-			    joueurs.add(joueur);
-		    } else if (action.equals("H")) {
-		    	System.out.println("Donnez un nom à ce joueur");
+			if (!action.equals("A")) {
+				Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+			    System.out.println("Bot ou Humain : B/H");
 			    action  = myObj.nextLine();
-		    	Joueur joueur = new Human(action);
-		    	joueurs.add(joueur);
-		    }
+			    if (action.equals("B")) {
+			    	System.out.println("Donnez un nom à ce joueur");
+				    String nom  = myObj.nextLine();
+				    System.out.println("Choisissez sa stratégie : (A/N/D/IA)");
+				    String strat  = myObj.nextLine();
+				    Joueur joueur = new Bot(nom, "IA");
+				    switch (strat) {
+				    case "A":
+				    	joueur = new Bot(nom, "Aggressif");
+				    	break;
+				    case "N":
+				    	joueur =  new Bot(nom, "Neutre");
+				    	break;
+				    case "D":
+				    	joueur =  new Bot(nom, "Defensif");
+				    	break;
+				    case "IA":
+				    	joueur =  new Bot(nom, "IA");
+				    	break;
+				    }
+				    joueurs.add(joueur);
+			    } else if (action.equals("H")) {
+			    	System.out.println("Donnez un nom à ce joueur");
+				    action  = myObj.nextLine();
+			    	Joueur joueur = new Human(action);
+			    	joueurs.add(joueur);
+			    } else if (action.equals("A")) {
+			    	Joueur joueur = new Bot("Jean","Aggressif");
+			    	joueurs.add(joueur);
+			    	joueur = new Bot("Charles","Défensif");
+			    	joueurs.add(joueur);
+			    }
+			}
+			
 		}
 		return joueurs;
 	}
@@ -111,33 +125,60 @@ public class Partie {
 	public Pile setupSource() {
 		
 		//Création des cartes de jeu
-		Carte carte = new Vengeance();
-		Carte carte2 = new Sauvetage();
+		Carte carte = new CoupDoeil();
+		Carte carte2 = new Crise();
 		Carte carte3 = new Bassesse();
-		Carte carte4 = new Transmigration();
-		Carte carte5 = new Incarnation();
+		Carte carte4 = new Deni();
+		Carte carte5 = new DernierSouffle();
+		Carte carte6 = new Destinee();
+		Carte carte7 = new Duperie();
+		Carte carte8 = new Fournaise();
+		Carte carte9 = new Incarnation();
+		Carte carte10 = new Jubile();
+		Carte carte11 = new Lendemain();
+		Carte carte12 = new Longevite();
+		Carte carte13 = new Mimetisme();
+		Carte carte14 = new Panique();
+		Carte carte15 = new Recyclage();
+		Carte carte16 = new RevesBrises();
+		Carte carte17 = new Roulette();
+		Carte carte18 = new Sauvetage();
+		Carte carte19 = new Semis();
+		Carte carte20 = new Transmigration();
+		Carte carte21 = new Vengeance();
+		Carte carte22 = new Vol();
+		Carte carte23 = new Voyage();
 		
+		
+		for (int i = 0; i < 3; i++) {
+			source.addCarte(carte20);
+			source.addCarte(carte);
+			source.addCarte(carte6);
+			source.addCarte(carte16);
+			source.addCarte(carte4);
+			source.addCarte(carte11);
+			source.addCarte(carte15);
+			source.addCarte(carte18);
+			source.addCarte(carte12);
+			source.addCarte(carte19);
+			source.addCarte(carte14);
+			source.addCarte(carte5);
+			source.addCarte(carte2);
+			source.addCarte(carte17);
+			source.addCarte(carte8);
+			
+		}
+		for (int i = 0; i < 2; i++) {
+			source.addCarte(carte7);
+			source.addCarte(carte22);
+			source.addCarte(carte23);
+			source.addCarte(carte10);
+			source.addCarte(carte21);
+			source.addCarte(carte3);
+			source.addCarte(carte13);
+		}
 		for (int i = 0; i < 5; i++) {
-			source.addCarte(carte4);
-			source.addCarte(carte4);
-			source.addCarte(carte4);
-			source.addCarte(carte4);
-			source.addCarte(carte2);
-			source.addCarte(carte);
-			source.addCarte(carte);
-			source.addCarte(carte);
-			source.addCarte(carte3);
-			source.addCarte(carte3);
-			source.addCarte(carte3);
-			source.addCarte(carte2);
-			source.addCarte(carte2);
-			source.addCarte(carte);
-			source.addCarte(carte);
-			source.addCarte(carte);
-			source.addCarte(carte5);
-			source.addCarte(carte5);
-			source.addCarte(carte5);
-			source.addCarte(carte5);
+			source.addCarte(carte9);
 		}
 		//Ajouter les cartes à la source
 		
@@ -225,8 +266,19 @@ public class Partie {
 	public void gestionDeLaPartie() {
 		choisirJoueur();
 		tourDeJeu(tour);
+		refillSource();
 		if (!win) {
 			gestionDeLaPartie();
+		}
+	}
+	public void refillSource() {
+		if (source.getCartes().size() <= 3) {
+			Collections.shuffle(defausse.getCartes());
+			for (int i = 0; i < defausse.getCartes().size() - 3; i++) {
+				source.addCarte(defausse.getCartes().get(0));
+				defausse.removeCarte(defausse.getCartes().get(0));
+				
+			}
 		}
 	}
 	

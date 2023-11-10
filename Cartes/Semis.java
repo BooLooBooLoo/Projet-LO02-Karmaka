@@ -2,8 +2,10 @@ package Cartes;
 
 import java.util.Scanner;
 
+import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Human;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
 
@@ -30,11 +32,19 @@ public class Semis extends Carte{
 			System.out.println(main.getCartes().get(i).getNom());
 		}
 		for(int i=0; i<2; i++) {
-			System.out.println("Choisir une carte à mettre dans votre vie future :");
-			String carteSelect = sc.nextLine();
+			String carteSelect = "";
+			if(partie.getTour() instanceof Human) {
+				System.out.println("Choisir une carte à mettre dans votre vie future :");
+				carteSelect = sc.nextLine();
+			} else {
+				if (main.getCartes().size() > 0) {
+					main.getCartes().get(((Bot) partie.getTour()).choisir(main.getCartes().size())).getNom();
+				}
+				
+			}
 			// Trouver la carte sélectionnée
 			int indiceCarteSelect = -1;
-			for(int j=0; i<main.getCartes().size(); j++) {
+			for(int j=0; j<main.getCartes().size(); j++) {
 				if(main.getCartes().get(j).getNom().equals(carteSelect)) {
 					indiceCarteSelect = j;
 					break;

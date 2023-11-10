@@ -2,8 +2,10 @@
 
 import java.util.Scanner;
 
+import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Human;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
 
@@ -18,20 +20,27 @@ public class Recyclage extends Carte{
 		// Déclaration des variables utilisés dans cette classe
 		Pile vieFuture = partie.getTour().getVieFuture();
 		Pile main = partie.getTour().getMain();
-		Pile Defausse = partie.getDefausse();
+		Pile defausse = partie.getDefausse();
+		Pile pile = new Pile();
+		String carteSelect = "";
 		Scanner sc = new Scanner(System.in);
-		// Syso et Scan 
+		int nbr = (defausse.getCartes().size() > 3) ? 3 : defausse.getCartes().size();
 		System.out.println("3 Dernières Cartes de la Fosse :");
-		for(int i=Defausse.getCartes().size()-3; i<Defausse.getCartes().size(); i++) {
-			System.out.println(Defausse.getCartes().get(i).getNom());
+		for(int i=0; i<nbr; i++) {
+			System.out.println(defausse.getCartes().get(i).getNom());
+			pile.addCarte(defausse.getCartes().get(i));
 		}
-		System.out.println("Choisir une carte à placer dans votre main.");
-		String carteSelect = sc.nextLine();
-		sc.close();
+		if (partie.getTour() instanceof Human) {
+			System.out.println("Choisir une carte à placer dans votre main.");
+			carteSelect = sc.nextLine();
+		} else {
+			carteSelect = pile.getCartes().get(((Bot) partie.getTour()).choisir(pile.getCartes().size())).getNom();
+		}
+		
 		// Trouver la carte sélectionnée
 		int indiceCarteSelect = -1;
-		for(int i=Defausse.getCartes().size()-3; i<Defausse.getCartes().size(); i++) {
-			if(Defausse.getCartes().get(i).getNom().equals(carteSelect)) {
+		for(int i=0; i<nbr; i++) {
+			if(defausse.getCartes().get(i).getNom().equals(carteSelect)) {
 				indiceCarteSelect = i;
 				break;
 			}
@@ -40,8 +49,8 @@ public class Recyclage extends Carte{
 		if(indiceCarteSelect == -1) {
 			System.out.println("Erreur! (La carte n'est pas trouvé...)");
 		} else {
-			Carte carte = Defausse.getCartes().get(indiceCarteSelect);
-			partie.deplacerCarte(Defausse, main, carte);
+			Carte carte = defausse.getCartes().get(indiceCarteSelect);
+			partie.deplacerCarte(defausse, main, carte);
 		}
 	}
 }

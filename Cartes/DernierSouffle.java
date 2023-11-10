@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Human;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
@@ -29,9 +30,14 @@ public class DernierSouffle extends Carte{
 		}
 		else {
 			// Effet de la carte
-			System.out.println("Veuillez choisir l'index de la carte à défausse (entre 0 et " + (mainAdverse.getCartes().size()-1) + ").");
-			int indexCarteDefausse = sc.nextInt();
-			sc.nextLine();
+			int indexCarteDefausse = 0;
+			if (partie.getTour() instanceof Human) {
+				System.out.println("Veuillez choisir l'index de la carte à défausse (entre 0 et " + (partie.getTour().getMain().getCartes().size()-1) + ").");
+				indexCarteDefausse = sc.nextInt();
+				sc.nextLine();
+			} else {
+				indexCarteDefausse = (int) Math.floor(Math.random()*mainAdverse.getCartes().size());
+			}
 			Carte carteDefausse = mainAdverse.getCartes().get(indexCarteDefausse);
 			System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 			// Modification objet "partie"

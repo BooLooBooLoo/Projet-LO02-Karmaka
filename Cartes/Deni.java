@@ -2,8 +2,10 @@ package Cartes;
 
 import java.util.Scanner;
 
+import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Human;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
 
@@ -16,6 +18,7 @@ public class Deni extends Carte{
 	@Override
 	public void effet(Partie partie) {
 		// Variables utilisées
+		String carteSelect = "";
 		Pile main = partie.getTour().getMain();
 		Pile defausse = partie.getDefausse();
 		Scanner sc = new Scanner(System.in);
@@ -23,12 +26,13 @@ public class Deni extends Carte{
 		if(main.getCartes().isEmpty()) {
 			System.out.println("Pas de carte dans la main");
 		} else {
-			System.out.println("Cartes de votre main :");
-			for(int i=0; i<main.getCartes().size(); i++) {
-				System.out.println(main.getCartes().get(i).getNom());
+			System.out.println("Cartes de votre main : "+ main.toString());
+			if (partie.getTour() instanceof Human) {
+				System.out.println("Choisir une carte à défausser. Vous copiez son pouvoir.");
+				 carteSelect = sc.nextLine();
+			} else {
+				carteSelect = main.getCartes().get(((Bot) partie.getTour()).choisir(main.getCartes().size())).getNom();
 			}
-			System.out.println("Choisir une carte à défausser. Vous copiez son pouvoir.");
-			String carteSelect = sc.nextLine();
 			// Trouver la carte sélectionnée
 			int indiceCarteSelect = -1;
 			for(int i=0; i<main.getCartes().size(); i++) {
