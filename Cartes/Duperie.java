@@ -21,6 +21,5 @@ public class Duperie extends Carte{
 		for(int i=0; i<mainAdverse.getCartes().size(); i++) {
 			System.out.println(mainAdverse.getCartes().get(i).getNom());
 		}
-		main.removeCarte(this);
 	}
 }
