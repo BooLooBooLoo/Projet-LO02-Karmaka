@@ -115,7 +115,7 @@ public class Partie {
 		Carte carte2 = new Sauvetage();
 		Carte carte3 = new Bassesse();
 		Carte carte4 = new Transmigration();
-		Carte carte5 = new Vol();
+		Carte carte5 = new Incarnation();
 		
 		for (int i = 0; i < 5; i++) {
 			source.addCarte(carte4);

@@ -20,7 +20,6 @@ public class Panique extends Carte{
 		Joueur adversaire = partie.getAdversaire();
 		Pile pileAdverse = adversaire.getPile();
 		Pile defausse = partie.getDefausse();
-		Pile main = partie.getTour().getMain();
 		Scanner sc = new Scanner(System.in);
 		// Check si on peut voler
 		if(pileAdverse.getCartes().isEmpty()) {
@@ -33,7 +32,6 @@ public class Panique extends Carte{
 			System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 			// Modification objet "partie"
 			partie.deplacerCarte(pileAdverse, defausse, carteDefausse);
-			main.removeCarte(this);
 			}
 		}
 }

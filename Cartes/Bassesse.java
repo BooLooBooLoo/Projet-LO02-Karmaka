@@ -16,7 +16,6 @@ public class Bassesse extends Carte{
 		// Déclaration des variables utilisés dans cette classe
 		Joueur adversaire = partie.getAdversaire();
 		Pile mainAdverse = adversaire.getMain();
-		Pile main = partie.getTour().getMain();
 		Pile defausse = partie.getDefausse();
 		// Check si on peut voler
 		if(mainAdverse.getCartes().isEmpty()) {
@@ -37,8 +36,6 @@ public class Bassesse extends Carte{
 					partie.deplacerCarte(mainAdverse, defausse, carteDefausse);
 				}
 			}
-			// Modification objet "partie"
-			main.removeCarte(this);
 			}
 		}
 }

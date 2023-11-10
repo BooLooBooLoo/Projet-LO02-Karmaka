@@ -47,7 +47,6 @@ public class Transmigration extends Carte{
 			} else {
 				main.addCarte(vieFuture.getCartes().get(indiceCarteSelect));
 				vieFuture.removeCarte(vieFuture.getCartes().get(indiceCarteSelect));
-				main.removeCarte(this);
 			}
 		} else {
 			System.out.println("Il n'y a pas de carte dans la vie future...");

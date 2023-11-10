@@ -42,7 +42,6 @@ public class Recyclage extends Carte{
 		} else {
 			Carte carte = Defausse.getCartes().get(indiceCarteSelect);
 			partie.deplacerCarte(Defausse, main, carte);
-			main.removeCarte(this);
 		}
 	}
 }

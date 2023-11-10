@@ -22,6 +22,5 @@ public class Duperie extends Carte{
 			System.out.println(mainAdverse.getCartes().get(i).getNom());
 		}
 		main.removeCarte(this);
-		partie.getTour().rejouer(partie);
 	}
 }

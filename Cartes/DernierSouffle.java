@@ -36,7 +36,6 @@ public class DernierSouffle extends Carte{
 			System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 			// Modification objet "partie"
 			partie.deplacerCarte(defausse, main, carteDefausse);
-			main.removeCarte(this);
 			}
 		}
 }

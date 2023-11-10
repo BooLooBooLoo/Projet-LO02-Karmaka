@@ -30,7 +30,6 @@ public class Vol extends Carte{
 					System.out.println("Carte volée : " + oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1).getNom());
 					// Modification objet "partie"
 					partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
-					main.removeCarte(this);
 				}
 	}
 }

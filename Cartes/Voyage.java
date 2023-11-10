@@ -11,6 +11,7 @@ public class Voyage extends Carte{
 	
 	public Voyage() {
 		super("Voyage",3,Couleur.VERT,"description");
+		super.rejouable = true;
 	}
 
 	public void effet(Partie partie) {
@@ -21,7 +22,5 @@ public class Voyage extends Carte{
 		for(int i=0; i<3; i++) {
 			partie.getTour().piocher();
 		}
-		main.removeCarte(this);
-		partie.getTour().rejouer(partie);
 	}
 }

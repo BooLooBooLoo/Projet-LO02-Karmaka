@@ -51,6 +51,5 @@ public class Destinee extends Carte{
 			}		
 		}
 		//sc.close();
-		Main.removeCarte(this);
 		}
 }

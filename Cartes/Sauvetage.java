@@ -52,7 +52,6 @@ public class Sauvetage extends Carte{
 			} else {
 				Carte carte = defausse.getCartes().get(indiceCarteSelect);
 				partie.deplacerCarte(defausse, main, carte);
-				main.removeCarte(this);
 			}
 		} else {
 			System.out.println("Il n'y a pas de carte dans la Fosse...Dommage");

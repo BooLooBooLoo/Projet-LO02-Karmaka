@@ -36,6 +36,5 @@ public class Roulette extends Carte{
 			for(int i=0; i<nbCarteDefausse +1; i++) {
 				partie.getTour().piocher();
 			}
-			main.removeCarte(this);
 		}
 }

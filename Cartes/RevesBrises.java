@@ -30,7 +30,6 @@ public class RevesBrises extends Carte{
 			System.out.println("Carte volée : " + vieFutureAdverse.getCartes().get(vieFutureAdverse.getCartes().size()-1).getNom());
 			// Modification objet "partie"
 			partie.deplacerCarte(vieFutureAdverse, vieFuture, vieFutureAdverse.getCartes().get(vieFutureAdverse.getCartes().size()-1));
-			main.removeCarte(this);
 			}
 		}
 }

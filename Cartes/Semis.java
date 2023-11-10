@@ -46,7 +46,6 @@ public class Semis extends Carte{
 		} else {
 			Carte carte = main.getCartes().get(indiceCarteSelect);
 			partie.deplacerCarte(main, vieFuture, carte);
-			main.removeCarte(this);
 		}
 	}
 }

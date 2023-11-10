@@ -31,8 +31,7 @@ public class Vengeance extends Carte{
 			System.out.println("On défausse l'oeuvre visible adverse.");
 			System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 			// Modification objet "partie"
-			partie.deplacerCarte(oeuvreAdverse, defausse, carteDefausse);;
-			main.removeCarte(this);
+			partie.deplacerCarte(oeuvreAdverse, defausse, carteDefausse);
 			}
 		}
 }

@@ -10,6 +10,7 @@ public class CoupDoeil extends Carte{
 	
 	public CoupDoeil() {
 		super("Coup d'oeil",1,Couleur.BLEU,"description");
+		super.rejouable = true;
 	}
 
 	public void effet(Partie partie) {
@@ -21,7 +22,5 @@ public class CoupDoeil extends Carte{
 		for(int i=0; i<mainAdverse.getCartes().size(); i++) {
 			System.out.println(mainAdverse.getCartes().get(i).getNom());
 		}
-		main.removeCarte(this);
-		partie.getTour().rejouer(partie);
 	}
 }

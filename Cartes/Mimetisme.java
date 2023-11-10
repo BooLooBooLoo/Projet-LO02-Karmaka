@@ -11,7 +11,7 @@ import Karmaka.src.Pile;
 public class Mimetisme extends Carte{
 	
 	public Mimetisme() {
-		super("Mimétise",2,Couleur.MOSAIQUE,"description");
+		super("Mimétisme",2,Couleur.MOSAIQUE,"description");
 	}
 
 	@Override
@@ -43,9 +43,8 @@ public class Mimetisme extends Carte{
 			System.out.println("Erreur! (La carte n'est pas trouvé...)");
 		} else {
 			Carte carteCopie = oeuvreAdverse.getCartes().get(indiceCarteSelect);
-			
+			carteCopie.effet(partie);
 		}
-		main.removeCarte(this);
 	}
 }
 }

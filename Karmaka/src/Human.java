@@ -33,6 +33,10 @@ public class Human extends Joueur{
 	    	Carte temp = choisirCarte();
 	    	setDerniereCarteJoue(temp);
 	    	temp.effet(partie);
+			partie.getTour().getMain().removeCarte(temp);
+			if(temp.rejouable) {
+				partie.getTour().rejouer(partie);
+			}
 	    	bool = "Pouvoir";
 	    } else if (action.equals("Oeuvre")) {
 	    	Carte temp = choisirCarte();
@@ -50,6 +54,7 @@ public class Human extends Joueur{
 
 	@Override
 	public String rejouer(Partie partie) {
+		
 		String bool = new String();
 		String action = new String();
 		// TODO Auto-generated method stub

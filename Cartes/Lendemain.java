@@ -9,6 +9,7 @@ public class Lendemain extends Carte{
 	
 	public Lendemain() {
 		super("Lendemain",1,Couleur.VERT,"description");
+		super.rejouable = true;
 	}
 
 	public void effet(Partie partie) {
@@ -19,7 +20,5 @@ public class Lendemain extends Carte{
 		for(int i=0; i<1; i++) {
 			partie.getTour().piocher();
 		}
-		main.removeCarte(this);
-		partie.getTour().rejouer(partie);
 	}
 }

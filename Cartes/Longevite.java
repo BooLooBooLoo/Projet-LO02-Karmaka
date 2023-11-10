@@ -52,8 +52,6 @@ public class Longevite extends Carte{
 					System.out.println("Erreur, veuillez rejouer le tour...");
 					break;
 			}
-			// Modification objet "partie"
-			main.removeCarte(this);
 			}
 		}
 }
