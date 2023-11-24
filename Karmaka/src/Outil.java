@@ -1,11 +1,12 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import Cartes.*;
 
-public class Outil {
+public class Outil implements Serializable{
 	
     public static List<List<Carte>> getCombinations(List<Carte> nums, int r) {
         List<List<Carte>> result = new ArrayList<>();

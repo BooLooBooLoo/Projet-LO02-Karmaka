@@ -1,8 +1,10 @@
 package Karmaka.src;
 
+import java.io.Serializable;
+
 import Karmaka.src.Strategy.*;
 
-public class Bot extends Joueur{
+public class Bot extends Joueur implements Serializable{
 	
 	private Strategy strat;
 	public Bot(String nom, String type) {

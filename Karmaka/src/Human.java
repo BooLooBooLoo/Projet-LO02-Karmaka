@@ -1,8 +1,9 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Human extends Joueur{
+public class Human extends Joueur implements Serializable{
 	
 	
 	

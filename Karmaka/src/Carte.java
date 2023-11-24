@@ -1,6 +1,8 @@
 package Karmaka.src;
 
-public abstract class Carte {
+import java.io.Serializable;
+
+public abstract class Carte implements Serializable{
 	
     protected String nom;
     protected int cout;

@@ -1,5 +1,10 @@
 package Karmaka.src;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -439,13 +444,64 @@ public class Partie implements Serializable{
 	public void setWin(boolean win) {
 		this.win = win;
 	}
+	
+	public void sauvegarder() {
+		ObjectOutputStream oos = null;
+		try {
+			final FileOutputStream fichier = new FileOutputStream("sauvegarde_partie.ser");
+			oos = new ObjectOutputStream(fichier);
+			oos.writeObject(this);
+			oos.flush();
+		} catch(final java.io.IOException e) {
+			e.printStackTrace();
+		} finally {
+		      try {
+		          if (oos != null) {
+		            oos.flush();
+		            oos.close();
+		          }
+		          System.out.println("Partie Sauvegardée");
+		        } catch (final IOException ex) {
+		          ex.printStackTrace();
+		        }
+		      }
+	}
+	
+	public void importer(Partie partie) throws ClassNotFoundException {
+		ObjectInputStream ois = null;
+		try {
+			final FileInputStream fichier = new FileInputStream("sauvegarde_partie.ser");
+			ois = new ObjectInputStream(fichier);
+			final Partie partieImportee = (Partie) ois.readObject();
+			partie = partieImportee;
+			System.out.println("Partie importée");
+		} catch (final IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ois != null) {
+					ois.close();
+				}
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partie partie = new Partie();
 		partie.setupPartie();
 		partie.gestionDeLaPartie();
-		
+		partie.sauvegarder();
+		try {
+			partie.importer(partie);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(partie.nbrTour);
+		System.out.println(partie.joueurs.getLast().getNom());
 	}
 	
 }

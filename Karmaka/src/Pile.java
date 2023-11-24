@@ -1,9 +1,10 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pile {
+public class Pile implements Serializable {
     protected List<Carte> cartes = new ArrayList<Carte>();
 
     public List<Carte> getCartes(){

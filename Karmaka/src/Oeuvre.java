@@ -1,6 +1,8 @@
 package Karmaka.src;
 
-public class Oeuvre extends Pile{
+import java.io.Serializable;
+
+public class Oeuvre extends Pile implements Serializable{
 	
 	public int compterPoint() {
 		int bleu = 0;

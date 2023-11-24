@@ -1,9 +1,10 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Strategy {
+public interface Strategy{
 	public String jouer(Partie partie);
 	
 	class Neutre implements Strategy{
@@ -165,7 +166,7 @@ public interface Strategy {
 		    return bool;
 		}
 	}
-	class IA implements Strategy{
+	class IA implements Strategy,Serializable {
 		
 		public Pile oeuvre = new Pile();
 		public Pile main = new Pile();

@@ -1,6 +1,8 @@
 package Karmaka.src;
 
-public enum Couleur {
+import java.io.Serializable;
+
+public enum Couleur implements Serializable{
 	BLEU,
 	VERT,
 	ROUGE,
