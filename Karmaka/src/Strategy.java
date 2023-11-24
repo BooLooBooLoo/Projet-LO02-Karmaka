@@ -8,8 +8,6 @@ public interface Strategy {
 	
 	class Neutre implements Strategy{
 		
-		
-		
 		public String jouer(Partie partie) {
 			String bool = new String();
 			String action = new String();
