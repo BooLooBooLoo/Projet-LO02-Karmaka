@@ -9,16 +9,16 @@ public class Oeuvre extends Pile{
 		int mos = 0;
 		for (int i = 0; i < cartes.size(); i++) {
 			if (cartes.get(i).getType() == Couleur.BLEU) {
-				bleu++;
+				bleu+= cartes.get(i).getCout();
 			}
 			if (cartes.get(i).getType() == Couleur.ROUGE) {
-				rouge++;
+				rouge+= cartes.get(i).getCout();
 			}
 			if (cartes.get(i).getType() == Couleur.VERT) {
-				vert++;
+				vert+= cartes.get(i).getCout();
 			}
 			if (cartes.get(i).getType() == Couleur.MOSAIQUE) {
-				mos++;
+				mos+= cartes.get(i).getCout();
 			}
 		}
 		if (bleu >= rouge && bleu >= vert) {

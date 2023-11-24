@@ -103,6 +103,7 @@ public abstract class Joueur {
 		if (getPile().getCartes().size() > 0) {
 			int rand = (int) Math.floor(Math.random()) * getPile().getCartes().size();
 			Carte temp = getPile().getCartes().get(rand);
+			System.out.println("Vous avez pioché : "+temp.getNom());
 			getPile().removeCarte(temp);
 			getMain().addCarte(temp);
 		}

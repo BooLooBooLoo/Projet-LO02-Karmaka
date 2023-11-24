@@ -34,7 +34,10 @@ public class Recyclage extends Carte{
 			System.out.println("Choisir une carte à placer dans votre main.");
 			carteSelect = sc.nextLine();
 		} else {
-			carteSelect = pile.getCartes().get(((Bot) partie.getTour()).choisir(pile.getCartes().size())).getNom();
+			if (pile.getCartes().size() > 0) {
+				carteSelect = pile.getCartes().get(((Bot) partie.getTour()).choisir(pile.getCartes().size())).getNom();
+			}
+			
 		}
 		
 		// Trouver la carte sélectionnée

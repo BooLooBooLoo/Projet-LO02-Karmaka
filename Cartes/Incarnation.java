@@ -12,7 +12,7 @@ import Karmaka.src.Pile;
 public class Incarnation extends Carte{
 	
 	public Incarnation() {
-		super("Incarnation",2,Couleur.MOSAIQUE,"description");
+		super("Incarnation",1,Couleur.MOSAIQUE,"description");
 	}
 
 	public void effet(Partie partie) {

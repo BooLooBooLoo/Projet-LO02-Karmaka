@@ -1,5 +1,6 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,7 @@ import Cartes.*;
  * @author Ali MIKOU & Hoang-Viet LE
  * @version 1.0
  */
-public class Partie {
+public class Partie implements Serializable{
 	
 	private static int nbrTour = 0;
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
@@ -78,7 +79,7 @@ public class Partie {
 				    	joueur =  new Bot(nom, "Neutre");
 				    	break;
 				    case "D":
-				    	joueur =  new Bot(nom, "Defensif");
+				    	joueur =  new Bot(nom, "Défensif");
 				    	break;
 				    case "IA":
 				    	joueur =  new Bot(nom, "IA");
@@ -93,7 +94,7 @@ public class Partie {
 			    } else if (action.equals("A")) {
 			    	Joueur joueur = new Bot("Jean","Aggressif");
 			    	joueurs.add(joueur);
-			    	joueur = new Bot("Charles","Défensif");
+			    	joueur = new Bot("Charles","IA");
 			    	joueurs.add(joueur);
 			    }
 			}
@@ -221,8 +222,7 @@ public class Partie {
 	
 	
 	public void tourDeJeu(Joueur joueur) {
-		
-        afficher();
+		afficher();
 		String temp = "";
 		if (joueur.getMain().getCartes().size() == 0 && joueur.getPile().getCartes().size() == 0) {
 			reincarnation(joueur);
