@@ -1,6 +1,5 @@
 package Graphique;
 
-
 import Karmaka.src.*;
 
 public class Controller {
@@ -28,12 +27,11 @@ public class Controller {
 		this.vue = vue;
 	}
 	
-	public void changeText(String s) {
-		
-	}
-	
 	public static void main(String[] args) {
-		Controller controller = new Controller(new Partie(), new Vue());
+		Controller controller = new Controller(new Partie(), new Vue(null));
+		controller.getVue().setController(controller);
+		controller.getVue().render();
+		//controller.getVue().publish(new Options(controller.getVue()));
 		
 	}
 }

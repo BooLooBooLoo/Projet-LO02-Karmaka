@@ -1,14 +1,49 @@
 package Graphique;
 
-import javax.swing.*;
+import java.awt.Container;
+
+import Graphique.States.Fenetre;
 
 public class Vue{
 	
-	public static void main(String[] args) {
+	private Fenetre fenetre;
+	private Controller controller;
+	
+	public Vue(Fenetre fenetre)
+	{
+		if (fenetre == null) {
+			this.setFenetre(new Fenetre(this));
+		} else {
+			this.setFenetre(fenetre);
+		}
 		
-		Fenetre fenetre = new Fenetre();
-		fenetre.setVisible(true);
+	}
+
+	public Fenetre getFenetre() {
+		return fenetre;
 	}
 
 
+
+
+	public void setFenetre(Fenetre fenetre) {
+		this.fenetre = fenetre;
+	}
+
+	public void publish(Container panel) {
+		fenetre.publish(panel);
+	}
+	
+	public void render() {
+		fenetre.render();
+	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+	
 }

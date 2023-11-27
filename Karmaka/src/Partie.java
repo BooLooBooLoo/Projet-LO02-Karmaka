@@ -57,49 +57,52 @@ public class Partie implements Serializable{
 		this.joueurs = joueurs;
 	}
 
-	public List<Joueur> setupJoueur() {
-		String action = new String();
-		// TODO Auto-generated method stub
-		for (int i = 0; i < 2; i++) {
-			if (!action.equals("A")) {
-				Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-			    System.out.println("Bot ou Humain : B/H");
-			    action  = myObj.nextLine();
-			    if (action.equals("B")) {
-			    	System.out.println("Donnez un nom à ce joueur");
-				    String nom  = myObj.nextLine();
-				    System.out.println("Choisissez sa stratégie : (A/N/D/IA)");
-				    String strat  = myObj.nextLine();
-				    Joueur joueur = new Bot(nom, "IA");
-				    switch (strat) {
-				    case "A":
-				    	joueur = new Bot(nom, "Aggressif");
-				    	break;
-				    case "N":
-				    	joueur =  new Bot(nom, "Neutre");
-				    	break;
-				    case "D":
-				    	joueur =  new Bot(nom, "Défensif");
-				    	break;
-				    case "IA":
-				    	joueur =  new Bot(nom, "IA");
-				    	break;
-				    }
-				    joueurs.add(joueur);
-			    } else if (action.equals("H")) {
-			    	System.out.println("Donnez un nom à ce joueur");
-				    action  = myObj.nextLine();
-			    	Joueur joueur = new Human(action);
-			    	joueurs.add(joueur);
-			    } else if (action.equals("A")) {
-			    	Joueur joueur = new Bot("Jean","Aggressif");
-			    	joueurs.add(joueur);
-			    	joueur = new Bot("Charles","IA");
-			    	joueurs.add(joueur);
-			    }
+	public List<Joueur> setupJoueur(String[] j) {
+		if (j[0].equals("B")) {
+			Joueur joueur = new Bot(j[2], "IA");
+			switch (j[1]) {
+			case "A":
+		    	joueur = new Bot(j[2], "Aggressif");
+		    	break;
+		    case "N":
+		    	joueur =  new Bot(j[2], "Neutre");
+		    	break;
+		    case "D":
+		    	joueur =  new Bot(j[2], "Défensif");
+		    	break;
+		    case "IA":
+		    	joueur =  new Bot(j[2], "IA");
+		    	break;
+		     
 			}
-			
+			joueurs.add(joueur);
+		} else if (j[0].equals("H")){
+			Joueur joueur = new Human(j[2]);
+			joueurs.add(joueur);
 		}
+		if (j[3].equals("B")) {
+			Joueur joueur = new Bot(j[5], "IA");
+			switch (j[4]) {
+			case "A":
+		    	joueur = new Bot(j[5], "Aggressif");
+		    	break;
+		    case "N":
+		    	joueur =  new Bot(j[5], "Neutre");
+		    	break;
+		    case "D":
+		    	joueur =  new Bot(j[5], "Défensif");
+		    	break;
+		    case "IA":
+		    	joueur =  new Bot(j[5], "IA");
+		    	break;
+		     
+			}
+			joueurs.add(joueur);
+		} else if (j[3].equals("H")){
+			Joueur joueur = new Human(j[5]);
+			joueurs.add(joueur);
+		}
+		
 		return joueurs;
 	}
 	
@@ -267,6 +270,7 @@ public class Partie implements Serializable{
 		choisirJoueur();
 		tourDeJeu(tour);
 		refillSource();
+		
 		if (!win) {
 			gestionDeLaPartie();
 		}
@@ -283,7 +287,6 @@ public class Partie implements Serializable{
 	}
 	
 	public void setupPartie() {
-		setJoueurs(setupJoueur());
 		setupEchelleKarmique(getJoueurs().get(0));
 		setupEchelleKarmique(getJoueurs().get(1));
 		setupSource();
