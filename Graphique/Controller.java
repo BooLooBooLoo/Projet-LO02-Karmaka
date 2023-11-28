@@ -1,5 +1,6 @@
 package Graphique;
 
+import Graphique.States.Fenetre;
 import Karmaka.src.*;
 
 public class Controller {
@@ -28,8 +29,10 @@ public class Controller {
 	}
 	
 	public static void main(String[] args) {
-		Controller controller = new Controller(new Partie(), new Vue(null));
+		Controller controller = new Controller(new Partie(), new Vue());
 		controller.getVue().setController(controller);
+		controller.getVue().setFenetre(new Fenetre(controller.getVue()));
+		System.out.println(controller.getVue().getController());
 		controller.getVue().render();
 		//controller.getVue().publish(new Options(controller.getVue()));
 		

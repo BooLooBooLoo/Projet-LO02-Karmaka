@@ -12,7 +12,7 @@ import Karmaka.src.Pile;
 public class Transmigration extends Carte{
 	
 	public Transmigration() {
-		super("Transmigration",1,Couleur.BLEU,"description");
+		super("Transmigration",1,Couleur.BLEU,"Placez dans votre Main n’importe quelle carte de votre Vie Future.");
 	}
 
 	@Override

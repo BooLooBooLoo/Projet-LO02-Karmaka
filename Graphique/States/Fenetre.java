@@ -22,8 +22,9 @@ public class Fenetre extends JFrame {
 
 	public Fenetre(Vue vue) {
 		super();
-		propFenetre();
 		this.vue = vue;
+		System.out.println(vue.getController());
+		propFenetre();
 		this.setVisible(true);
 	}
 	
@@ -33,6 +34,7 @@ public class Fenetre extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setAlwaysOnTop(true);
+		System.out.println(vue.getController());
 		currentPanel = new ConteneurMenu(this, 3);
 		this.setContentPane(currentPanel);
 		this.getContentPane().setBackground(Color.DARK_GRAY);

@@ -8,16 +8,6 @@ public class Vue{
 	
 	private Fenetre fenetre;
 	private Controller controller;
-	
-	public Vue(Fenetre fenetre)
-	{
-		if (fenetre == null) {
-			this.setFenetre(new Fenetre(this));
-		} else {
-			this.setFenetre(fenetre);
-		}
-		
-	}
 
 	public Fenetre getFenetre() {
 		return fenetre;

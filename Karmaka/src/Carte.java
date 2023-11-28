@@ -18,7 +18,15 @@ public abstract class Carte {
     
     public abstract void effet(Partie partie);
     
-    public int getCout(){
+    public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getCout(){
         return cout;
     }
 

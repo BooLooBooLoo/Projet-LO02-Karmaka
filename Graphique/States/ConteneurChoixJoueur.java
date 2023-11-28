@@ -170,6 +170,8 @@ public class ConteneurChoixJoueur extends JPanel implements ActionListener{
 			String[] joueurs = new String[] {typeJ1,stratJ1,text1.getText(),typeJ2,stratJ2,text2.getText()};
 			fenetre.getVue().getController().getModel().setupJoueur(joueurs);
 			fenetre.getVue().getController().getModel().setupPartie();
+			fenetre.getVue().getController().getModel().choisirJoueur();
+			rBtn1.setText("ouiiiiii");
 			fenetre.publish(new ConteneurPartie(fenetre));
 			//fenetre.getVue().getController().getModel().gestionDeLaPartie();
 			
