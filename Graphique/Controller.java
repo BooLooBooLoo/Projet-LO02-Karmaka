@@ -1,5 +1,8 @@
 package Graphique;
 
+import java.awt.event.WindowEvent;
+
+import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
 
@@ -28,13 +31,43 @@ public class Controller {
 		this.vue = vue;
 	}
 	
+	public void controlerLaPartie() {
+		model.choisirJoueur();
+		this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
+		model.tourDeJeu(model.getTour());
+		model.refillSource();
+		
+		if (!model.getWin()) {
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			controlerLaPartie();
+		} else {
+			vue.getFenetre().dispatchEvent(new WindowEvent(vue.getFenetre(), WindowEvent.WINDOW_CLOSING));
+		}
+	}
+	
 	public static void main(String[] args) {
 		Controller controller = new Controller(new Partie(), new Vue());
 		controller.getVue().setController(controller);
 		controller.getVue().setFenetre(new Fenetre(controller.getVue()));
 		System.out.println(controller.getVue().getController());
 		controller.getVue().render();
-		//controller.getVue().publish(new Options(controller.getVue()));
+		while (controller.getVue().getFenetre().getJoueurs() == null) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		controller.getModel().setupJoueur(controller.getVue().getFenetre().getJoueurs());
+		controller.getModel().setupPartie();
+		controller.getModel().choisirJoueur();
+		controller.controlerLaPartie();
 		
 	}
 }

@@ -168,12 +168,8 @@ public class ConteneurChoixJoueur extends JPanel implements ActionListener{
 			String stratJ1 = (subRBtn1.isSelected())?"A":(subRBtn2.isSelected())? "N":(subRBtn3.isSelected())?"D":"IA";
 			String stratJ2 = (subRBtn5.isSelected())?"A":(subRBtn6.isSelected())? "N":(subRBtn7.isSelected())?"D":"IA";;
 			String[] joueurs = new String[] {typeJ1,stratJ1,text1.getText(),typeJ2,stratJ2,text2.getText()};
-			fenetre.getVue().getController().getModel().setupJoueur(joueurs);
-			fenetre.getVue().getController().getModel().setupPartie();
-			fenetre.getVue().getController().getModel().choisirJoueur();
-			rBtn1.setText("ouiiiiii");
-			fenetre.publish(new ConteneurPartie(fenetre));
-			//fenetre.getVue().getController().getModel().gestionDeLaPartie();
+			fenetre.setJoueurs(joueurs);
+			
 			
 		}
 	}

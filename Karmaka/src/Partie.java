@@ -25,6 +25,10 @@ public class Partie implements Serializable{
 	private Pile defausse = new Pile();
 	private boolean win = false;
 	
+	public boolean getWin() {
+		return win;
+	}
+	
 	public Pile getSource() {
 		return source;
 	}
@@ -446,9 +450,10 @@ public class Partie implements Serializable{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partie partie = new Partie();
+		partie.setupJoueur(new String[] {"B","A","Michael","H","D","Donovan"});
 		partie.setupPartie();
 		partie.gestionDeLaPartie();
-		
+		//{typeJ1,stratJ1,text1.getText(),typeJ2,stratJ2,text2.getText()}
 	}
 	
 }

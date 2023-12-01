@@ -11,7 +11,16 @@ public class Fenetre extends JFrame {
 	
 	private Container currentPanel;
 	private Vue vue;
+	private String[] joueurs = null;
 	
+	public String[] getJoueurs() {
+		return joueurs;
+	}
+
+	public void setJoueurs(String[] joueurs) {
+		this.joueurs = joueurs;
+	}
+
 	public Container getPanel() {
 		return currentPanel;
 	}
@@ -52,11 +61,15 @@ public class Fenetre extends JFrame {
 
 	public void publish(Container panel) {
 		setPanel(panel);
+		this.getContentPane().repaint();
 		render();
+		
 	}
 	
 	public void render() {
+		
 		this.setContentPane(currentPanel);
+		this.revalidate();
 		this.getContentPane().setBackground(Color.DARK_GRAY);
 	}
 }

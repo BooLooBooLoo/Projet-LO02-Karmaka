@@ -100,7 +100,6 @@ public class Human extends Joueur{
 				break;
 			}
 		}
-		System.out.println("Fin choix");
 		return carteAJouer;
 	}
 	

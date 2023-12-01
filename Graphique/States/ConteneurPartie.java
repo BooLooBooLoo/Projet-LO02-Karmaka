@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
@@ -34,6 +35,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private JPanel oeuvre;
 	private JPanel oeuvreAdverse;
 	
+	//Variables pour la pioche du joueur
+	private JPanel pioche;
+	
 	private Fenetre fenetre;
 	
 	public ConteneurPartie(Fenetre menu) {
@@ -54,21 +58,47 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		propFosse();
 		propVieFutureAdverse();
 		propOeuvreAdverse();
+		propPioche();
+		propEchelle();
 	}
 	
 	private void propSource() {
-		source = new JPanel(new FlowLayout());
+		source = new JPanel(new GridLayout(2,1));
 		source.setBounds(50,325,100,150);
 		source.setBackground(Color.LIGHT_GRAY);
-		source.setBorder(BorderFactory.createLineBorder(Color.black));
+		source.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		JLabel nom = new JLabel("Source", SwingConstants.CENTER);
+		JLabel nbrCartePioche = new JLabel(""+fenetre.getVue().getController().getModel().getSource().getCartes().size(), SwingConstants.CENTER);
+		nbrCartePioche.setFont(new Font("Serif", Font.BOLD, 30));
+		nom.setFont(new Font("Serif", Font.BOLD, 30));
+		source.add(nom);
+		source.add(nbrCartePioche);
+		
 		add(source);
 	}
 	
+	private void propPioche() {
+		pioche = new JPanel(new GridLayout());
+		pioche.setBounds(200,600,150,70);
+		pioche.setBackground(Color.LIGHT_GRAY);
+		pioche.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		JLabel nbrCartePioche = new JLabel("Pioche : "+fenetre.getVue().getController().getModel().getTour().getPile().getCartes().size());
+		nbrCartePioche.setFont(new Font("Serif", Font.BOLD, 30));
+		pioche.add(nbrCartePioche);
+		add(pioche);
+	}
+	
 	private void propFosse() {
-		fosse = new JPanel(new FlowLayout());
+		fosse = new JPanel(new GridLayout(2,1));
 		fosse.setBounds(1050,325,100,150);
 		fosse.setBackground(Color.LIGHT_GRAY);
-		fosse.setBorder(BorderFactory.createLineBorder(Color.black));
+		fosse.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		JLabel nom = new JLabel("Fosse", SwingConstants.CENTER);
+		JLabel nbrCartePioche = new JLabel(""+fenetre.getVue().getController().getModel().getDefausse().getCartes().size(), SwingConstants.CENTER);
+		nbrCartePioche.setFont(new Font("Serif", Font.BOLD, 30));
+		nom.setFont(new Font("Serif", Font.BOLD, 30));
+		fosse.add(nom);
+		fosse.add(nbrCartePioche);
 		add(fosse);
 	}
 	
@@ -76,7 +106,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		vieFuture = new JPanel(new FlowLayout());
 		vieFuture.setBounds(50,600,100,150);
 		vieFuture.setBackground(Color.LIGHT_GRAY);
-		vieFuture.setBorder(BorderFactory.createLineBorder(Color.black));
+		vieFuture.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		add(vieFuture);
 	}
 	
@@ -84,7 +114,26 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		oeuvre = new JPanel(new FlowLayout());
 		oeuvre.setBounds(1050,600,100,150);
 		oeuvre.setBackground(Color.LIGHT_GRAY);
-		oeuvre.setBorder(BorderFactory.createLineBorder(Color.black));
+		oeuvre.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		
+		if (fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().size() != 0) {
+			JPanel zoomCard = new JPanel(new GridLayout(2,1));
+			JPanel top = new JPanel(new FlowLayout());
+			int size = fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().size();
+			top.setOpaque(false);
+			zoomCard.setBounds(0,0,100,150);
+			JLabel name = new JLabel(fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(size-1).getNom());
+			JLabel cout = new JLabel(""+fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(size-1).getCout());
+			cout.setFont(new Font("Serif", Font.BOLD, 20));
+			JLabel desc = new JLabel();
+			top.add(cout);
+			top.add(name);
+			zoomCard.add(top);
+			zoomCard.add(desc);
+			oeuvre.add(zoomCard);
+		}
+		
+		
 		add(oeuvre);
 	}
 	
@@ -92,7 +141,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		vieFutureAdverse = new JPanel(new FlowLayout());
 		vieFutureAdverse.setBounds(50,50,100,150);
 		vieFutureAdverse.setBackground(Color.LIGHT_GRAY);
-		vieFutureAdverse.setBorder(BorderFactory.createLineBorder(Color.black));
+		vieFutureAdverse.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		add(vieFutureAdverse);
 	}
 	
@@ -100,7 +149,24 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		oeuvreAdverse = new JPanel(new FlowLayout());
 		oeuvreAdverse.setBounds(1050,50,100,150);
 		oeuvreAdverse.setBackground(Color.LIGHT_GRAY);
-		oeuvreAdverse.setBorder(BorderFactory.createLineBorder(Color.black));
+		oeuvreAdverse.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		
+		if (fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().size() != 0) {
+			JPanel zoomCard = new JPanel(new GridLayout(2,1));
+			JPanel top = new JPanel(new FlowLayout());
+			int size = fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().size();
+			top.setOpaque(false);
+			zoomCard.setBounds(0,0,100,150);
+			JLabel name = new JLabel(fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(size-1).getNom());
+			JLabel cout = new JLabel(""+fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(size-1).getCout());
+			cout.setFont(new Font("Serif", Font.BOLD, 20));
+			JLabel desc = new JLabel();
+			top.add(cout);
+			top.add(name);
+			zoomCard.add(top);
+			zoomCard.add(desc);
+			oeuvreAdverse.add(zoomCard);
+		}
 		add(oeuvreAdverse);
 	}
 	
@@ -156,6 +222,40 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		}
 		add(cardPanel);
 	}
+	
+	private void propEchelle() {
+		JPanel echelle = new JPanel();
+		echelle.setLayout(null);
+		echelle.setBounds(200,0,800,100);
+		echelle.setBackground(Color.LIGHT_GRAY);
+		List<Joueur> joueurs = fenetre.getVue().getController().getModel().getJoueurs();
+		
+		for (int i = 0; i < joueurs.size();i++) {
+			JLabel temp = new JLabel();
+			temp.setFont(new Font("Serif", Font.BOLD, 20));
+			switch(joueurs.get(i).getEchelleKarmique()){
+				case BOUSIER:
+					temp.setText("BOUSIER");
+					temp.setBounds(10, 40*i,100,100);
+					break;
+				case SERPENT:
+					temp.setText("SERPENT");
+					temp.setBounds(220, 40*i,100,100);
+					break;
+				case LOUP:
+					temp.setText("LOUP");
+					temp.setBounds(430, 40*i,100,100);
+					break;
+				case SINGE:
+					temp.setText("SINGE");
+					temp.setBounds(640, 40*i,100,100);
+					break;
+			}
+			echelle.add(temp);
+		}
+		add(echelle);
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -172,16 +272,16 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 				Couleur couleur = tour.getMain().getCartes().get(index).getType();
 				switch(couleur) {
 					case BLEU :
-						zoomCard.setBackground(Color.BLUE);
+						zoomCard.setBackground(new Color(0,0,255));
 						break;
 					case ROUGE :
-						zoomCard.setBackground(Color.RED);
+						zoomCard.setBackground(new Color(255,0,0));
 						break;
 					case VERT :
-						zoomCard.setBackground(Color.GREEN);
+						zoomCard.setBackground(new Color(0,255,0));
 						break;
 					case MOSAIQUE :
-						zoomCard.setBackground(Color.cyan);
+						zoomCard.setBackground(new Color(72,209,204));
 						break;
 				}
 				boolean visible = (name.getText() != tour.getMain().getCartes().get(index).getNom() || !zoomCard.isVisible());
@@ -193,6 +293,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			}
 		}
 	}
+	
+	
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
