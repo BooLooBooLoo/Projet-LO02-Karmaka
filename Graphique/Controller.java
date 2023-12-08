@@ -1,12 +1,14 @@
 package Graphique;
 
 import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
 
-public class Controller {
+public class Controller implements PropertyChangeListener{
 	private Partie model;
 	private Vue vue;
 	
@@ -49,10 +51,16 @@ public class Controller {
 			vue.getFenetre().dispatchEvent(new WindowEvent(vue.getFenetre(), WindowEvent.WINDOW_CLOSING));
 		}
 	}
+	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println("IN");
+		System.out.println(evt.getNewValue());
+	}
 	
 	public static void main(String[] args) {
 		Controller controller = new Controller(new Partie(), new Vue());
 		controller.getVue().setController(controller);
+		controller.getModel().addSub(controller);
+		controller.getVue().addSub(controller);
 		controller.getVue().setFenetre(new Fenetre(controller.getVue()));
 		System.out.println(controller.getVue().getController());
 		controller.getVue().render();
@@ -67,7 +75,8 @@ public class Controller {
 		controller.getModel().setupJoueur(controller.getVue().getFenetre().getJoueurs());
 		controller.getModel().setupPartie();
 		controller.getModel().choisirJoueur();
-		controller.controlerLaPartie();
+		controller.getVue().getFenetre().publish(new ConteneurPartie(controller.getVue().getFenetre()));
+		//controller.controlerLaPartie();
 		
 	}
 }

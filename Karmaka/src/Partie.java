@@ -1,5 +1,7 @@
 package Karmaka.src;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +26,16 @@ public class Partie implements Serializable{
 	private Pile source = new Pile();
 	private Pile defausse = new Pile();
 	private boolean win = false;
+	private PropertyChangeSupport diffuseur;
+	
+	
+	public Partie() {
+		diffuseur = new PropertyChangeSupport(this);
+	}
+	
+	public void addSub(PropertyChangeListener pcl) {
+		diffuseur.addPropertyChangeListener(pcl);
+	}
 	
 	public boolean getWin() {
 		return win;
@@ -447,13 +459,13 @@ public class Partie implements Serializable{
 		this.win = win;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partie partie = new Partie();
 		partie.setupJoueur(new String[] {"B","A","Michael","H","D","Donovan"});
 		partie.setupPartie();
 		partie.gestionDeLaPartie();
 		//{typeJ1,stratJ1,text1.getText(),typeJ2,stratJ2,text2.getText()}
-	}
+	}*/
 	
 }

@@ -66,8 +66,7 @@ public class Fenetre extends JFrame {
 		
 	}
 	
-	public void render() {
-		
+	public void render() {	
 		this.setContentPane(currentPanel);
 		this.revalidate();
 		this.getContentPane().setBackground(Color.DARK_GRAY);

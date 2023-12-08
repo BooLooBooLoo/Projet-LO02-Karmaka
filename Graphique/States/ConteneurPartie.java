@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
 import Karmaka.src.Couleur;
@@ -19,7 +20,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private List<JPanel> cards;
 	
 	//Variables pour la main
-	private JPanel zoomCard; private JLabel name,cout, desc;
+	private JPanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons;
 	
 	//Variables pour la source
 	private JPanel source;
@@ -49,6 +50,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	
 	private void propConteneurFenetre() {
 		cards = new ArrayList<JPanel>();
+		buttons = new ArrayList<JButton>();
 		this.setLayout(null);
 		propCards();
 		propZoomCard();
@@ -60,7 +62,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		propOeuvreAdverse();
 		propPioche();
 		propEchelle();
+		//add(new ConteneurBassesse(fenetre));
 	}
+	
 	
 	private void propSource() {
 		source = new JPanel(new GridLayout(2,1));
@@ -171,20 +175,46 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	}
 	
 	private void propZoomCard() {
+		GridLayout layout = new GridLayout(4,1);
+		layout.setHgap(30);
+		layout.setVgap(30);
+		choix = new JPanel(layout);
 		zoomCard = new JPanel(new GridLayout(2,1));
 		JPanel top = new JPanel(new FlowLayout());
 		top.setOpaque(false);
-		zoomCard.setBounds(500,250,200,300);
+		zoomCard.setBounds(400,250,200,300);
+		choix.setBounds(610,250,200,300);
+		JButton passer = new JButton("Passer");
+		JButton pouvoir = new JButton("Pouvoir");
+		JButton oeuvre = new JButton("Oeuvre");
+		JButton vieFuture = new JButton("Vie Future");
+		buttons.add(vieFuture);
+		buttons.add(oeuvre);
+		buttons.add(passer);
+		buttons.add(pouvoir);
+		choix.setBorder(new EmptyBorder(10, 10, 10, 10));
+		choix.setBackground(null);
 		name = new JLabel();
 		cout = new JLabel();
 		cout.setFont(new Font("Serif", Font.BOLD, 20));
 		desc = new JLabel();
 		top.add(cout);
 		top.add(name);
+		
+		pouvoir.addActionListener(this);
+		vieFuture.addActionListener(this);
+		oeuvre.addActionListener(this);
+		passer.addActionListener(this);
+		choix.add(pouvoir);
+		choix.add(vieFuture);
+		choix.add(oeuvre);
+		choix.add(passer);
 		zoomCard.add(top);
 		zoomCard.add(desc);
 		add(zoomCard);
+		add(choix);
 		zoomCard.setVisible(false);
+		choix.setVisible(false);
 	}
 	
 	private void propCards() {
@@ -259,7 +289,26 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		System.out.println("in action");
+		if (e.getSource() instanceof JButton) {
+			for(JButton button : buttons) {
+				if (e.getSource().equals(button)) {
+					System.out.println("in button");
+					 switch (button.getText()) {
+						 case "Pouvoir":
+							 System.out.println("in pouvoir");
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", null, "oui");
+							 break;
+						 case "Oeuvre":
+							 break;
+						 case "Vie Future":
+							 break;
+						 case "Passer":
+							 break;
+					 }
+				}
+			}
+		}
 		
 	}
 
@@ -290,6 +339,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 				desc.setText(tour.getMain().getCartes().get(index).getDescription());
 				
 				zoomCard.setVisible(visible);
+				choix.setVisible(visible);
 			}
 		}
 	}
