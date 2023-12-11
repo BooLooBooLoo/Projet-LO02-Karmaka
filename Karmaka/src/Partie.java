@@ -1,5 +1,6 @@
 package Karmaka.src;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
@@ -18,7 +19,7 @@ import Cartes.*;
  * @author Ali MIKOU & Hoang-Viet LE
  * @version 1.0
  */
-public class Partie implements Serializable{
+public class Partie implements Serializable, PropertyChangeListener{
 	
 	private static int nbrTour = 0;
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
@@ -27,6 +28,7 @@ public class Partie implements Serializable{
 	private Pile defausse = new Pile();
 	private boolean win = false;
 	private PropertyChangeSupport diffuseur;
+	private boolean cardPlayed = false;
 	
 	
 	public Partie() {
@@ -237,8 +239,7 @@ public class Partie implements Serializable{
 		}
 		
 	}
-	//Coût Karmique
-	
+
 	
 	public void tourDeJeu(Joueur joueur) {
 		afficher();
@@ -247,10 +248,24 @@ public class Partie implements Serializable{
 			reincarnation(joueur);
 		} else {
 			joueur.piocher();
-			temp = joueur.jouer(this);
-			while (temp == null) {
+			if (joueur instanceof Human) {
+				while (!cardPlayed) {
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				temp = joueur.jouer(this);
+				cardPlayed = false;	
+			} else {
+				temp = joueur.jouer(this);
+				while (temp == null) {
+					temp = joueur.jouer(this);
+				}
 			}
+			
 			if (temp.equals("Pouvoir")) {
 				getAdversaire().coutKarmique(joueur.getDerniereCarteJoue(), this);
 			}
@@ -459,13 +474,16 @@ public class Partie implements Serializable{
 		this.win = win;
 	}
 
-	/*public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Partie partie = new Partie();
-		partie.setupJoueur(new String[] {"B","A","Michael","H","D","Donovan"});
-		partie.setupPartie();
-		partie.gestionDeLaPartie();
-		//{typeJ1,stratJ1,text1.getText(),typeJ2,stratJ2,text2.getText()}
-	}*/
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (tour instanceof Human) {
+			((Human) tour).setAction(evt.getPropertyName());
+			((Human) tour).setCardToPlay((Carte) evt.getNewValue());
+			cardPlayed = true;
+		}
+		
+	}
+
+
 	
 }

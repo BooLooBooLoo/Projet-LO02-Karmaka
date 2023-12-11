@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
 
@@ -20,7 +21,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private List<JPanel> cards;
 	
 	//Variables pour la main
-	private JPanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons;
+	private JPanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
 	
 	//Variables pour la source
 	private JPanel source;
@@ -297,13 +298,16 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 					 switch (button.getText()) {
 						 case "Pouvoir":
 							 System.out.println("in pouvoir");
-							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", null, "oui");
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", null, cardPlayed);
 							 break;
 						 case "Oeuvre":
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Oeuvre", null, cardPlayed);
 							 break;
 						 case "Vie Future":
+							 fenetre.getVue().getDiffuseur().firePropertyChange("VieFuture", null, cardPlayed);
 							 break;
 						 case "Passer":
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Passer", null, null);
 							 break;
 					 }
 				}
@@ -318,6 +322,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			if (e.getSource().equals(card) ) {
 				int index = cards.indexOf(card);
 				Joueur tour = fenetre.getVue().getController().getModel().getTour();
+				cardPlayed = tour.getMain().getCartes().get(index);
 				Couleur couleur = tour.getMain().getCartes().get(index).getType();
 				switch(couleur) {
 					case BLEU :

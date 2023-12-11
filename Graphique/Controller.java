@@ -3,18 +3,26 @@ package Graphique;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
 
 public class Controller implements PropertyChangeListener{
+	
 	private Partie model;
 	private Vue vue;
+	private PropertyChangeSupport diffuseur;
+	
+	public void addSub(PropertyChangeListener pcl) {
+		diffuseur.addPropertyChangeListener(pcl);
+	}
 	
 	public Controller(Partie m, Vue v) {
 		this.model = m;
 		this.vue = v;
+		diffuseur = new PropertyChangeSupport(this);
 	}
 
 	public Partie getModel() {
@@ -41,7 +49,7 @@ public class Controller implements PropertyChangeListener{
 		
 		if (!model.getWin()) {
 			try {
-				Thread.sleep(200);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -52,13 +60,13 @@ public class Controller implements PropertyChangeListener{
 		}
 	}
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println("IN");
-		System.out.println(evt.getNewValue());
+		diffuseur.firePropertyChange(evt);
 	}
 	
 	public static void main(String[] args) {
 		Controller controller = new Controller(new Partie(), new Vue());
 		controller.getVue().setController(controller);
+		controller.addSub(controller.getModel());
 		controller.getModel().addSub(controller);
 		controller.getVue().addSub(controller);
 		controller.getVue().setFenetre(new Fenetre(controller.getVue()));
@@ -76,7 +84,7 @@ public class Controller implements PropertyChangeListener{
 		controller.getModel().setupPartie();
 		controller.getModel().choisirJoueur();
 		controller.getVue().getFenetre().publish(new ConteneurPartie(controller.getVue().getFenetre()));
-		//controller.controlerLaPartie();
+		controller.controlerLaPartie();
 		
 	}
 }

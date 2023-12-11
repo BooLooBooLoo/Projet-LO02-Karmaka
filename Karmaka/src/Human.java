@@ -4,23 +4,35 @@ import java.util.Scanner;
 
 public class Human extends Joueur{
 	
-	
+	private Carte cardToPlay;
+	private String action;
 	
 	public Human(String nom) {
 		super(nom);
 		// TODO Auto-generated constructor stub
 	}
 
+	public Carte getCardToPlay() {
+		return cardToPlay;
+	}
+
+	public void setCardToPlay(Carte cardToPlay) {
+		this.cardToPlay = cardToPlay;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 	@Override
 	public String jouer(Partie partie) {
 		String bool = new String();
-		String action = new String();
-		Carte temp = choisirCarte();
-		// TODO Auto-generated method stub
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	    System.out.println("Entrer votre action (Passer/Oeuvre/Pouvoir/VieFuture)");
 
-	    action  = myObj.nextLine();  // Read user input
+		Carte temp = cardToPlay;
 	    System.out.println(action);
 		//myObj.close();
 		bool = null;
