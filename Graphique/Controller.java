@@ -50,6 +50,8 @@ public class Controller implements PropertyChangeListener{
 		} else if (evt != null && evt.getPropertyName() == "Pouvoir") {
 			this.vue.getFenetre().publish(new ConteneurCoutKarmique(vue.getFenetre(), (Carte) evt.getNewValue()));
 			model.getAdversaire().coutKarmique((Carte) evt.getNewValue(), model);
+		} else {
+			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
 		}
 		System.out.println("Out of the if ");
 		model.tourDeJeu(model.getTour());

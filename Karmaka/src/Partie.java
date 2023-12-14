@@ -249,6 +249,7 @@ public class Partie implements Serializable, PropertyChangeListener{
 		} else {
 			joueur.piocher();
 			if (joueur instanceof Human) {
+				System.out.println("IN cardPlayed");
 				while (!cardPlayed) {
 					try {
 						Thread.sleep(10);
@@ -259,6 +260,7 @@ public class Partie implements Serializable, PropertyChangeListener{
 				}
 				temp = joueur.jouer(this);
 				cardPlayed = false;	
+				System.out.println("OUT cardPlayed");
 			} else {
 				temp = joueur.jouer(this);
 				while (temp == null) {
