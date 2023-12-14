@@ -266,9 +266,11 @@ public class Partie implements Serializable, PropertyChangeListener{
 				}
 			}
 			
-			if (temp.equals("Pouvoir")) {
+			/*if (temp.equals("Pouvoir")) {
+				//diffuseur.firePropertyChange("Cout Karmique", win, cardPlayed);
 				getAdversaire().coutKarmique(joueur.getDerniereCarteJoue(), this);
-			}
+				
+			}*/
 		}
 		System.out.println("Fin du tour de : "+joueur.getNom());
 	}

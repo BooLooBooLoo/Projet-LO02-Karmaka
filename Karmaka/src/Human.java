@@ -6,7 +6,16 @@ public class Human extends Joueur{
 	
 	private Carte cardToPlay;
 	private String action;
+	private String actionCK = null;
 	
+	public String getActionCK() {
+		return actionCK;
+	}
+
+	public void setActionCK(String actionCK) {
+		this.actionCK = actionCK;
+	}
+
 	public Human(String nom) {
 		super(nom);
 		// TODO Auto-generated constructor stub
@@ -30,6 +39,7 @@ public class Human extends Joueur{
 
 	@Override
 	public String jouer(Partie partie) {
+		System.out.println("IN Jouer");
 		String bool = new String();
 
 		Carte temp = cardToPlay;
@@ -59,6 +69,7 @@ public class Human extends Joueur{
 	    	vieFuture.addCarte(temp);
 	    	bool = "done";
 	    }
+	    System.out.println("OUT jouer");
 		return bool;
 	}
 
@@ -116,19 +127,23 @@ public class Human extends Joueur{
 	}
 	
 	public void coutKarmique(Carte carte, Partie partie) {
-		String action = new String();
-		// TODO Auto-generated method stub
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	    System.out.println("Voulez-vous récuperer la carte suivante (Y/N) :"+carte.getNom());
-
-	    action  = myObj.nextLine();  // Read user input
-	    System.out.println(action);
+		System.out.println("IN cout Karmique");
+		while (actionCK == null) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	    System.out.println(actionCK);
 		//myObj.close();
-		if (action.equals("Y")) {
+		if (actionCK.equals("Y")) {
 			partie.getAdversaire().getVieFuture().addCarte(carte);
-		}else if (action.equals("N")) {
+		}else if (actionCK.equals("N")) {
 			partie.getDefausse().addCarte(carte);
 		}
+		System.out.println("OUT Cout Karmique");
 	}
 
 }

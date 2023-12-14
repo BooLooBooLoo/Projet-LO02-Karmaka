@@ -5,13 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Karmaka.src.Carte;
+
 public class ConteneurLendemain extends JPanel implements ActionListener{
 
 	private Fenetre fenetre;
+	private Carte cardPlayed;
 	
-	public ConteneurLendemain(Fenetre menu) {
+	public ConteneurLendemain(Fenetre menu, Carte carte) {
 		super();
 		this.fenetre = menu;
+		this.cardPlayed = carte;
 		propVoyage();
 		this.setBounds(200,150,800,400);
 	}

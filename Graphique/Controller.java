@@ -5,6 +5,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import Graphique.States.ConteneurCoutKarmique;
 import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
@@ -14,6 +15,7 @@ public class Controller implements PropertyChangeListener{
 	private Partie model;
 	private Vue vue;
 	private PropertyChangeSupport diffuseur;
+	private PropertyChangeEvent evt;
 	
 	public void addSub(PropertyChangeListener pcl) {
 		diffuseur.addPropertyChangeListener(pcl);
@@ -43,7 +45,13 @@ public class Controller implements PropertyChangeListener{
 	
 	public void controlerLaPartie() {
 		model.choisirJoueur();
-		this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
+		if (evt == null) {
+			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
+		} else if (evt != null && evt.getPropertyName() == "Pouvoir") {
+			this.vue.getFenetre().publish(new ConteneurCoutKarmique(vue.getFenetre(), (Carte) evt.getNewValue()));
+			model.getAdversaire().coutKarmique((Carte) evt.getNewValue(), model);
+		}
+		System.out.println("Out of the if ");
 		model.tourDeJeu(model.getTour());
 		model.refillSource();
 		
@@ -61,6 +69,9 @@ public class Controller implements PropertyChangeListener{
 	}
 	public void propertyChange(PropertyChangeEvent evt) {
 		diffuseur.firePropertyChange(evt);
+		this.evt = evt;
+		System.out.println(evt.getPropertyName()+" and "+evt.getNewValue());
+		
 	}
 	
 	public static void main(String[] args) {

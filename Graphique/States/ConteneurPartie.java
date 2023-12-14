@@ -40,6 +40,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	//Variables pour la pioche du joueur
 	private JPanel pioche;
 	
+	//Variable pour le conteneur des pouvoirs
+	private JPanel power;
+	
 	private Fenetre fenetre;
 	
 	public ConteneurPartie(Fenetre menu) {
@@ -298,7 +301,11 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 					 switch (button.getText()) {
 						 case "Pouvoir":
 							 System.out.println("in pouvoir");
-							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", null, cardPlayed);
+							 zoomCard.setVisible(false);
+							 choix.setVisible(false);
+							 instantiateContainer(cardPlayed.getNom());
+							 fenetre.getContentPane().repaint();
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", null, cardPlayed); 
 							 break;
 						 case "Oeuvre":
 							 fenetre.getVue().getDiffuseur().firePropertyChange("Oeuvre", null, cardPlayed);
@@ -373,6 +380,85 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void instantiateContainer(String cardName) {
+		switch (cardName) {
+			case "Bassesse":
+				power = new ConteneurBassesse(fenetre, cardPlayed);
+				break;
+			case "Coup d'oeil":
+				power = new ConteneurCoupDoeil(fenetre, cardPlayed);
+				break;
+			case "Crise":
+				power = new ConteneurCrise(fenetre, cardPlayed);
+				break;
+			case "Deni":
+				power = new ConteneurDeni(fenetre, cardPlayed);
+				break;
+			case "Dernier Souffle":
+				power = new ConteneurDernierSouffle(fenetre, cardPlayed);
+				break;
+			case "Destinee":
+				power = new ConteneurDestinee(fenetre, cardPlayed);
+				break;
+			case "Duperie":
+				power = new ConteneurDuperie(fenetre, cardPlayed);
+				break;
+			case "Fournaise":
+				power = new ConteneurFournaise(fenetre, cardPlayed);
+				break;
+			case "Incarnation":
+				power = new ConteneurIncarnation(fenetre, cardPlayed);
+				break;
+			case "Jubile":
+				power = new ConteneurJubile(fenetre, cardPlayed);
+				break;
+			case "Lendemain":
+				power = new ConteneurLendemain(fenetre, cardPlayed);
+				break;
+			case "Longevite":
+				power = new ConteneurLongevite(fenetre, cardPlayed);
+				break;
+			case "Mimétisme":
+				power = new ConteneurMimetisme(fenetre, cardPlayed);
+				break;
+			case "Panique":
+				power = new ConteneurPanique(fenetre, cardPlayed);
+				break;
+			case "Recyclage":
+				power = new ConteneurRecyclage(fenetre, cardPlayed);
+				break;
+			case "Rêves Brisés":
+				power = new ConteneurRevesBrises(fenetre, cardPlayed);
+				break;
+			case "Roulette":
+				power = new ConteneurRoulette(fenetre, cardPlayed);
+				break;
+			case "Sauvetage":
+				power = new ConteneurSauvetage(fenetre, cardPlayed);
+				break;
+			case "Semis":
+				power = new ConteneurSemis(fenetre, cardPlayed);
+				break;
+			case "Transmigration":
+				power = new ConteneurTransmigration(fenetre, cardPlayed);
+				break;
+			case "Vengeance":
+				power = new ConteneurVengeance(fenetre, cardPlayed);
+				break;
+			case "Vol":
+				power = new ConteneurVol(fenetre, cardPlayed);
+				break;
+			case "Voyage":
+				power = new ConteneurVoyage(fenetre, cardPlayed);
+				break;
+			default :
+				System.out.println("problem here");
+				
+		}
+		add(power);
+		power.setVisible(true);
 	}
 
 	

@@ -1,5 +1,7 @@
 package Karmaka.src;
 
+import java.util.List;
+
 public abstract class Carte {
 	
     protected String nom;
@@ -7,8 +9,17 @@ public abstract class Carte {
     protected Couleur type;
     protected String description;
     protected boolean rejouable;
+    protected List<String> actions = null;
     
-    public Carte(String nom, int cout, Couleur type, String description) {
+    public List<String> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<String> actions) {
+		this.actions = actions;
+	}
+
+	public Carte(String nom, int cout, Couleur type, String description) {
     	this.cout = cout;
     	this.description = description;
     	this.nom = nom;

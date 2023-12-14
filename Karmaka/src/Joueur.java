@@ -132,5 +132,5 @@ public abstract class Joueur {
 	}
 
 
-	protected abstract void coutKarmique(Carte carte, Partie partie);
+	public abstract void coutKarmique(Carte carte, Partie partie);
 }
