@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
+import Karmaka.src.Partie;
 
 public class ConteneurPartie extends JPanel implements ActionListener, MouseListener{
 	
@@ -45,6 +46,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	
 	private Fenetre fenetre;
 	
+	private JPanel transition;
+	
 	public ConteneurPartie(Fenetre menu) {
 		super();
 		this.fenetre = menu;
@@ -56,19 +59,40 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		cards = new ArrayList<JPanel>();
 		buttons = new ArrayList<JButton>();
 		this.setLayout(null);
-		propCards();
-		propZoomCard();
-		propVieFuture();
-		propOeuvre();
-		propSource();
-		propFosse();
-		propVieFutureAdverse();
-		propOeuvreAdverse();
-		propPioche();
-		propEchelle();
+		if (Partie.getNbrTour() != 0) {
+			transition();
+			propCards();
+			propZoomCard();
+			propVieFuture();
+			propOeuvre();
+			propSource();
+			propFosse();
+			propVieFutureAdverse();
+			propOeuvreAdverse();
+			propPioche();
+			propEchelle();
+			
+		}
+		
 		//add(new ConteneurBassesse(fenetre));
 	}
 	
+	
+	private void transition() {
+		transition = new JPanel(new GridLayout(2,1));
+		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
+		texte.setFont(new Font("Serif", Font.BOLD, 48));
+		texte.setForeground(Color.white);
+		JLabel texte2 = new JLabel("Cliquez sur l'écran", SwingConstants.CENTER);
+		texte2.setFont(new Font("Serif", Font.BOLD, 32));
+		texte2.setForeground(Color.white);
+		transition.add(texte);
+		transition.add(texte2);
+		transition.setBounds(0,0,1200,800);
+		transition.setBackground(Color.DARK_GRAY);
+		add(transition);
+		transition.addMouseListener(this);
+	}
 	
 	private void propSource() {
 		source = new JPanel(new GridLayout(2,1));
@@ -115,6 +139,22 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		vieFuture.setBounds(50,600,100,150);
 		vieFuture.setBackground(Color.LIGHT_GRAY);
 		vieFuture.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		if (fenetre.getVue().getController().getModel().getTour().getVieFuture().getCartes().size() != 0) {
+			JPanel zoomCard = new JPanel(new GridLayout(2,1));
+			JPanel top = new JPanel(new FlowLayout());
+			int size = fenetre.getVue().getController().getModel().getTour().getVieFuture().getCartes().size();
+			top.setOpaque(false);
+			zoomCard.setBounds(0,0,100,150);
+			JLabel name = new JLabel(fenetre.getVue().getController().getModel().getTour().getVieFuture().getCartes().get(size-1).getNom());
+			JLabel cout = new JLabel(""+fenetre.getVue().getController().getModel().getTour().getVieFuture().getCartes().get(size-1).getCout());
+			cout.setFont(new Font("Serif", Font.BOLD, 20));
+			JLabel desc = new JLabel();
+			top.add(cout);
+			top.add(name);
+			zoomCard.add(top);
+			zoomCard.add(desc);
+			vieFuture.add(zoomCard);
+		}
 		add(vieFuture);
 	}
 	
@@ -150,6 +190,22 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		vieFutureAdverse.setBounds(50,50,100,150);
 		vieFutureAdverse.setBackground(Color.LIGHT_GRAY);
 		vieFutureAdverse.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		if (fenetre.getVue().getController().getModel().getAdversaire().getVieFuture().getCartes().size() != 0) {
+			JPanel zoomCard = new JPanel(new GridLayout(2,1));
+			JPanel top = new JPanel(new FlowLayout());
+			int size = fenetre.getVue().getController().getModel().getAdversaire().getVieFuture().getCartes().size();
+			top.setOpaque(false);
+			zoomCard.setBounds(0,0,100,150);
+			JLabel name = new JLabel(fenetre.getVue().getController().getModel().getAdversaire().getVieFuture().getCartes().get(size-1).getNom());
+			JLabel cout = new JLabel(""+fenetre.getVue().getController().getModel().getAdversaire().getVieFuture().getCartes().get(size-1).getCout());
+			cout.setFont(new Font("Serif", Font.BOLD, 20));
+			JLabel desc = new JLabel();
+			top.add(cout);
+			top.add(name);
+			zoomCard.add(top);
+			zoomCard.add(desc);
+			vieFutureAdverse.add(zoomCard);
+		}
 		add(vieFutureAdverse);
 	}
 	
@@ -159,14 +215,14 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		oeuvreAdverse.setBackground(Color.LIGHT_GRAY);
 		oeuvreAdverse.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		
-		if (fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().size() != 0) {
+		if (fenetre.getVue().getController().getModel().getAdversaire().getOeuvre().getCartes().size() != 0) {
 			JPanel zoomCard = new JPanel(new GridLayout(2,1));
 			JPanel top = new JPanel(new FlowLayout());
-			int size = fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().size();
+			int size = fenetre.getVue().getController().getModel().getAdversaire().getOeuvre().getCartes().size();
 			top.setOpaque(false);
 			zoomCard.setBounds(0,0,100,150);
-			JLabel name = new JLabel(fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(size-1).getNom());
-			JLabel cout = new JLabel(""+fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(size-1).getCout());
+			JLabel name = new JLabel(fenetre.getVue().getController().getModel().getAdversaire().getOeuvre().getCartes().get(size-1).getNom());
+			JLabel cout = new JLabel(""+fenetre.getVue().getController().getModel().getAdversaire().getOeuvre().getCartes().get(size-1).getCout());
 			cout.setFont(new Font("Serif", Font.BOLD, 20));
 			JLabel desc = new JLabel();
 			top.add(cout);
@@ -353,6 +409,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 				zoomCard.setVisible(visible);
 				choix.setVisible(visible);
 			}
+		}
+		if (e.getSource().equals(transition)) {
+			transition.setVisible(false);
 		}
 	}
 	

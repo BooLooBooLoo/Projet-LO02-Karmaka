@@ -21,6 +21,14 @@ import Cartes.*;
  */
 public class Partie implements Serializable, PropertyChangeListener{
 	
+	public static int getNbrTour() {
+		return nbrTour;
+	}
+
+	public static void setNbrTour(int nbrTour) {
+		Partie.nbrTour = nbrTour;
+	}
+
 	private static int nbrTour = 0;
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
 	private Joueur tour = null;
@@ -226,7 +234,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 	}
 	
 	public void choisirJoueur() {
-		nbrTour++;
 		if (this.tour == null) {
 			double rand = Math.random();
 			System.out.println(rand);
@@ -234,6 +241,7 @@ public class Partie implements Serializable, PropertyChangeListener{
 			Joueur j = (rand >= 0.5) ? getJoueurs().get(0) : getJoueurs().get(1);
 			this.tour = j;
 		} else {
+			nbrTour++;
 			Joueur j = (joueurs.indexOf(tour) >= joueurs.size()-1) ? joueurs.get(0) : joueurs.get(joueurs.indexOf(tour) + 1);
 			this.tour = j;
 		}
