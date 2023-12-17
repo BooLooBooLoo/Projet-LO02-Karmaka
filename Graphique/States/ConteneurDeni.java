@@ -16,11 +16,11 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 		super();
 		this.fenetre = menu;
 		this.cardPlayed = carte;
-		propVoyage();
+		propDeni();
 		this.setBounds(200,150,800,400);
 	}
 	
-	public void propVoyage() {
+	public void propDeni() {
 		JLabel etiquette = new JLabel("Voyage");
 		add(etiquette);
 	}

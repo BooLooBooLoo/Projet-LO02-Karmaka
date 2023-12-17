@@ -30,7 +30,7 @@ public class Bassesse extends Carte{
 				} else {
 					int randomIndex = (int) Math.floor(Math.random() * mainAdverse.getCartes().size());
 					Carte carteDefausse = mainAdverse.getCartes().get(randomIndex);
-					System.out.println("On défausse l'oeuvre visible adverse.");
+					System.out.println("On défausse 2 cartes de la main adverse aléatoirement.");
 					System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 					// Modification objet "partie"
 					partie.deplacerCarte(mainAdverse, defausse, carteDefausse);

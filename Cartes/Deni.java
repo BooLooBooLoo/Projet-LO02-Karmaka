@@ -21,15 +21,22 @@ public class Deni extends Carte{
 		String carteSelect = "";
 		Pile main = partie.getTour().getMain();
 		Pile defausse = partie.getDefausse();
-		Scanner sc = new Scanner(System.in);
 		// Effet de la carte
+		while (actions == null) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		if(main.getCartes().isEmpty()) {
 			System.out.println("Pas de carte dans la main");
 		} else {
 			System.out.println("Cartes de votre main : "+ main.toString());
 			if (partie.getTour() instanceof Human) {
 				System.out.println("Choisir une carte à défausser. Vous copiez son pouvoir.");
-				 carteSelect = sc.nextLine();
+				 carteSelect = actions.get(0);
 			} else {
 				carteSelect = main.getCartes().get(((Bot) partie.getTour()).choisir(main.getCartes().size())).getNom();
 			}

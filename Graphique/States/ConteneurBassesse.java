@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import Karmaka.src.Carte;
 
@@ -27,7 +28,7 @@ public class ConteneurBassesse extends JPanel implements ActionListener{
 		JLabel etiquette = new JLabel("Bassesse\n", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		add(etiquette);
-		JLabel text = new JLabel("L'oeuvre visible adverse a été défaussé", SwingConstants.CENTER);
+		JLabel text = new JLabel("On défausse 2 cartes de la main adverse aléatoirement", SwingConstants.CENTER);
 		text.setFont(new Font("Serif",Font.BOLD,30));
 		add(text);
 		JButton button = new JButton("Continuer");

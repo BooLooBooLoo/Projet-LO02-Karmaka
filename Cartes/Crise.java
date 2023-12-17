@@ -17,14 +17,21 @@ public class Crise extends Carte{
 		super("Crise",2,Couleur.ROUGE,"description");
 	}
 
-	@Override
+	
 	public void effet(Partie partie) {
 		// Variables
 		Joueur adversaire = partie.getAdversaire();
 		Pile oeuvreAdverse = adversaire.getOeuvre();
 		Pile defausse = partie.getDefausse();
-		Scanner sc = new Scanner(System.in);
 		// Effet carte
+		while(actions == null) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		if(oeuvreAdverse.getCartes().isEmpty()) {
 			System.out.println("Pas d'oeuvre dans la pile adverse");
 		}
@@ -35,7 +42,7 @@ public class Crise extends Carte{
 			}
 			if (partie.getTour() instanceof Human) {
 				System.out.println("Veuilez choisir une oeuvre à défausser.");
-				carteSelect = sc.nextLine();
+				carteSelect = actions.get(0);
 			} else {
 				carteSelect = oeuvreAdverse.getCartes().get(((Bot) partie.getTour()).choisir(oeuvreAdverse.getCartes().size())).getNom();
 			}

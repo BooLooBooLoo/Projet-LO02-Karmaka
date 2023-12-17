@@ -22,10 +22,17 @@ public class DernierSouffle extends Carte{
 		Pile mainAdverse = adversaire.getMain();
 		Pile defausse = partie.getDefausse();
 		Pile main = partie.getTour().getMain();
-		Scanner sc = new Scanner(System.in);
+		while (actions == null) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		// Check si on peut voler
 		if(mainAdverse.getCartes().isEmpty()) {
-			System.out.println("Il n'y a pas de carte à voler. Veuillez jouer une autre carte.");
+			System.out.println("Il n'y a pas de carte à voler.");
 			// partie.getTour().jouer(partie);
 		}
 		else {
@@ -33,8 +40,7 @@ public class DernierSouffle extends Carte{
 			int indexCarteDefausse = 0;
 			if (partie.getTour() instanceof Human) {
 				System.out.println("Veuillez choisir l'index de la carte à défausse (entre 0 et " + (partie.getTour().getMain().getCartes().size()-1) + ").");
-				indexCarteDefausse = sc.nextInt();
-				sc.nextLine();
+				indexCarteDefausse = Integer.parseInt(actions.get(0));
 			} else {
 				indexCarteDefausse = (int) Math.floor(Math.random()*mainAdverse.getCartes().size());
 			}

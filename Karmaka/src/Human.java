@@ -63,10 +63,12 @@ public class Human extends Joueur{
 	    } else if (action.equals("Oeuvre")) {
 	    	setDerniereCarteJoue(temp);
 	    	oeuvre.addCarte(temp);
+	    	this.getMain().removeCarte(temp);
 	    	bool = "done";
 	    } else if (action.equals("VieFuture")) {
 	    	setDerniereCarteJoue(temp);
 	    	vieFuture.addCarte(temp);
+	    	this.getMain().removeCarte(temp);
 	    	bool = "done";
 	    }
 	    System.out.println("OUT jouer");
