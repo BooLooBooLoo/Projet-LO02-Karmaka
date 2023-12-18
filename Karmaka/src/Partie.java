@@ -255,7 +255,7 @@ public class Partie implements Serializable, PropertyChangeListener{
 		if (joueur.getMain().getCartes().size() == 0 && joueur.getPile().getCartes().size() == 0) {
 			reincarnation(joueur);
 		} else {
-			joueur.piocher();
+			//joueur.piocher();
 			if (joueur instanceof Human) {
 				System.out.println("IN cardPlayed");
 				while (!cardPlayed) {

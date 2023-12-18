@@ -22,14 +22,7 @@ public class Deni extends Carte{
 		Pile main = partie.getTour().getMain();
 		Pile defausse = partie.getDefausse();
 		// Effet de la carte
-		while (actions == null) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		wait(partie);
 		if(main.getCartes().isEmpty()) {
 			System.out.println("Pas de carte dans la main");
 		} else {
@@ -48,6 +41,7 @@ public class Deni extends Carte{
 					break;
 				}
 			}
+			
 			// Modification objet "partie"
 			if(indiceCarteSelect == -1) {
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");

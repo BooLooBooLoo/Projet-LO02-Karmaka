@@ -2,6 +2,7 @@ package Cartes;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Human;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
@@ -36,14 +37,17 @@ public class Bassesse extends Carte{
 					partie.deplacerCarte(mainAdverse, defausse, carteDefausse);
 				}
 			}
-			while (actions == null) {
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			if (partie.getTour() instanceof Human) {
+				while (actions == null) {
+					try {
+						Thread.sleep(1);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
+			
 		}
 	}
 }

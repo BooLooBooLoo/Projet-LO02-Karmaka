@@ -21,5 +21,19 @@ public class Duperie extends Carte{
 		for(int i=0; i<mainAdverse.getCartes().size(); i++) {
 			System.out.println(mainAdverse.getCartes().get(i).getNom());
 		}
+		wait(partie);
+		if (mainAdverse.getCartes().size()>0) {
+			Carte card = null;
+			for (Carte carte : mainAdverse.getCartes()) {
+				if (carte.getNom().equals(actions.get(0))) {
+					card = carte;
+				}
+			}
+			partie.getTour().getMain().addCarte(card);
+			adversaire.getMain().removeCarte(card);
+		} else {
+			System.out.println("Il n'y a pas de cartes dans la main adverse");
+		}
+		
 	}
 }

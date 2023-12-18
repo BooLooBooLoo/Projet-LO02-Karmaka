@@ -8,7 +8,9 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import java.util.*;
 
+
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -56,6 +58,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	}
 	
 	private void propConteneurFenetre() {
+		
 		cards = new ArrayList<JPanel>();
 		buttons = new ArrayList<JButton>();
 		this.setLayout(null);
@@ -71,7 +74,13 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			propOeuvreAdverse();
 			propPioche();
 			propEchelle();
-			
+			Timer timer = new Timer(1000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					transition.setVisible(false);
+				}
+			});
+			timer.start();
 		}
 		
 		//add(new ConteneurBassesse(fenetre));

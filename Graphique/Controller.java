@@ -45,6 +45,7 @@ public class Controller implements PropertyChangeListener{
 	
 	public void controlerLaPartie() {
 		model.choisirJoueur();
+		model.getTour().piocher();
 		if (evt == null) {
 			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
 		} else if (evt != null && evt.getPropertyName() == "Pouvoir") {

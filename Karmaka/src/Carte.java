@@ -27,6 +27,19 @@ public abstract class Carte {
     	this.rejouable = false;
     }
     
+	public void wait(Partie partie) {
+		if (partie.getTour() instanceof Human) {
+			while(actions == null) {
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
     public abstract void effet(Partie partie);
     
     public String getDescription() {

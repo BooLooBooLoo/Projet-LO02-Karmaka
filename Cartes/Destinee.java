@@ -21,8 +21,7 @@ public class Destinee extends Carte{
 		Pile main = partie.getTour().getMain();
 		Pile source = partie.getSource();
 		Pile vieFuture = partie.getTour().getVieFuture();
-		Scanner sc = new Scanner(System.in);
-		// Syso et Scan 
+		wait(partie);
 		System.out.println("3 Premières Cartes de la Source :");
 		for(int i=0; i<3; i++) {
 			if(i>source.getCartes().size()) {
@@ -32,17 +31,14 @@ public class Destinee extends Carte{
 		}
 		int nbCarte = 0;
 		if (partie.getTour() instanceof Human) {
-			System.out.println("Veuillez choisir l'index de la carte à défausse (entre 0 et " + (partie.getTour().getMain().getCartes().size()-1) + ").");
-			nbCarte = sc.nextInt();
-			sc.nextLine();
+			nbCarte = Integer.parseInt(actions.get(actions.size()-1));
 		} else {
 			nbCarte = (int) Math.floor(Math.random()*main.getCartes().size());
 		}
 		for(int i=0; i<nbCarte; i++) {
 			String carteSelect = "";
 			if (partie.getTour() instanceof Human) {
-				System.out.println("Choisir une carte à défausser. Vous copiez son pouvoir.");
-				 carteSelect = sc.nextLine();
+				 carteSelect = actions.get(i);
 			} else {
 				carteSelect = main.getCartes().get(((Bot) partie.getTour()).choisir(main.getCartes().size())).getNom();
 			}
@@ -63,5 +59,5 @@ public class Destinee extends Carte{
 			}		
 		}
 		//sc.close();
-		}
+	}
 }

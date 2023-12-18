@@ -24,14 +24,7 @@ public class Crise extends Carte{
 		Pile oeuvreAdverse = adversaire.getOeuvre();
 		Pile defausse = partie.getDefausse();
 		// Effet carte
-		while(actions == null) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		wait(partie);
 		if(oeuvreAdverse.getCartes().isEmpty()) {
 			System.out.println("Pas d'oeuvre dans la pile adverse");
 		}

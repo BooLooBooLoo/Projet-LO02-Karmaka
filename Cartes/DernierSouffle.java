@@ -17,19 +17,13 @@ public class DernierSouffle extends Carte{
 
 	@Override
 	public void effet(Partie partie) {
+		System.out.println("IN dernier souffle");
 		// Déclaration des variables utilisés dans cette classe
 		Joueur adversaire = partie.getAdversaire();
 		Pile mainAdverse = adversaire.getMain();
 		Pile defausse = partie.getDefausse();
 		Pile main = partie.getTour().getMain();
-		while (actions == null) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		wait(partie);
 		// Check si on peut voler
 		if(mainAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à voler.");
@@ -47,7 +41,10 @@ public class DernierSouffle extends Carte{
 			Carte carteDefausse = mainAdverse.getCartes().get(indexCarteDefausse);
 			System.out.println("La carte défaussée est : " + carteDefausse.getNom());
 			// Modification objet "partie"
-			partie.deplacerCarte(defausse, main, carteDefausse);
+			System.out.println(mainAdverse.getCartes().size());
+			defausse.addCarte(carteDefausse);
+			mainAdverse.removeCarte(carteDefausse);
+			System.out.println(mainAdverse.getCartes().size());
 			}
 		}
 }

@@ -2,6 +2,7 @@ package Cartes;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
+import Karmaka.src.Human;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
@@ -22,13 +23,7 @@ public class CoupDoeil extends Carte{
 		for(int i=0; i<mainAdverse.getCartes().size(); i++) {
 			System.out.println(mainAdverse.getCartes().get(i).getNom());
 		}
-		while(actions == null) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		wait(partie);
+		
 	}
 }
