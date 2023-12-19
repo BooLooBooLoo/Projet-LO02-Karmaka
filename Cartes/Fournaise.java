@@ -36,6 +36,7 @@ public class Fournaise extends Carte{
 					partie.deplacerCarte(vieFutureAdverse, defausse, carteDefausse);
 				}
 			}
-			}
+			wait(partie);
 		}
+	}
 }
