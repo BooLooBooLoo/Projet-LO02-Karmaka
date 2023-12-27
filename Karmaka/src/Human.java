@@ -80,11 +80,7 @@ public class Human extends Joueur{
 		this.action = action;
 	}
 
-	/**
-	 * Méthode qui permet au joueur de jouer au jeu. Il doit choisir sa carte puis son action.
-	 * @param partie La partie où se joue le jeu.
-	 * @return Un string qui permet de vérifier le bon fonctionnement du jeu.
-	 */
+	@Override
 	public String jouer(Partie partie) {
 		System.out.println("IN Jouer");
 		String bool = new String();
@@ -122,12 +118,24 @@ public class Human extends Joueur{
 		return bool;
 	}
 
-	/**
-	 * Méthode qui permet au joueur de rejouer une carte. Il doit choisir sa carte puis son action.
-	 * @param partie La partie où se joue le jeu.
-	 * @return Un string qui permet de vérifier le bon fonctionnement du jeu.
-	 */
+	@Override
 	public String rejouer(Partie partie) {
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		while(cTPRejouer == null ) {
 			try {
 				Thread.sleep(1);
