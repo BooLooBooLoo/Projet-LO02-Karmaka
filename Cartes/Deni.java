@@ -1,6 +1,14 @@
 package Cartes;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.Scanner;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import Karmaka.src.Bot;
 import Karmaka.src.Carte;
@@ -48,6 +56,7 @@ public class Deni extends Carte{
 			} else {
 				Carte carteDefausse = main.getCartes().get(indiceCarteSelect);
 				partie.deplacerCarte(main, defausse, carteDefausse);
+				carteDefausse.setActions(actions.subList(1, actions.size()));
 				carteDefausse.effet(partie);
 		}
 		}

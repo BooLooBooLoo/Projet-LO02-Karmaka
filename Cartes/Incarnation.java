@@ -17,11 +17,14 @@ public class Incarnation extends Carte{
 
 	public void effet(Partie partie) {
 		// Variables
+		
 		String carteSelect = "";
 		Pile main = partie.getTour().getMain();
 		Pile oeuvre = partie.getTour().getOeuvre();
 		// Effet carte
+		wait(partie);
 		System.out.println("Oeuvre :");
+		
 		for(int i=0; i<oeuvre.getCartes().size(); i++) {
 			System.out.println(oeuvre.getCartes().get(i).getNom());
 		}
@@ -29,9 +32,7 @@ public class Incarnation extends Carte{
 			System.out.println("Pas de carte à copier son pouvoir.");
 		} else {
 			if (partie.getTour() instanceof Human) {
-				System.out.println("Choisir l'oeuvre dont vous voulez copier le pouvoir :");
-				Scanner sc = new Scanner(System.in);
-				 carteSelect = sc.nextLine();
+				 carteSelect = actions.get(0);
 			} else {
 				carteSelect = oeuvre.getCartes().get(((Bot) partie.getTour()).choisir(oeuvre.getCartes().size())).getNom();
 			}
@@ -49,6 +50,9 @@ public class Incarnation extends Carte{
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");
 			} else {
 				Carte carteCopie = oeuvre.getCartes().get(indiceCarteSelect);
+				System.out.println("IN");
+				System.out.println(actions.subList(1, actions.size()).toString());
+				carteCopie.setActions(actions.subList(1, actions.size()));
 				carteCopie.effet(partie);
 			}
 		}

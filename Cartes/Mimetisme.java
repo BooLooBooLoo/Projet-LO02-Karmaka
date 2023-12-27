@@ -19,20 +19,13 @@ public class Mimetisme extends Carte{
 	public void effet(Partie partie) {
 		// Variables
 		String carteSelect = "";
-		Pile main = partie.getTour().getMain();
 		Pile oeuvreAdverse = partie.getAdversaire().getOeuvre();
-		// Effet carte
-		System.out.println("Oeuvre de l'adversaire :");
-		for(int i=0; i<oeuvreAdverse.getCartes().size(); i++) {
-			System.out.println(oeuvreAdverse.getCartes().get(i).getNom());
-		}
+		wait(partie);
 		if(oeuvreAdverse.getCartes().isEmpty()) {
 			System.out.println("Pas de carte à copier son pouvoir.");
 		} else {
 			if (partie.getTour() instanceof Human) {
-				System.out.println("Choisir l'oeuvre dont vous voulez copier le pouvoir :");
-				Scanner sc = new Scanner(System.in);
-				carteSelect = sc.nextLine();
+				carteSelect = actions.get(0);
 			} else {
 				carteSelect = oeuvreAdverse.getCartes().get(((Bot) partie.getTour()).choisir(oeuvreAdverse.getCartes().size())).getNom();
 			}
@@ -50,6 +43,7 @@ public class Mimetisme extends Carte{
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");
 			} else {
 				Carte carteCopie = oeuvreAdverse.getCartes().get(indiceCarteSelect);
+				carteCopie.setActions(actions.subList(1, actions.size()));
 				carteCopie.effet(partie);
 			}
 		}

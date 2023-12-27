@@ -76,6 +76,7 @@ public class ConteneurCoupDoeil extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		cardPlayed.setActions(new ArrayList<String>());
+		fenetre.publish(new ConteneurRejouer(fenetre));
 	}
 
 }

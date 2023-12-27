@@ -16,15 +16,23 @@ import Cartes.*;
  * Elle comprend des méthodes et des fonctionnalités pour configurer le jeu, gérer les tours,
  * traiter les actions des joueurs et déterminer le gagnant.
  *
- * @author Ali MIKOU & Hoang-Viet LE
+ * @author Ali MIKOU et Hoang-Viet LE
  * @version 1.0
  */
 public class Partie implements Serializable, PropertyChangeListener{
 	
+	/**
+	 * Getter de l'attribut {@code nbrTour}
+	 * @return Le nombre de tour actuel de la partie.
+	 */
 	public static int getNbrTour() {
 		return nbrTour;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code nbrTour}
+	 * @param nbrTour Le nombre de tour à fixer.
+	 */
 	public static void setNbrTour(int nbrTour) {
 		Partie.nbrTour = nbrTour;
 	}
@@ -38,7 +46,9 @@ public class Partie implements Serializable, PropertyChangeListener{
 	private PropertyChangeSupport diffuseur;
 	private boolean cardPlayed = false;
 	
-	
+	/**
+	 * Constructeur de la classe {@code Partie}.
+	 */
 	public Partie() {
 		diffuseur = new PropertyChangeSupport(this);
 	}
@@ -47,42 +57,83 @@ public class Partie implements Serializable, PropertyChangeListener{
 		diffuseur.addPropertyChangeListener(pcl);
 	}
 	
+	/**
+	 * Getter de l'attribut {@code win}
+	 * @return Un booléen indiquant si la partie est terminée.
+	 */
 	public boolean getWin() {
 		return win;
 	}
 	
+	/**
+	 * Getter de l'attribut {@code source}.
+	 * @return La source de la partie.
+	 */
 	public Pile getSource() {
 		return source;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code source}.
+	 * @param source Une liste de cartes.
+	 */
 	public void setSource(Pile source) {
 		this.source = source;
 	}
-
+	/**
+	 * Getter de l'attribut {@code defausse}.
+	 * @return La défausse de la partie.
+	 */
 	public Pile getDefausse() {
 		return defausse;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code defausse}.
+	 * @param defausse Une liste de cartes.
+	 */
 	public void setDefausse(Pile defausse) {
 		this.defausse = defausse;
 	}
 	
+	/**
+	 * Getter de l'attribut {@code tour} qui représente le joueur qui joue actuellement.
+	 * @return Le joueur du tour actuel.
+	 */
 	public Joueur getTour() {
 		return tour;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code tour}
+	 * @param tour Un joueur de la partie.
+	 */
 	public void setTour(Joueur tour) {
 		this.tour = tour;
 	}
-
+	
+	/**
+	 * Getter de l'attribut {@code joueurs} qui représente l'ensemble des joueurs de la partie.
+	 * @return La liste de tous les joueurs de la partie.
+	 */
 	public List<Joueur> getJoueurs() {
 		return joueurs;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code joueurs}.
+	 * @param joueurs Une liste de joueurs.
+	 */
 	public void setJoueurs(List<Joueur> joueurs) {
 		this.joueurs = joueurs;
 	}
-
+	
+	/**
+	 * Méthode qui permet de créer les joueurs de la partie.
+	 * Elle dépends du choix de la configuration de la partie qui est stocké dans un string.
+	 * @param j Les paramètres de configuration des joueurs de la partie.
+	 * @return Une liste de joueurs correspondant aux choix de la configuration.
+	 */
 	public List<Joueur> setupJoueur(String[] j) {
 		if (j[0].equals("B")) {
 			Joueur joueur = new Bot(j[2], "IA");
@@ -132,15 +183,29 @@ public class Partie implements Serializable, PropertyChangeListener{
 		return joueurs;
 	}
 	
+	/**
+	 * Méthode permettant d'initialiser les échelles de tous les joueurs de la partie.
+	 * @param joueur Un joueur.
+	 */
 	public void setupEchelleKarmique(Joueur joueur){
 		joueur.setEchelleKarmique(Echelle.BOUSIER);
 	}
 	
+	/**
+	 * Méthode permettant de "déplacer" une carte d'une pile de carte à une autre.
+	 * @param pileSource La pile source où l'on veut déplacer la carte.
+	 * @param pileCible La pile où l'on veut que la carte se retrouve.
+	 * @param carte La carte choisie à déplacer.
+	 */
 	public void deplacerCarte(Pile pileSource, Pile pileCible, Carte carte) {
 		pileCible.addCarte(carte);
 		pileSource.removeCarte(carte);
 	}
 	
+	/**
+	 * Méthode permettant d'obtenir l'adversaire du joueur qui joue actuellement.
+	 * @return L'adversaire du joueur qui joue.
+	 */
 	public Joueur getAdversaire() {
 		Joueur adversaire = null;
 		for(int i=0; i<this.getJoueurs().size(); i++) {
@@ -152,6 +217,11 @@ public class Partie implements Serializable, PropertyChangeListener{
 		return adversaire;
 	}
 	
+	/**
+	 * Méthode permettant d'initialiser la source de la partie.
+	 * Elle respecte les règles du jeu Karmaka avec le bon nombre de cartes différentes.
+	 * @return
+	 */
 	public Pile setupSource() {
 		
 		//Création des cartes de jeu
@@ -220,6 +290,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		return source;
 	}
 	
+	/**
+	 * Méthode permettant d'initialiser la main et la pile de chaque joueurs.
+	 * @param source La source de la partie.
+	 */
 	public void setupPileEtMain(Pile source) {
 		for (int i = 0; i < joueurs.size();i++) {
 			for (int j = 0; j < 4; j++) {
@@ -233,6 +307,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		}
 	}
 	
+	/**
+	 * Méthode permettant de choisir le joueur qui va débuter cette partie.
+	 * Dans les règles du jeu, c'est celui le plus malchanceux qui commence. On le simule par de l'hasard ici.
+	 */
 	public void choisirJoueur() {
 		if (this.tour == null) {
 			double rand = Math.random();
@@ -248,7 +326,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		
 	}
 
-	
+	/**
+	 * Méthode qui simule un tour complet de jeu d'une partie, c'est-à-dire de choisir une carte à jouer et de son action.
+	 * @param joueur Le joueur qui joue actuellement.
+	 */
 	public void tourDeJeu(Joueur joueur) {
 		afficher();
 		String temp = "";
@@ -285,6 +366,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		System.out.println("Fin du tour de : "+joueur.getNom());
 	}
 	
+	/**
+	 * Méthode permettant d'afficher les informations sur le déroulement de la partie.
+	 * C'est l'affichage de notre jeu dans la console.
+	 */
 	public void afficher() {
 		System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -309,6 +394,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		System.out.println(joueurs.get(1).getNom()+" : "+joueurs.get(1).getAnneaux());
 	}
 	
+	/**
+	 * Méthode permettant de simuler une partie complètement.
+	 * Elle se rappelle jusqu'à que la partie détecte un gagnant.
+	 */
 	public void gestionDeLaPartie() {
 		choisirJoueur();
 		tourDeJeu(tour);
@@ -318,6 +407,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 			gestionDeLaPartie();
 		}
 	}
+	
+	/**
+	 * Méthode permettant de regénérer la source à partir de la défausse.
+	 */
 	public void refillSource() {
 		if (source.getCartes().size() <= 3) {
 			Collections.shuffle(defausse.getCartes());
@@ -329,6 +422,9 @@ public class Partie implements Serializable, PropertyChangeListener{
 		}
 	}
 	
+	/**
+	 * Méthode permettant d'initialiser l'ensemble des éléments pour débuter une partie.
+	 */
 	public void setupPartie() {
 		setupEchelleKarmique(getJoueurs().get(0));
 		setupEchelleKarmique(getJoueurs().get(1));
@@ -337,6 +433,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		
 	}
 	
+	/**
+	 * Méthode permettant de gérer le système de réincarnation du jeu "Karmaka".
+	 * @param joueur Le joueur dont l'on regarde s'il peut se réincarner.
+	 */
 	public void reincarnation(Joueur joueur) {
 		System.out.println("Vous allez vous réincarnez !");
 		switch (joueur.getEchelleKarmique()) {
@@ -478,24 +578,24 @@ public class Partie implements Serializable, PropertyChangeListener{
 		}
 	}
 	
-	public boolean isWin() {
-		return win;
-	}
-
+	/**
+	 * Setter de l'attribut {@code win}
+	 * @param win Un booléen.
+	 */
 	public void setWin(boolean win) {
 		this.win = win;
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (tour instanceof Human) {
+		if (tour instanceof Human && !evt.getOldValue().equals("Rejouer")) {
 			((Human) tour).setAction(evt.getPropertyName());
 			((Human) tour).setCardToPlay((Carte) evt.getNewValue());
 			cardPlayed = true;
+		} else if (tour instanceof Human && evt.getOldValue().equals("Rejouer")) {
+			((Human) tour).setActionRejouer(evt.getPropertyName());
+			((Human) tour).setcTPRejouer((Carte) evt.getNewValue());
 		}
 		
 	}
-
-
-	
 }

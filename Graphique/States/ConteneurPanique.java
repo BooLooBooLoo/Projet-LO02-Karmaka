@@ -21,7 +21,7 @@ public class ConteneurPanique extends JPanel implements ActionListener{
 	}
 	
 	public void propVoyage() {
-		JLabel etiquette = new JLabel("Voyage");
+		JLabel etiquette = new JLabel("Panique");
 		add(etiquette);
 	}
 	

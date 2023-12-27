@@ -31,5 +31,6 @@ public class Vol extends Carte{
 					// Modification objet "partie"
 					partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
 				}
+				wait(partie);
 	}
 }

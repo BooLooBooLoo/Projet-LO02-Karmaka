@@ -45,6 +45,9 @@ public class ConteneurCrise extends JPanel implements ActionListener{
 			JLabel texte = new JLabel("Il n'y a pas de carte dans l'oeuvre adverse");
 			add(texte);
 			skip = new JButton("Continuer");
+			skip.setBounds(350,175,100,50);
+			skip.addActionListener(this);
+			add(skip);
 		}
 		for (int i = 0; i < adversaire.getOeuvre().getCartes().size();i++) {
 			JPanel card = new JPanel(new GridLayout(2,1));
