@@ -29,15 +29,4 @@ public class Outil {
         }
     }
 
-    
-    public static void main(String[] args) {
-    	List<Carte> nums = new ArrayList<>();
-        nums.add(new Destinee());
-        nums.add(new Roulette());
-        nums.add(new Vol());
-        List<List<Carte>> result = getCombinations(nums, 2);
-        for (List<Carte> combination : result) {
-            System.out.println(combination);
-        }
-	}
 }

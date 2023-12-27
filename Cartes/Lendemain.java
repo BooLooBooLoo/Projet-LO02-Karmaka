@@ -17,8 +17,8 @@ public class Lendemain extends Carte{
 		Pile main = partie.getTour().getMain();
 		// Syso et Scan 
 		System.out.println("Vous piochez une carte de la source.");
-		for(int i=0; i<1; i++) {
-			partie.getTour().piocher();
-		}
+		main.addCarte(partie.getSource().getCartes().get(0));
+		partie.getSource().removeCarte(partie.getSource().getCartes().get(0));
+		wait(partie);
 	}
 }

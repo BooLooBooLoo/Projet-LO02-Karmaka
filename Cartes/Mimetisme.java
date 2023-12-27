@@ -15,7 +15,6 @@ public class Mimetisme extends Carte{
 		super("Mimétisme",2,Couleur.MOSAIQUE,"description");
 	}
 
-	@Override
 	public void effet(Partie partie) {
 		// Variables
 		String carteSelect = "";

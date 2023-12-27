@@ -98,7 +98,7 @@ public class Human extends Joueur{
 	@Override
 	public String rejouer(Partie partie) {
 		
-		while(cTPRejouer == null ) {
+		while(cTPRejouer == null) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {

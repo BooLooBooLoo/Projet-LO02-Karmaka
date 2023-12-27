@@ -95,7 +95,7 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 	
 	private void transition() {
 		transition = new JPanel(new GridLayout(2,1));
-		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
+		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" bis : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
 		texte.setFont(new Font("Serif", Font.BOLD, 48));
 		texte.setForeground(Color.white);
 		JLabel texte2 = new JLabel("Cliquez sur l'écran", SwingConstants.CENTER);

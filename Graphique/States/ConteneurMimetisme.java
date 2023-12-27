@@ -25,7 +25,6 @@ public class ConteneurMimetisme extends JPanel implements ActionListener{
 	private JPanel copyPanel; 
 	private Carte bait = new Incarnation(); 
 	private Carte card;
-	private boolean one = false;
 	
 	private JButton skip;
 	private JButton button;
