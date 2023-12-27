@@ -22,7 +22,8 @@ public class Longevite extends Carte{
 		Pile pile = partie.getTour().getPile();
 		Pile source = partie.getSource();
 		Pile main = partie.getTour().getMain();
-		Scanner sc = new Scanner(System.in);
+		
+		wait(partie);
 		// Check si on peut piocher dans la source
 		if(partie.getSource().getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à piocher. Veuillez jouer une autre carte.");
@@ -33,7 +34,7 @@ public class Longevite extends Carte{
 			String choix = "";
 			if (partie.getTour() instanceof Human) {
 				System.out.println("Choisir entre Moi/Adversaire celui qui va piocher deux cartes dans sa pile.");
-				choix = sc.nextLine();
+				choix = actions.get(0);
 			} else {
 				int rand = (int) Math.floor(Math.random()*2);
 				switch (rand) {

@@ -461,7 +461,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			case "Crise":
 				power = new ConteneurCrise(fenetre, cardPlayed);
 				break;
-			case "Deni":
+			case "Déni":
 				power = new ConteneurDeni(fenetre, cardPlayed);
 				break;
 			case "Dernier Souffle":
@@ -479,7 +479,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			case "Incarnation":
 				power = new ConteneurIncarnation(fenetre, cardPlayed);
 				break;
-			case "Jubile":
+			case "Jubilé":
 				power = new ConteneurJubile(fenetre, cardPlayed);
 				break;
 			case "Lendemain":

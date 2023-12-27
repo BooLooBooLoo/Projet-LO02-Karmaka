@@ -20,9 +20,9 @@ public class Jubile extends Carte{
 		// Déclaration des variables utilisés dans cette classe
 		Pile main = partie.getTour().getMain();
 		Pile oeuvre = partie.getTour().getOeuvre();
-		Scanner sc = new Scanner(System.in);
-		// Syso et Scan 
+		wait(partie);
 		System.out.println("3 Premières Cartes de la Main :");
+		System.out.println(main.toString());
 		for(int i=0; i<3; i++) {
 			if(i>main.getCartes().size()) {
 				break;
@@ -32,19 +32,21 @@ public class Jubile extends Carte{
 		int nbCarte = 0;
 		if (partie.getTour() instanceof Human) {
 			System.out.println("Combien de carte à ajouter dans l'Oeuvre?");
-			nbCarte = sc.nextInt();
+			nbCarte = Integer.parseInt(actions.get(actions.size()-1));
 			if (nbCarte > 2 || nbCarte < 0) {
 				nbCarte = 0;
 			}
 		} else {
 			nbCarte = (int) Math.floor(Math.random()*2);
 		}
-		
+		System.out.println("IN Jubilé");
 		for(int i=0; i<nbCarte; i++) {
+			System.out.println(i);
 			String carteSelect = "";
 			if (partie.getTour() instanceof Human) {
 				System.out.println("Choisir une carte à placer dans votre main.");
-				carteSelect = sc.nextLine();
+				carteSelect = actions.get(i);
+				System.out.println("carte : "+carteSelect);
 			} else {
 				if (main.getCartes().size() > 0) {
 					carteSelect = main.getCartes().get(((Bot) partie.getTour()).choisir(main.getCartes().size())).getNom();
@@ -55,6 +57,7 @@ public class Jubile extends Carte{
 			int indiceCarteSelect = -1;
 			for(int j=0; j<main.getCartes().size(); j++) {
 				if(main.getCartes().get(j).getNom().equals(carteSelect)) {
+					System.out.println("IN check carte");
 					indiceCarteSelect = j;
 					break;
 				}
@@ -64,7 +67,7 @@ public class Jubile extends Carte{
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");
 			} else {
 				Carte carte = main.getCartes().get(indiceCarteSelect);
-				partie.deplacerCarte(main, oeuvre, carte);
+				partie.deplacerCarte(partie.getTour().getMain(), partie.getTour().getOeuvre(), carte);
 			}		
 		}
 		}

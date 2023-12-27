@@ -32,7 +32,7 @@ public class ConteneurDuperie extends JPanel implements ActionListener{
 	}
 	
 	public void propVoyage() {
-		JLabel etiquette = new JLabel("Destinée\n", SwingConstants.CENTER);
+		JLabel etiquette = new JLabel("Duperie\n", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		etiquette.setForeground(Color.white);
 		add(etiquette);
