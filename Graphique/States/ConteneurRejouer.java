@@ -19,7 +19,7 @@ import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 
-public class ConteneurPartie extends JPanel implements ActionListener, MouseListener{
+public class ConteneurRejouer extends JPanel implements ActionListener, MouseListener{
 	
 	private List<JPanel> cards;
 	
@@ -50,7 +50,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	
 	private JPanel transition;
 	
-	public ConteneurPartie(Fenetre menu) {
+	public ConteneurRejouer(Fenetre menu) {
 		super();
 		this.fenetre = menu;
 		System.out.println(fenetre);
@@ -86,9 +86,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		
 	}
 	
-	
 	private void propTour() {
-		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
+		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" bis : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
 		texte.setForeground(Color.white);
 		texte.setBounds(1,1,100,50);
 		add(texte);
@@ -377,16 +376,16 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 							 choix.setVisible(false);
 							 instantiateContainer(cardPlayed.getNom());
 							 fenetre.getContentPane().repaint();
-							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", "", cardPlayed); 
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", "Rejouer", cardPlayed); 
 							 break;
 						 case "Oeuvre":
-							 fenetre.getVue().getDiffuseur().firePropertyChange("Oeuvre", "", cardPlayed);
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Oeuvre", "Rejouer", cardPlayed);
 							 break;
 						 case "Vie Future":
-							 fenetre.getVue().getDiffuseur().firePropertyChange("VieFuture", "", cardPlayed);
+							 fenetre.getVue().getDiffuseur().firePropertyChange("VieFuture", "Rejouer", cardPlayed);
 							 break;
 						 case "Passer":
-							 fenetre.getVue().getDiffuseur().firePropertyChange("Passer", "", null);
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Passer", "Rejouer", null);
 							 break;
 					 }
 				}

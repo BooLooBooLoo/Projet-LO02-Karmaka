@@ -6,6 +6,26 @@ public class Human extends Joueur{
 	
 	private Carte cardToPlay;
 	private String action;
+	
+	private Carte cTPRejouer;
+	private String actionRejouer;
+	
+	public Carte getcTPRejouer() {
+		return cTPRejouer;
+	}
+
+	public void setcTPRejouer(Carte cTPRejouer) {
+		this.cTPRejouer = cTPRejouer;
+	}
+
+	public String getActionRejouer() {
+		return actionRejouer;
+	}
+
+	public void setActionRejouer(String actionRejouer) {
+		this.actionRejouer = actionRejouer;
+	}
+
 	private String actionCK = null;
 	
 	public String getActionCK() {
@@ -55,7 +75,7 @@ public class Human extends Joueur{
 	    } else if (action.equals("Pouvoir")) {
 	    	setDerniereCarteJoue(temp);
 	    	temp.effet(partie);
-			partie.getTour().getMain().removeCarte(temp);
+			this.getMain().removeCarte(temp);
 			if(temp.rejouable) {
 				partie.getTour().rejouer(partie);
 			}
@@ -78,15 +98,20 @@ public class Human extends Joueur{
 	@Override
 	public String rejouer(Partie partie) {
 		
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		String bool = new String();
 		String action = new String();
-		// TODO Auto-generated method stub
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-	    System.out.println("Entrer votre action (Passer/Oeuvre/Pouvoir/VieFuture)");
 
-	    action  = myObj.nextLine();  // Read user input
+	    action  = actionRejouer;  // Read user input
 	    System.out.println(action);
-		//myObj.close();
+	    Carte temp = cTPRejouer;
 		bool = null;
 	    if (action.equals("Passer")) {
 	    	if (getPile().getCartes().size() > 0) {
@@ -95,17 +120,17 @@ public class Human extends Joueur{
 	    		bool = null;
 	    	}
 	    } else if (action.equals("Pouvoir")) {
-	    	Carte temp = choisirCarte();
 	    	setDerniereCarteJoue(temp);
 	    	temp.effet(partie);
+	    	this.getMain().removeCarte(temp);
 	    	bool = "Pouvoir";
 	    } else if (action.equals("Oeuvre")) {
-	    	Carte temp = choisirCarte();
 	    	oeuvre.addCarte(temp);
+	    	this.getMain().removeCarte(temp);
 	    	bool = "done";
 	    } else if (action.equals("VieFuture")) {
-	    	Carte temp = choisirCarte();
 	    	vieFuture.addCarte(temp);
+	    	this.getMain().removeCarte(temp);
 	    	bool = "done";
 	    }
 		return bool;

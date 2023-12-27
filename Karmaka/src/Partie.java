@@ -488,10 +488,13 @@ public class Partie implements Serializable, PropertyChangeListener{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (tour instanceof Human) {
+		if (tour instanceof Human && !evt.getOldValue().equals("Rejouer")) {
 			((Human) tour).setAction(evt.getPropertyName());
 			((Human) tour).setCardToPlay((Carte) evt.getNewValue());
 			cardPlayed = true;
+		} else if (tour instanceof Human && evt.getOldValue().equals("Rejouer")) {
+			((Human) tour).setActionRejouer(evt.getPropertyName());
+			((Human) tour).setcTPRejouer((Carte) evt.getNewValue());
 		}
 		
 	}
