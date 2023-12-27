@@ -83,7 +83,6 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			timer.start();
 		}
 		
-		//add(new ConteneurBassesse(fenetre));
 	}
 	
 	

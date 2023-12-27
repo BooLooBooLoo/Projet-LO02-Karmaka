@@ -72,6 +72,7 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 			container.add(texte);
 			skip = new JButton("Continuer");
 			container.add(skip);
+			skip.addActionListener(this);
 		}
 		for (int i = 0; i < tour.getMain().getCartes().size();i++) {
 			JPanel card = new JPanel(new GridLayout(2,1));
