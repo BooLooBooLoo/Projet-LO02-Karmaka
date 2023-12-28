@@ -38,7 +38,7 @@ public class ConteneurCoupDoeil extends JPanel implements ActionListener{
 		JPanel cards = new JPanel(new FlowLayout());
 		cards.setSize(800,350);
 		cards.setBackground(null);
-		Joueur tour = fenetre.getVue().getController().getModel().getTour();
+		Joueur tour = fenetre.getVue().getController().getModel().getAdversaire();
 		for (int i = 0; i < tour.getMain().getCartes().size(); i++) {
 			JPanel card = new JPanel(new GridLayout(2,1));
 			card.setSize(200,300);
