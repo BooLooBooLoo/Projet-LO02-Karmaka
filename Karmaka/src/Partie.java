@@ -279,7 +279,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 		}
 		for (int i = 0; i < 5; i++) {
 			source.addCarte(carte9);
-			source.addCarte(carte16);
 		}
 		//Ajouter les cartes à la source
 		

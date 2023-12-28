@@ -23,7 +23,7 @@ public class ConteneurVoyage extends JPanel implements ActionListener{
 	}
 	
 	public void propVoyage() {
-		JLabel etiquette = new JLabel("Bassesse\n", SwingConstants.CENTER);
+		JLabel etiquette = new JLabel("Voyage\n", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		add(etiquette);
 		JLabel text = new JLabel("Pioche 3 cartes", SwingConstants.CENTER);
