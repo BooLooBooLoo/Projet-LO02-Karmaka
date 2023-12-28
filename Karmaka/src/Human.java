@@ -2,6 +2,9 @@ package Karmaka.src;
 
 import java.util.Scanner;
 
+/**
+ * La classe {@code Human} est une classe qui hérite de {@code Joueur} et représente un joueur humain qui peut réaliser des choix.
+ */
 public class Human extends Joueur{
 	
 	private Carte cardToPlay;
@@ -35,29 +38,53 @@ public class Human extends Joueur{
 	public void setActionCK(String actionCK) {
 		this.actionCK = actionCK;
 	}
-
+	
+	/**
+	 * Le constructeur de la classe {@code Human}.
+	 * @param nom Le nom du joueur.
+	 */
 	public Human(String nom) {
 		super(nom);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/**
+	 * Getter de l'attribut {@code cardToPlay}.}
+	 * @return La carte à jouer du joueur.
+	 */
 	public Carte getCardToPlay() {
 		return cardToPlay;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code cardToPlay}.
+	 * @param cardToPlay La carte qui l'a choisi de jouer.
+	 */
 	public void setCardToPlay(Carte cardToPlay) {
 		this.cardToPlay = cardToPlay;
 	}
 
+	/**
+	 * Getter de l'attribut {@code action}.
+	 * @return L'action du joueur.
+	 */
 	public String getAction() {
 		return action;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code action}.
+	 * @param action L'action du joueur.
+	 */
 	public void setAction(String action) {
 		this.action = action;
 	}
 
-	@Override
+	/**
+	 * Méthode qui permet au joueur de jouer au jeu. Il doit choisir sa carte puis son action.
+	 * @param partie La partie où se joue le jeu.
+	 * @return Un string qui permet de vérifier le bon fonctionnement du jeu.
+	 */
 	public String jouer(Partie partie) {
 		System.out.println("IN Jouer");
 		String bool = new String();
@@ -95,10 +122,45 @@ public class Human extends Joueur{
 		return bool;
 	}
 
-	@Override
+	/**
+	 * Méthode qui permet au joueur de rejouer une carte. Il doit choisir sa carte puis son action.
+	 * @param partie La partie où se joue le jeu.
+	 * @return Un string qui permet de vérifier le bon fonctionnement du jeu.
+	 */
 	public String rejouer(Partie partie) {
-		
-		while(cTPRejouer == null) {
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(cTPRejouer == null ) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		while(cTPRejouer == null ) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
@@ -135,7 +197,13 @@ public class Human extends Joueur{
 	    }
 		return bool;
 		
+		
 	}
+	
+	/**
+	 * Méthode qui permet au joueur de choisir une carte de sa main. Elle affiche les cartes de la main du joueur puis demande quelle carte il veut jouer.
+	 * @return La carte choisie par le joueur.
+	 */
 	public Carte choisirCarte() {
 		System.out.println(getMain().toString());
 		Carte carteAJouer = null;
@@ -153,6 +221,9 @@ public class Human extends Joueur{
 		return carteAJouer;
 	}
 	
+	/**
+	 * Méthode qui permet au joueur de récupérer une carte adverse jouée en Oeuvre.
+	 */
 	public void coutKarmique(Carte carte, Partie partie) {
 		System.out.println("IN cout Karmique");
 		while (actionCK == null) {

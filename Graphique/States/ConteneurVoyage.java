@@ -1,5 +1,6 @@
 package Graphique.States;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,8 +22,15 @@ public class ConteneurVoyage extends JPanel implements ActionListener{
 	}
 	
 	public void propVoyage() {
-		JLabel etiquette = new JLabel("Voyage");
+		JLabel etiquette = new JLabel("Bassesse\n", SwingConstants.CENTER);
+		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		add(etiquette);
+		JLabel text = new JLabel("Pioche 3 cartes", SwingConstants.CENTER);
+		text.setFont(new Font("Serif",Font.BOLD,30));
+		add(text);
+		JButton button = new JButton("Continuer");
+		button.addActionListener(this);
+		add(button);
 	}
 	
 	

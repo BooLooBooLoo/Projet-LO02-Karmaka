@@ -2,7 +2,11 @@ package Karmaka.src;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * L'interface Startegy fait partie du design-pattern du même nom utilisé afin construire une stratégie pour les {@code Bot} du jeu.
+ * @author Ali MIKOU et Hoang-Viet LE
+ * @version 1.0
+ */
 public interface Strategy {
 	public String jouer(Partie partie);
 	

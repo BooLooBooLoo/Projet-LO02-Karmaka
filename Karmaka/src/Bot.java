@@ -1,10 +1,18 @@
 package Karmaka.src;
 
 import Karmaka.src.Strategy.*;
-
+/**
+ * La classe Bot est une classe qui hérite de Joueur et représente un Bot.
+ */
 public class Bot extends Joueur{
 	
 	private Strategy strat;
+	
+	/**
+	 * Constructeur de la classe {@code Bot}
+	 * @param nom Le nom du Bot.
+	 * @param type Le type de stratégie du Bot.
+	 */
 	public Bot(String nom, String type) {
 		super(nom);
 		switch (type) {
@@ -24,13 +32,23 @@ public class Bot extends Joueur{
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Méthode faisant partie du design-pattern "Stratégie" permettant au Bot de jouer. 
+	 * Elle dépends de la stratégie que le Bot possède et c'est la stratégie qui s'occupe de jouer (l'appel de la méthode jouer de la stratégie). 
+	 * @param partie La partie où le Bot joue.
+	 * @return Un string qui vérifie le bon fonctionnement de la méthode.
+	 */
 	public String jouer(Partie partie) {
 		String nom = strat.jouer(partie);
 		return nom;
 	}
 	
 
-	@Override
+	/**
+	 * Méthode permettant au Bot de rejouer. Elle rejoue de manière aléatoire une carte choisie aussi aléatoirement dans sa main.
+	 * @param partie La partie où le Bot joue.
+	 * @return Un string qui vérifie le bon fonctionnement de la méthode.
+	 */
 	public String rejouer(Partie partie) {
 		String bool = new String();
 		String action = new String();
@@ -73,6 +91,11 @@ public class Bot extends Joueur{
 		return bool;
 		
 	}
+	
+	/**
+	 * Méthode permettant au Bot de choisir une carte.
+	 * Il choisit une carte aléatoirement et la joue.
+	 */
 	public Carte choisirCarte() {
 		//System.out.println(getMain().toString());
 		Carte carteAJouer = null;
@@ -90,6 +113,9 @@ public class Bot extends Joueur{
 		return carteAJouer;
 	}
 	
+	/**
+	 * Méthode qui permet au Bot de récupérer une carte adverse jouée en Oeuvre.
+	 */
 	public void coutKarmique(Carte carte, Partie partie) {
 		String action = new String();
 		// TODO Auto-generated method stub
@@ -103,6 +129,11 @@ public class Bot extends Joueur{
 		}
 	}
 	
+	/**
+	 * Méthode permettant d'obtenir un nombre aléatoire entre 0 et le paramètre d'entrée.
+	 * @param size Le nombre maximal
+	 * @return Un entier entre 0 et {@code size}.
+	 */
 	public int choisir(int size) {
 		return (int) Math.floor(Math.random()*size);
 	}

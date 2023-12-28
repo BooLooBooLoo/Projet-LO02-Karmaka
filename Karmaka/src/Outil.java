@@ -5,8 +5,17 @@ import java.util.List;
 
 import Cartes.*;
 
+/**
+ * La classe {@code Outil} permet de stocker des fonctions un peu générales.
+ */
 public class Outil {
 	
+	/**
+	 * 
+	 * @param nums
+	 * @param r
+	 * @return
+	 */
     public static List<List<Carte>> getCombinations(List<Carte> nums, int r) {
         List<List<Carte>> result = new ArrayList<>();
         if (nums == null || nums.isEmpty() || r <= 0 || r > nums.size()) {
@@ -28,5 +37,4 @@ public class Outil {
             combination.remove(combination.size() - 1);
         }
     }
-
 }
