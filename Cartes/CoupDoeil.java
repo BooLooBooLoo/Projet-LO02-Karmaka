@@ -25,6 +25,5 @@ public class CoupDoeil extends Carte{
 		}
 		wait(partie);
 		System.out.println("Done coup d'oeil");
-		
 	}
 }

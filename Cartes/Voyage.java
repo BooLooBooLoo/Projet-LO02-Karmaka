@@ -21,7 +21,8 @@ public class Voyage extends Carte{
 		// Syso et Scan 
 		System.out.println("Vous piochez trois cartes de la source.");
 		for(int i=0; i<3; i++) {
-			partie.getTour().piocher();
+			int randomNumber = (int) (Math.random()*partie.getSource().getCartes().size()-1);
+			partie.deplacerCarte(partie.getSource(), main, partie.getSource().getCartes().get(randomNumber));
 		}
 		if (partie.getTour() instanceof Human) {
 			while (actions == null) {
@@ -33,5 +34,6 @@ public class Voyage extends Carte{
 				}
 			}
 		}
+		this.setActions(null); // Pour régler le probleme des choix :)
 	}
 }

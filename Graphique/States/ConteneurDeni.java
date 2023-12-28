@@ -43,7 +43,7 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 		container.setBackground(null);
 		container.setBounds(0,0,800,400);
 		
-		propIncarnation();
+		propDeni();
 		Timer timer = new Timer(1000, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (bait.getActions() != null) {
@@ -59,8 +59,8 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 		timer.start();
 	}
 	
-	public void propIncarnation() {
-		JLabel etiquette = new JLabel("Crise");
+	public void propDeni() {
+		JLabel etiquette = new JLabel("Deni");
 		etiquette.setBounds(350,0,100,50);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		etiquette.setForeground(Color.white);

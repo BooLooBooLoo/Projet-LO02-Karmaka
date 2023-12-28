@@ -33,5 +33,7 @@ public class Vengeance extends Carte{
 			// Modification objet "partie"
 			partie.deplacerCarte(oeuvreAdverse, defausse, carteDefausse);
 			}
+			wait(partie);
+			this.setActions(null); // Pour régler le probleme des choix :)
 		}
 }

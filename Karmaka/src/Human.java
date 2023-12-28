@@ -135,39 +135,7 @@ public class Human extends Joueur{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		}	
 		String bool = new String();
 		String action = new String();
 
@@ -196,7 +164,6 @@ public class Human extends Joueur{
 	    	bool = "done";
 	    }
 		return bool;
-		
 		
 	}
 	

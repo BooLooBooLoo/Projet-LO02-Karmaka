@@ -29,9 +29,11 @@ public class Sauvetage extends Carte{
 			for(int i= 0; i< loop; i++) {
 				System.out.println(defausse.getCartes().get(i).getNom());
 			}
+			wait(partie);
 			if (partie.getTour() instanceof Human) {
 				System.out.println("Choisir une carte à placer dans votre main.");
-				carteSelect = sc.nextLine();
+				// carteSelect = sc.nextLine();
+				carteSelect = actions.get(0);
 			} else if (partie.getTour() instanceof Bot) {
 				carteSelect = defausse.getCartes().get(((Bot) partie.getTour()).choisir(defausse.getCartes().size())).getNom();
 			} else {
@@ -56,6 +58,6 @@ public class Sauvetage extends Carte{
 		} else {
 			System.out.println("Il n'y a pas de carte dans la Fosse...Dommage");
 		}
-		
+		this.setActions(null); // Pour régler le probleme des choix
 	}
 }

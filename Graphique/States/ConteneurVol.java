@@ -33,10 +33,9 @@ public class ConteneurVol extends JPanel implements ActionListener{
 		JLabel etiquette = new JLabel("Vol\n", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		add(etiquette);
-		JLabel text = new JLabel("Vous voulez l'oeuvre exposée de l'adversaire. Vous la placez dans votre main.", SwingConstants.CENTER);
+		JLabel text = new JLabel("Vous volez l'oeuvre exposée de l'adversaire. Vous la placez dans votre main.", SwingConstants.CENTER);
 		text.setFont(new Font("Serif",Font.BOLD,30));
 		add(text);
-
 		JButton button = new JButton("Continuer");
 		button.setBorder(new EmptyBorder(50,50,50,50));
 		button.addActionListener(this);

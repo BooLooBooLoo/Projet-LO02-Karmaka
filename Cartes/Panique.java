@@ -12,10 +12,12 @@ public class Panique extends Carte{
 	
 	public Panique() {
 		super("Panique",1,Couleur.ROUGE,"description");
+		super.rejouable = true;
 	}
 
 	@Override
 	public void effet(Partie partie) {
+		wait(partie);
 		// Déclaration des variables utilisés dans cette classe
 		Joueur adversaire = partie.getAdversaire();
 		Pile pileAdverse = adversaire.getPile();

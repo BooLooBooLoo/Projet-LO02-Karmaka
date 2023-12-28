@@ -21,6 +21,7 @@ public class Transmigration extends Carte{
 	// Déclaration des variables utilisés dans cette classe
 		Pile vieFuture = partie.getTour().getVieFuture();
 		Pile main = partie.getTour().getMain();
+		wait(partie);
 		if (vieFuture.getCartes().size() != 0) {
 			Scanner sc = new Scanner(System.in);
 			// Syso et Scan 
@@ -28,7 +29,8 @@ public class Transmigration extends Carte{
 			vieFuture.toString();
 			System.out.println("Choisir une carte à placer dans votre main.");
 			if (partie.getTour() instanceof Human) {
-				carteSelect = sc.nextLine();
+				// carteSelect = sc.nextLine();
+				carteSelect = actions.get(0);
 			} else if (partie.getTour() instanceof Bot) {
 				carteSelect = vieFuture.getCartes().get(((Bot) partie.getTour()).choisir(vieFuture.getCartes().size())).getNom();
 			}
@@ -51,7 +53,7 @@ public class Transmigration extends Carte{
 		} else {
 			System.out.println("Il n'y a pas de carte dans la vie future...");
 		}
-		 
+		this.setActions(null); // Pour régler le probleme des choix :)
 	}
 		
 }

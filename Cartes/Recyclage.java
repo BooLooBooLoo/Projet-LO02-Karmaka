@@ -30,9 +30,11 @@ public class Recyclage extends Carte{
 			System.out.println(defausse.getCartes().get(i).getNom());
 			pile.addCarte(defausse.getCartes().get(i));
 		}
+		wait(partie);
 		if (partie.getTour() instanceof Human) {
 			System.out.println("Choisir une carte à placer dans votre main.");
-			carteSelect = sc.nextLine();
+			carteSelect = actions.get(0);
+
 		} else {
 			if (pile.getCartes().size() > 0) {
 				carteSelect = pile.getCartes().get(((Bot) partie.getTour()).choisir(pile.getCartes().size())).getNom();
