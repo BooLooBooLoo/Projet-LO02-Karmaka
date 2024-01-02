@@ -128,38 +128,7 @@ public class Human extends Joueur{
 	 * @return Un string qui permet de vérifier le bon fonctionnement du jeu.
 	 */
 	public String rejouer(Partie partie) {
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while(cTPRejouer == null ) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		System.out.println("IN Rejouer");
 		while(cTPRejouer == null ) {
 			try {
 				Thread.sleep(1);
@@ -185,6 +154,9 @@ public class Human extends Joueur{
 	    	setDerniereCarteJoue(temp);
 	    	temp.effet(partie);
 	    	this.getMain().removeCarte(temp);
+	    	if(temp.rejouable) {
+				partie.getTour().rejouer(partie);
+			}
 	    	bool = "Pouvoir";
 	    } else if (action.equals("Oeuvre")) {
 	    	oeuvre.addCarte(temp);
@@ -195,6 +167,7 @@ public class Human extends Joueur{
 	    	this.getMain().removeCarte(temp);
 	    	bool = "done";
 	    }
+	    System.out.println("OUT Rejouer");
 		return bool;
 		
 		

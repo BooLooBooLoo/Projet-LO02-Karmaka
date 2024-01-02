@@ -15,11 +15,20 @@ public class ConteneurCoutKarmique extends JPanel implements ActionListener{
 	private Fenetre fenetre;
 	private Carte cardPlayed;
 	private JButton button, button2;
+	private boolean rejouable = false;
 	
 	public ConteneurCoutKarmique(Fenetre menu, Carte carte) {
 		super();
 		this.fenetre = menu;
 		this.cardPlayed = carte;
+		propPouvoir();
+		this.setBackground(null);
+	}
+	public ConteneurCoutKarmique(Fenetre menu, Carte carte, boolean r) {
+		super();
+		this.fenetre = menu;
+		this.cardPlayed = carte;
+		this.rejouable = r;
 		propPouvoir();
 		this.setBackground(null);
 	}

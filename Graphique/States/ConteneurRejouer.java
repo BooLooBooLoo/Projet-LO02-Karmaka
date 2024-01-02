@@ -57,6 +57,7 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 		propConteneurFenetre();
 	}
 	
+	
 	private void propConteneurFenetre() {
 		
 		cards = new ArrayList<JPanel>();

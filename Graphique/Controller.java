@@ -49,8 +49,10 @@ public class Controller implements PropertyChangeListener{
 		if (evt == null) {
 			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
 		} else if (evt != null && evt.getPropertyName() == "Pouvoir") {
+			System.out.println("IN conteneur cout karmique");
 			this.vue.getFenetre().publish(new ConteneurCoutKarmique(vue.getFenetre(), (Carte) evt.getNewValue()));
 			model.getAdversaire().coutKarmique((Carte) evt.getNewValue(), model);
+			System.out.println("IN conteneur cout karmique");
 		} else {
 			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
 		}
