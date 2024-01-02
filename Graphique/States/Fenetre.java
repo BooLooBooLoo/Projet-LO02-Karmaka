@@ -1,9 +1,21 @@
 package Graphique.States;
 
-import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Graphique.Vue;
 
@@ -38,18 +50,27 @@ public class Fenetre extends JFrame {
 	}
 	
 	private void propFenetre() {
+		try {
+			   GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			   ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("./assets/vinque_rg.ttf")));
+			} catch (IOException|FontFormatException e) {
+			 //Handle exception
+			}
+		this.setTitle("Projet LO02 - Jeu Karmaka");
 		this.setSize(1200,800);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setAlwaysOnTop(true);
 		System.out.println(vue.getController());
-		currentPanel = new ConteneurMenu(this, 3);
-		this.setContentPane(currentPanel);
-		this.getContentPane().setBackground(Color.DARK_GRAY);
+		this.currentPanel = new ConteneurMenu(this, 3) {
+			public void paintComponent(Graphics g) {
+                Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
+                g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+               }
+		};
+		this.setContentPane(this.currentPanel);
 	}
-	
-	
 	
 	public Vue getVue() {
 		return vue;
@@ -63,12 +84,10 @@ public class Fenetre extends JFrame {
 		setPanel(panel);
 		this.getContentPane().repaint();
 		render();
-		
 	}
 	
 	public void render() {	
 		this.setContentPane(currentPanel);
 		this.revalidate();
-		this.getContentPane().setBackground(Color.DARK_GRAY);
 	}
 }

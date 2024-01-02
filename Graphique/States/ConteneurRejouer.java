@@ -4,13 +4,16 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.*;
 import java.util.*;
 
 
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -298,24 +301,55 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 		cardPanel.setBounds(200,720,800,40);
 		cardPanel.setBackground(Color.darkGray);
 		for (int i = 0; i < tour.getMain().getCartes().size(); i++) {
-			JPanel card = new JPanel(new FlowLayout());
+			JPanel card;
 			Couleur couleur = tour.getMain().getCartes().get(i).getType();
 			switch(couleur) {
 				case BLEU :
-					card.setBackground(Color.BLUE);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/bleuBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};;
 					break;
 				case ROUGE :
-					card.setBackground(Color.RED);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/rougeBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 					break;
 				case VERT :
-					card.setBackground(Color.GREEN);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/vertBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 					break;
 				case MOSAIQUE :
-					card.setBackground(Color.cyan);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/mosaiqueBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 					break;
+				default :
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/vertBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 			}
-			card.setBorder(BorderFactory.createLineBorder(Color.black));
+			Border raisedbevel = BorderFactory.createRaisedBevelBorder();
+			Border loweredbevel = BorderFactory.createLoweredBevelBorder();
+			Border cardBoarder = BorderFactory.createCompoundBorder(raisedbevel, loweredbevel);
+			card.setBorder(cardBoarder);
 			JLabel name = new JLabel(tour.getMain().getCartes().get(i).getNom());
+			name.setFont(new Font("Vinque Rg", Font.PLAIN, 14));
 			JLabel cout = new JLabel(""+tour.getMain().getCartes().get(i).getCout());
 			cout.setFont(new Font("Serif", Font.BOLD, 20));
 			//cout.setForeground(Color.white);
@@ -535,5 +569,8 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 		power.setVisible(true);
 	}
 
-	
+	public void paintComponent(Graphics g) {
+        Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
+        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+       }
 }

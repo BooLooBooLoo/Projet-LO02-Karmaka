@@ -2,7 +2,9 @@ package Graphique.States;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.*;
 import java.util.*;
 
@@ -169,9 +171,12 @@ public class ConteneurChoixJoueur extends JPanel implements ActionListener{
 			String stratJ2 = (subRBtn5.isSelected())?"A":(subRBtn6.isSelected())? "N":(subRBtn7.isSelected())?"D":"IA";;
 			String[] joueurs = new String[] {typeJ1,stratJ1,text1.getText(),typeJ2,stratJ2,text2.getText()};
 			fenetre.setJoueurs(joueurs);
-			
-			
 		}
 	}
+	
+	public void paintComponent(Graphics g) {
+        Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
+        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+       }
 	
 }
