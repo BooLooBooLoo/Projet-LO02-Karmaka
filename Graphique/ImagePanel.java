@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
 		private Image img;
-		private JButton test = new JButton("Test");
 		
 		// Getters et setters
 		public Image getImg() {
@@ -22,12 +21,12 @@ public class ImagePanel extends JPanel {
 		
 		// Constructeur
 		public ImagePanel(Image img){
-			this.img = img;
+			this.setImg(img);
 		}
 		
 		// paintComponent
 		public void paintComponent(Graphics g) {
-			g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
 			super.paintComponent(g);
+			g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
 		}
 }

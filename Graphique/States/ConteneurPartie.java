@@ -17,6 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+import Graphique.ImagePanel;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
@@ -27,7 +28,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private List<JPanel> cards;
 	
 	//Variables pour la main
-	private JPanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
+	private ImagePanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
 	
 	//Variables pour la source
 	private JPanel source;
@@ -56,6 +57,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	public ConteneurPartie(Fenetre menu) {
 		super();
 		this.fenetre = menu;
+		System.out.println(fenetre);
 		propConteneurFenetre();
 	}
 	
@@ -90,7 +92,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	
 	private void propTour() {
 		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
-		texte.setForeground(Color.black);
+		texte.setForeground(Color.white);
 		texte.setBounds(1,1,100,50);
 		add(texte);
 	}
@@ -256,11 +258,10 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		layout.setHgap(30);
 		layout.setVgap(30);
 		choix = new JPanel(layout);
-		choix.setOpaque(false);
-		zoomCard = new JPanel(new GridLayout(2,1));
+		zoomCard = new ImagePanel(null);
 		JPanel top = new JPanel(new FlowLayout());
 		top.setOpaque(false);
-		zoomCard.setBounds(400,250,200,300);
+		zoomCard.setBounds(400,250,200,280);
 		choix.setBounds(610,250,200,300);
 		JButton passer = new JButton("Passer");
 		JButton pouvoir = new JButton("Pouvoir");
@@ -287,8 +288,6 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		choix.add(vieFuture);
 		choix.add(oeuvre);
 		choix.add(passer);
-		zoomCard.add(top);
-		zoomCard.add(desc);
 		add(zoomCard);
 		add(choix);
 		zoomCard.setVisible(false);
@@ -398,11 +397,14 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("in action");
 		if (e.getSource() instanceof JButton) {
 			for(JButton button : buttons) {
 				if (e.getSource().equals(button)) {
+					System.out.println("in button");
 					 switch (button.getText()) {
 						 case "Pouvoir":
+							 System.out.println("in pouvoir");
 							 zoomCard.setVisible(false);
 							 choix.setVisible(false);
 							 instantiateContainer(cardPlayed.getNom());
@@ -448,10 +450,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 						break;
 				}
 				boolean visible = (name.getText() != tour.getMain().getCartes().get(index).getNom() || !zoomCard.isVisible());
-				name.setText(tour.getMain().getCartes().get(index).getNom());
-				cout.setText(""+tour.getMain().getCartes().get(index).getCout());
-				desc.setText(tour.getMain().getCartes().get(index).getDescription());
-				
+				zoomCard.setImg(new ImageIcon("./assets/" + tour.getMain().getCartes().get(index).getNom() + ".png").getImage());
+				zoomCard.repaint();
 				zoomCard.setVisible(visible);
 				choix.setVisible(visible);
 			}
