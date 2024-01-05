@@ -1,6 +1,8 @@
 package Graphique.States;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.*;
 import java.util.*;
 
@@ -65,6 +67,10 @@ public class ConteneurMenu extends JPanel implements ActionListener{
 					this.etiquette.setText("Vous avez appuyez sur le bouton Jouer");
 					menu.publish(new ConteneurChoixJoueur(menu));
 				}
+				if (e.getSource().equals(bouton) && (bouton.getText().equals("Reprendre Partie") )) {
+					this.etiquette.setText("Vous avez appuyez sur le bouton Jouer");
+					ConteneurImport importwindow = new ConteneurImport(menu);
+				}
 			}
 		}
 		if(e.getSource().equals(this.boutons.get((int)index-1))) {
@@ -73,5 +79,9 @@ public class ConteneurMenu extends JPanel implements ActionListener{
 		}
 		
 	}
+	public void paintComponent(Graphics g) {
+        Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
+        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+       }
 	
 }

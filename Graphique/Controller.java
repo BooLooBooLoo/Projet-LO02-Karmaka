@@ -4,6 +4,7 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 
 import Graphique.States.ConteneurCoutKarmique;
 import Graphique.States.ConteneurPartie;
@@ -11,7 +12,7 @@ import Graphique.States.Fenetre;
 import Karmaka.src.*;
 
 public class Controller implements PropertyChangeListener{
-	
+
 	private Partie model;
 	private Vue vue;
 	private PropertyChangeSupport diffuseur;

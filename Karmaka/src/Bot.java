@@ -1,10 +1,12 @@
 package Karmaka.src;
 
+import java.io.Serializable;
+
 import Karmaka.src.Strategy.*;
 /**
  * La classe Bot est une classe qui hérite de Joueur et représente un Bot.
  */
-public class Bot extends Joueur{
+public class Bot extends Joueur implements Serializable{
 	
 	private Strategy strat;
 	

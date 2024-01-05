@@ -1,5 +1,6 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import Cartes.*;
 /**
  * La classe {@code Outil} permet de stocker des fonctions un peu générales.
  */
-public class Outil {
+public class Outil implements Serializable {
 	
 	/**
 	 * 

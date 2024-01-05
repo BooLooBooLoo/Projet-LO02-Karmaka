@@ -1,11 +1,12 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * La classe {@code Human} est une classe qui hérite de {@code Joueur} et représente un joueur humain qui peut réaliser des choix.
  */
-public class Human extends Joueur{
+public class Human extends Joueur implements Serializable{
 	
 	private Carte cardToPlay;
 	private String action;

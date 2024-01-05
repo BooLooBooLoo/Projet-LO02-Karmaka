@@ -1,5 +1,7 @@
 package Karmaka.src;
 
+import java.io.Serializable;
+
 /**
  * La classe {@code Oeuvre} est une classe qui hérite de la classe {@code Pile}. 
  * Elle représente toujours une pile de cartes mais elle possède une méthode en plus permettant de calculer les points gagnés par les joueurs.
@@ -7,7 +9,7 @@ package Karmaka.src;
  * @author Ali MIKOU et Hoang-Viet LE
  * @version 1.0
  */
-public class Oeuvre extends Pile{
+public class Oeuvre extends Pile implements Serializable{
 	
 	/**
 	 * Méthode qui permet de calculer les points gagnés par un joueur selon les cartes présentes dans la pile d'Oeuvre.

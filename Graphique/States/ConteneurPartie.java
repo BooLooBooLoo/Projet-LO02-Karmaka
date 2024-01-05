@@ -53,6 +53,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private Fenetre fenetre;
 	
 	private JPanel transition;
+	private JButton sauvegarder;
 	
 	public ConteneurPartie(Fenetre menu) {
 		super();
@@ -61,13 +62,15 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		propConteneurFenetre();
 	}
 	
+	
 	private void propConteneurFenetre() {
 		cards = new ArrayList<JPanel>();
 		buttons = new ArrayList<JButton>();
 		this.setLayout(null);
-		if (Partie.getNbrTour() != 0) {
+		if (fenetre.getVue().getController().getModel().getNbrTour() != 0 || this.fenetre.getImportPartie() != null) {
 			transition();
 			propTour();
+			propSauvegarder();
 			propCards();
 			propZoomCard();
 			propVieFuture();
@@ -91,15 +94,23 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	
 	
 	private void propTour() {
-		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
+		JLabel texte = new JLabel("Tour "+fenetre.getVue().getController().getModel().getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
 		texte.setForeground(Color.white);
 		texte.setBounds(1,1,100,50);
 		add(texte);
 	}
 	
+	private void propSauvegarder() {
+		sauvegarder = new JButton("Sauvegarder");
+		sauvegarder.setForeground(Color.white);
+		sauvegarder.setBounds(1,2,100,50);
+		sauvegarder.addMouseListener(this);
+		add(sauvegarder);
+	}
+	
 	private void transition() {
 		transition = new JPanel(new GridLayout(2,1));
-		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
+		JLabel texte = new JLabel("Tour "+fenetre.getVue().getController().getModel().getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
 		texte.setFont(new Font("Serif", Font.BOLD, 48));
 		texte.setForeground(Color.white);
 		JLabel texte2 = new JLabel("Cliquez sur l'écran", SwingConstants.CENTER);
@@ -409,7 +420,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 							 choix.setVisible(false);
 							 instantiateContainer(cardPlayed.getNom());
 							 fenetre.getContentPane().repaint();
-							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", "", cardPlayed); 
+							 fenetre.getVue().getDiffuseur().firePropertyChange("Pouvoir", "", cardPlayed);
 							 break;
 						 case "Oeuvre":
 							 fenetre.getVue().getDiffuseur().firePropertyChange("Oeuvre", "", cardPlayed);
@@ -424,7 +435,10 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 				}
 			}
 		}
-		
+		if(fenetre.getImportPartie() != null) {
+			fenetre.setImportPartie(null);
+			fenetre.getVue().getController().controlerLaPartie();
+		}
 	}
 
 	@Override
@@ -456,8 +470,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 				choix.setVisible(visible);
 			}
 		}
-		if (e.getSource().equals(transition)) {
-			transition.setVisible(false);
+		if (e.getSource().equals(sauvegarder)) {
+			fenetre.getVue().getController().getModel().sauvegarder();
 		}
 	}
 	

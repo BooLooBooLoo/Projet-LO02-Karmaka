@@ -3,6 +3,12 @@ package Karmaka.src;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,10 +29,15 @@ import Graphique.Controller;
 public class Partie implements Serializable, PropertyChangeListener{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5988232900096601206L;
+
+	/**
 	 * Getter de l'attribut {@code nbrTour}
 	 * @return Le nombre de tour actuel de la partie.
 	 */
-	public static int getNbrTour() {
+	public  int getNbrTour() {
 		return nbrTour;
 	}
 	
@@ -34,11 +45,11 @@ public class Partie implements Serializable, PropertyChangeListener{
 	 * Setter de l'attribut {@code nbrTour}
 	 * @param nbrTour Le nombre de tour à fixer.
 	 */
-	public static void setNbrTour(int nbrTour) {
-		Partie.nbrTour = nbrTour;
+	public  void setNbrTour(int nbrTour) {
+		this.nbrTour = nbrTour;
 	}
 
-	private static int nbrTour = 0;
+	private int nbrTour = 0;
 	private List<Joueur> joueurs = new ArrayList<Joueur>();
 	private Joueur tour = null;
 	private Pile source = new Pile();
@@ -581,6 +592,66 @@ public class Partie implements Serializable, PropertyChangeListener{
 	 */
 	public void setWin(boolean win) {
 		this.win = win;
+	}
+	
+	/**
+	 * Méthode permettant de sauvegarder une partie
+	 */
+	public void sauvegarder() {
+		ObjectOutputStream oos = null;
+		try {
+			final FileOutputStream fichier = new FileOutputStream("./sauvegarde/sauvegarde_partie.ser");
+			oos = new ObjectOutputStream(fichier);
+			oos.writeObject(this);
+			oos.flush();
+		} catch(final java.io.IOException e) {
+			e.printStackTrace();
+		} finally {
+		      try {
+		          if (oos != null) {
+		            oos.flush();
+		            oos.close();
+		          }
+		          System.out.println("Partie Sauvegardée");
+		        } catch (final IOException ex) {
+		          ex.printStackTrace();
+		        }
+		     }
+	}
+	
+	/**
+	 * Méthode permettant d'importer une partie
+	 * @param partie La partie que l'on veut importer
+	 * @throws ClassNotFoundException
+	 */
+	public static Partie importer(File fichierPartie) throws ClassNotFoundException {
+		ObjectInputStream ois = null;
+		try {
+			final FileInputStream fichier = new FileInputStream(fichierPartie);
+			ois = new ObjectInputStream(fichier);
+			final Partie partieImportee = (Partie) ois.readObject();
+			System.out.println("Partie importée");
+			return partieImportee;
+		} catch (final IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ois != null) {
+					ois.close();
+				}
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	/**
+	 * Méthode permettant de vérifier s'il y a une sauvegarde dans le dossier.
+	 * @return Booléen indiquant la présence d'une sauvegarde.
+	 */
+	public boolean hasSave() {
+		File f = new File("./sauvegarde/sauvegarde_partie.ser");
+		return f.exists();
 	}
 
 	@Override

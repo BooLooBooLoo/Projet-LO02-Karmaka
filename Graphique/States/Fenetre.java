@@ -24,6 +24,7 @@ public class Fenetre extends JFrame {
 	private Container currentPanel;
 	private Vue vue;
 	private String[] joueurs = null;
+	private String importPartie;
 	
 	public String[] getJoueurs() {
 		return joueurs;
@@ -43,6 +44,7 @@ public class Fenetre extends JFrame {
 
 	public Fenetre(Vue vue) {
 		super();
+		this.setImportPartie(null);
 		this.vue = vue;
 		propFenetre();
 		this.setVisible(true);
@@ -60,13 +62,11 @@ public class Fenetre extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setAlwaysOnTop(true);
-		this.currentPanel = new ConteneurMenu(this, 3) {
-			public void paintComponent(Graphics g) {
-                Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
-                g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
-               }
-		};
+		if(vue.getController().getModel().hasSave()) {
+			this.currentPanel = new ConteneurMenu(this, 4);
+		} else {
+			this.currentPanel = new ConteneurMenu(this, 3);
+		}
 		this.setContentPane(this.currentPanel);
 	}
 	
@@ -87,5 +87,13 @@ public class Fenetre extends JFrame {
 	public void render() {	
 		this.setContentPane(currentPanel);
 		this.revalidate();
+	}
+
+	public String getImportPartie() {
+		return importPartie;
+	}
+
+	public void setImportPartie(String importPartie) {
+		this.importPartie = importPartie;
 	}
 }

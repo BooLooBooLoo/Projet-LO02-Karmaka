@@ -1,5 +1,6 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * La classe {@code Carte} est une classe abstraite qui représente les cartes du jeu "Karmaka".
@@ -8,7 +9,7 @@ import java.util.List;
  * @author Ali MIKOU et Hoang-Viet LE
  * @version 1.0
  */
-public abstract class Carte {
+public abstract class Carte implements Serializable{
     protected String nom;
     protected int cout;
     protected Couleur type;

@@ -1,5 +1,6 @@
 package Karmaka.src;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 
-public abstract class Joueur {
+public abstract class Joueur implements Serializable {
     protected Pile main = new Pile();
     protected Pile pile = new Pile();
     protected Pile vieFuture = new Pile();
