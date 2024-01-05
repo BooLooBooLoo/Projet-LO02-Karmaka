@@ -44,7 +44,6 @@ public class Fenetre extends JFrame {
 	public Fenetre(Vue vue) {
 		super();
 		this.vue = vue;
-		System.out.println(vue.getController());
 		propFenetre();
 		this.setVisible(true);
 	}
@@ -62,7 +61,6 @@ public class Fenetre extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setAlwaysOnTop(true);
-		System.out.println(vue.getController());
 		this.currentPanel = new ConteneurMenu(this, 3) {
 			public void paintComponent(Graphics g) {
                 Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();

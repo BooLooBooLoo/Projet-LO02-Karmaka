@@ -56,9 +56,9 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 	public ConteneurRejouer(Fenetre menu) {
 		super();
 		this.fenetre = menu;
-		System.out.println(fenetre);
 		propConteneurFenetre();
 	}
+	
 	
 	private void propConteneurFenetre() {
 		
@@ -91,7 +91,7 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 	
 	private void propTour() {
 		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" bis : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
-		texte.setForeground(Color.white);
+		texte.setForeground(Color.black);
 		texte.setBounds(1,1,100,50);
 		add(texte);
 	}
@@ -398,14 +398,11 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("in action");
 		if (e.getSource() instanceof JButton) {
 			for(JButton button : buttons) {
 				if (e.getSource().equals(button)) {
-					System.out.println("in button");
 					 switch (button.getText()) {
 						 case "Pouvoir":
-							 System.out.println("in pouvoir");
 							 zoomCard.setVisible(false);
 							 choix.setVisible(false);
 							 instantiateContainer(cardPlayed.getNom());

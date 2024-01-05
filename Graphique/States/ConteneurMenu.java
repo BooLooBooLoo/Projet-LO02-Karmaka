@@ -51,16 +51,13 @@ public class ConteneurMenu extends JPanel implements ActionListener{
 			add(bouton);
 			bouton.addActionListener(this);
 			this.boutons.add(bouton);
-		}
-
-		
+		}	
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {
 			for (JButton bouton : boutons) {
-				System.out.println(bouton.getText());
 				if (e.getSource().equals(bouton)) {
 					this.etiquette.setText("Vous avez appuyez sur le bouton "+boutons.indexOf(bouton));
 				}

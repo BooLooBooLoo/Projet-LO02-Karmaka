@@ -17,7 +17,6 @@ public class DernierSouffle extends Carte{
 
 	@Override
 	public void effet(Partie partie) {
-		System.out.println("IN dernier souffle");
 		// Déclaration des variables utilisés dans cette classe
 		Joueur adversaire = partie.getAdversaire();
 		Pile mainAdverse = adversaire.getMain();

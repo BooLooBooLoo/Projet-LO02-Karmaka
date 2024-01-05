@@ -16,8 +16,6 @@ public class Incarnation extends Carte{
 	}
 
 	public void effet(Partie partie) {
-		// Variables
-		
 		String carteSelect = "";
 		Pile main = partie.getTour().getMain();
 		Pile oeuvre = partie.getTour().getOeuvre();
@@ -50,10 +48,11 @@ public class Incarnation extends Carte{
 				System.out.println("Erreur! (La carte n'est pas trouvé...)");
 			} else {
 				Carte carteCopie = oeuvre.getCartes().get(indiceCarteSelect);
-				System.out.println("IN");
-				System.out.println(actions.subList(1, actions.size()).toString());
-				carteCopie.setActions(actions.subList(1, actions.size()));
+				if (partie.getTour() instanceof Human) {
+					carteCopie.setActions(actions.subList(1, actions.size()));
+				}
 				carteCopie.effet(partie);
+				
 			}
 		}
 	}

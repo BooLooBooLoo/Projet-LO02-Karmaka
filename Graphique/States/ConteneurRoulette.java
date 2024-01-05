@@ -97,7 +97,6 @@ public class ConteneurRoulette extends JPanel implements ActionListener{
 			for (JCheckBox check : checkbox) {
 				if (check.isSelected()) {
 					counter++;
-					System.out.println("Add CARTE : "+main.getCartes().get(checkbox.indexOf(check)).getNom());
 					actions.add(main.getCartes().get(checkbox.indexOf(check)).getNom());
 				}
 			}

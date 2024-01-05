@@ -132,7 +132,6 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 	}
 	
 	public void instantiateContainer(String cardName) {
-		System.out.println(cardName);
 		switch (cardName) {
 			case "Bassesse":
 				copyPanel = new ConteneurBassesse(fenetre, bait);
@@ -209,11 +208,9 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 		}
 		copyPanel.setBounds(0,0,800,400);
 		add(copyPanel);
-		System.out.println(copyPanel.getClass());
 		copyPanel.setVisible(true);
 		
 		this.repaint();
 		this.revalidate();
-		System.out.println("Done");
 	}
 }

@@ -97,7 +97,6 @@ public class Bot extends Joueur{
 	 * Il choisit une carte aléatoirement et la joue.
 	 */
 	public Carte choisirCarte() {
-		//System.out.println(getMain().toString());
 		Carte carteAJouer = null;
 		String action = new String();
 		int rand = (int) Math.floor(Math.random()*getMain().getCartes().size());
@@ -109,7 +108,6 @@ public class Bot extends Joueur{
 				break;
 			}
 		}
-		System.out.println("Vous avez choisi : "+carteAJouer.getNom());
 		return carteAJouer;
 	}
 	
