@@ -1,5 +1,8 @@
 package Cartes;
 
+import java.util.ArrayList;
+
+import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
@@ -23,6 +26,10 @@ public class Duperie extends Carte{
 		}
 		wait(partie);
 		if (mainAdverse.getCartes().size()>0) {
+			if (partie.getTour() instanceof Bot) {
+				actions = new ArrayList<String>();
+				actions.add(mainAdverse.getCartes().get(((Bot) partie.getTour()).choisir(mainAdverse.getCartes().size())).getNom());
+			}
 			Carte card = null;
 			for (Carte carte : mainAdverse.getCartes()) {
 				if (carte.getNom().equals(actions.get(0))) {

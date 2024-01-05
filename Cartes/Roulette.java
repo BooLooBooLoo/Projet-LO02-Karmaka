@@ -27,7 +27,7 @@ public class Roulette extends Carte{
 			System.out.println("Choisir le nombre de carte à défausser :");
 			nbCarteDefausse = Integer.parseInt(actions.get(actions.size()-1));
 		} else {
-			nbCarteDefausse = (int) Math.floor(Math.random()*defausse.getCartes().size());
+			nbCarteDefausse = (int) Math.floor(Math.random()*2);
 		}
 		
 		for(int i=0; i<nbCarteDefausse; i++) {

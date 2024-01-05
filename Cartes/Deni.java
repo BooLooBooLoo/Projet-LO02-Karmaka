@@ -56,7 +56,9 @@ public class Deni extends Carte{
 			} else {
 				Carte carteDefausse = main.getCartes().get(indiceCarteSelect);
 				partie.deplacerCarte(main, defausse, carteDefausse);
-				carteDefausse.setActions(actions.subList(1, actions.size()));
+				if (partie.getTour() instanceof Human) {
+					carteDefausse.setActions(actions.subList(1, actions.size()));
+				}
 				carteDefausse.effet(partie);
 		}
 		}

@@ -64,7 +64,7 @@ public class Controller implements PropertyChangeListener{
 	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals("Cout Karmique")) {
+		if (evt.getPropertyName().equals("Cout Karmique") && model.getTour() instanceof Human) {
 			this.vue.getFenetre().publish(new ConteneurCoutKarmique(vue.getFenetre(), (Carte) evt.getNewValue()));
 		} else {
 			diffuseur.firePropertyChange(evt);

@@ -41,16 +41,19 @@ public interface Strategy {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	temp.effet(partie);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "Pouvoir";
 		    } else if (action.equals("Oeuvre")) {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	partie.getTour().oeuvre.addCarte(temp);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "done";
 		    } else if (action.equals("VieFuture")) {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	partie.getTour().vieFuture.addCarte(temp);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "done";
 			
 		    }
@@ -97,16 +100,19 @@ public interface Strategy {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	temp.effet(partie);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "Pouvoir";
 		    } else if (action.equals("Oeuvre")) {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	partie.getTour().oeuvre.addCarte(temp);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "done";
 		    } else if (action.equals("VieFuture")) {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	partie.getTour().vieFuture.addCarte(temp);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "done";
 			
 		    }
@@ -153,16 +159,19 @@ public interface Strategy {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	temp.effet(partie);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "Pouvoir";
 		    } else if (action.equals("Oeuvre")) {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	partie.getTour().oeuvre.addCarte(temp);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "done";
 		    } else if (action.equals("VieFuture")) {
 		    	Carte temp = partie.getTour().choisirCarte();
 		    	partie.getTour().setDerniereCarteJoue(temp);
 		    	partie.getTour().vieFuture.addCarte(temp);
+		    	partie.getTour().getMain().removeCarte(temp);
 		    	bool = "done";
 			
 		    }
