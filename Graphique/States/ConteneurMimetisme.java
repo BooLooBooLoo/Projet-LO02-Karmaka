@@ -63,15 +63,15 @@ public class ConteneurMimetisme extends JPanel implements ActionListener{
 		JLabel etiquette = new JLabel("Mimétisme");
 		etiquette.setBounds(325,0,150,50);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette.setForeground(Color.white);
+		etiquette.setForeground(Color.black);
 		container.add(etiquette);
 		Joueur adversaire = fenetre.getVue().getController().getModel().getAdversaire();
-		if (adversaire.getMain().getCartes().size() == 0) {
-			JLabel texte = new JLabel("Il n'y a pas de carte dans votre oeuvre");
+		if (adversaire.getOeuvre().getCartes().size() == 0) {
+			JLabel texte = new JLabel("Il n'y a pas de carte dans l'oeuvre adverse");
 			container.add(texte);
 			texte.setBounds(100,100,600,100);
 			texte.setFont(new Font("Serif",Font.BOLD,20));
-			texte.setForeground(Color.white);
+			texte.setForeground(Color.black);
 			skip = new JButton("Continuer");
 			container.add(skip);
 			skip.setBounds(350,300,100,100);
@@ -105,7 +105,6 @@ public class ConteneurMimetisme extends JPanel implements ActionListener{
 	}
 	
 	public void instantiateContainer(String cardName) {
-		System.out.println(cardName);
 		switch (cardName) {
 			case "Bassesse":
 				copyPanel = new ConteneurBassesse(fenetre, bait);
@@ -182,12 +181,10 @@ public class ConteneurMimetisme extends JPanel implements ActionListener{
 		}
 		copyPanel.setBounds(0,0,800,400);
 		add(copyPanel);
-		System.out.println(copyPanel.getClass());
 		copyPanel.setVisible(true);
 		
 		this.repaint();
 		this.revalidate();
-		System.out.println("Done");
 	}
 
 }

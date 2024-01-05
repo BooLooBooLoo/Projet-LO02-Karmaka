@@ -15,7 +15,6 @@ public class Controller implements PropertyChangeListener{
 	private Partie model;
 	private Vue vue;
 	private PropertyChangeSupport diffuseur;
-	private PropertyChangeEvent evt;
 	
 	public void addSub(PropertyChangeListener pcl) {
 		diffuseur.addPropertyChangeListener(pcl);
@@ -46,17 +45,7 @@ public class Controller implements PropertyChangeListener{
 	public void controlerLaPartie() {
 		model.choisirJoueur();
 		model.getTour().piocher();
-		if (evt == null) {
-			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
-		} else if (evt != null && evt.getPropertyName() == "Pouvoir") {
-			System.out.println("IN conteneur cout karmique");
-			this.vue.getFenetre().publish(new ConteneurCoutKarmique(vue.getFenetre(), (Carte) evt.getNewValue()));
-			model.getAdversaire().coutKarmique((Carte) evt.getNewValue(), model);
-			System.out.println("IN conteneur cout karmique");
-		} else {
-			this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
-		}
-		System.out.println("Out of the if ");
+		this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
 		model.tourDeJeu(model.getTour());
 		model.refillSource();
 		
@@ -72,10 +61,15 @@ public class Controller implements PropertyChangeListener{
 			vue.getFenetre().dispatchEvent(new WindowEvent(vue.getFenetre(), WindowEvent.WINDOW_CLOSING));
 		}
 	}
+	
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		diffuseur.firePropertyChange(evt);
-		this.evt = evt;
-		System.out.println(evt.getPropertyName()+" and "+evt.getNewValue());
+		if (evt.getPropertyName().equals("Cout Karmique")) {
+			this.vue.getFenetre().publish(new ConteneurCoutKarmique(vue.getFenetre(), (Carte) evt.getNewValue()));
+		} else {
+			diffuseur.firePropertyChange(evt);
+		}
+		
 		
 	}
 	
@@ -86,7 +80,6 @@ public class Controller implements PropertyChangeListener{
 		controller.getModel().addSub(controller);
 		controller.getVue().addSub(controller);
 		controller.getVue().setFenetre(new Fenetre(controller.getVue()));
-		System.out.println(controller.getVue().getController());
 		controller.getVue().render();
 		while (controller.getVue().getFenetre().getJoueurs() == null) {
 			try {

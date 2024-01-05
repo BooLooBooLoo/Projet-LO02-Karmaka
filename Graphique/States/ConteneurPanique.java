@@ -1,9 +1,12 @@
 package Graphique.States;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import Karmaka.src.Carte;
 
@@ -16,19 +19,28 @@ public class ConteneurPanique extends JPanel implements ActionListener{
 		super();
 		this.fenetre = menu;
 		this.cardPlayed = carte;
-		propVoyage();
+		propPanique();
 		this.setBounds(200,150,800,400);
 	}
 	
-	public void propVoyage() {
-		JLabel etiquette = new JLabel("Panique");
+	public void propPanique() {
+		JLabel etiquette = new JLabel("Panique\n", SwingConstants.CENTER);
+		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		add(etiquette);
+		JLabel text = new JLabel("Vous défaussez la première carte de la pile de l'adversaire.\n Vous rejouez.", SwingConstants.CENTER);
+		text.setFont(new Font("Serif",Font.BOLD,30));
+		add(text);
+		JButton button = new JButton("Continuer");
+		button.setBorder(new EmptyBorder(50,50,50,50));
+		button.addActionListener(this);
+		add(button);
 	}
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		cardPlayed.setActions(new ArrayList<String>());
+		fenetre.publish(new ConteneurRejouer(fenetre));
 	}
 
 }

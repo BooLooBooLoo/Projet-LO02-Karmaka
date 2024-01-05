@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import Cartes.*;
+import Graphique.Controller;
 
 /**
  * La classe {@code Partie} représente une session de jeu du jeu de cartes "Karmaka".
@@ -314,8 +315,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 	public void choisirJoueur() {
 		if (this.tour == null) {
 			double rand = Math.random();
-			System.out.println(rand);
-			System.out.println(rand >= 0.5);
 			Joueur j = (rand >= 0.5) ? getJoueurs().get(0) : getJoueurs().get(1);
 			this.tour = j;
 		} else {
@@ -338,7 +337,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 		} else {
 			//joueur.piocher();
 			if (joueur instanceof Human) {
-				System.out.println("IN cardPlayed");
 				while (!cardPlayed) {
 					try {
 						Thread.sleep(10);
@@ -349,7 +347,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 				}
 				temp = joueur.jouer(this);
 				cardPlayed = false;	
-				System.out.println("OUT cardPlayed");
 			} else {
 				temp = joueur.jouer(this);
 				while (temp == null) {
@@ -357,15 +354,15 @@ public class Partie implements Serializable, PropertyChangeListener{
 				}
 			}
 			
-			/*if (temp.equals("Pouvoir")) {
-				//diffuseur.firePropertyChange("Cout Karmique", win, cardPlayed);
+			if (temp.equals("Pouvoir")) {
+				diffuseur.firePropertyChange("Cout Karmique", "a", joueur.getDerniereCarteJoue());
 				getAdversaire().coutKarmique(joueur.getDerniereCarteJoue(), this);
 				
-			}*/
+			}
 		}
 		System.out.println("Fin du tour de : "+joueur.getNom());
 	}
-	
+
 	/**
 	 * Méthode permettant d'afficher les informations sur le déroulement de la partie.
 	 * C'est l'affichage de notre jeu dans la console.

@@ -4,13 +4,16 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.*;
 import java.util.*;
 
 
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -53,12 +56,10 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	public ConteneurPartie(Fenetre menu) {
 		super();
 		this.fenetre = menu;
-		System.out.println(fenetre);
 		propConteneurFenetre();
 	}
 	
 	private void propConteneurFenetre() {
-		
 		cards = new ArrayList<JPanel>();
 		buttons = new ArrayList<JButton>();
 		this.setLayout(null);
@@ -89,7 +90,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	
 	private void propTour() {
 		JLabel texte = new JLabel("Tour "+Partie.getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
-		texte.setForeground(Color.white);
+		texte.setForeground(Color.black);
 		texte.setBounds(1,1,100,50);
 		add(texte);
 	}
@@ -255,6 +256,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		layout.setHgap(30);
 		layout.setVgap(30);
 		choix = new JPanel(layout);
+		choix.setOpaque(false);
 		zoomCard = new JPanel(new GridLayout(2,1));
 		JPanel top = new JPanel(new FlowLayout());
 		top.setOpaque(false);
@@ -296,30 +298,61 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private void propCards() {
 		Joueur tour = fenetre.getVue().getController().getModel().getTour();
 		JPanel cardPanel = new JPanel(new GridLayout());
-		cardPanel.setBounds(200,720,800,40);
+		cardPanel.setBounds(200,720,800,60);
 		cardPanel.setBackground(Color.darkGray);
 		for (int i = 0; i < tour.getMain().getCartes().size(); i++) {
-			JPanel card = new JPanel(new FlowLayout());
+			JPanel card;
 			Couleur couleur = tour.getMain().getCartes().get(i).getType();
 			switch(couleur) {
 				case BLEU :
-					card.setBackground(Color.BLUE);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/bleuBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};;
 					break;
 				case ROUGE :
-					card.setBackground(Color.RED);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/rougeBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 					break;
 				case VERT :
-					card.setBackground(Color.GREEN);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/vertBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 					break;
 				case MOSAIQUE :
-					card.setBackground(Color.cyan);
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/mosaiqueBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 					break;
+				default :
+					card = new JPanel(new FlowLayout()) {
+						public void paintComponent(Graphics g) {
+					        Image backgroundImage = new ImageIcon("./assets/vertBackground.png").getImage();
+					        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+						}
+					};
 			}
-			card.setBorder(BorderFactory.createLineBorder(Color.black));
 			JLabel name = new JLabel(tour.getMain().getCartes().get(i).getNom());
+			name.setFont(new Font("Vinque Rg", Font.PLAIN, 14));
 			JLabel cout = new JLabel(""+tour.getMain().getCartes().get(i).getCout());
 			cout.setFont(new Font("Serif", Font.BOLD, 20));
 			//cout.setForeground(Color.white);
+			Border raisedbevel = BorderFactory.createRaisedBevelBorder();
+			Border loweredbevel = BorderFactory.createLoweredBevelBorder();
+			Border cardBoarder = BorderFactory.createCompoundBorder(raisedbevel, loweredbevel);
+			card.setBorder(cardBoarder);
 			cards.add(card);
 			card.addMouseListener(this);
 			card.add(cout);
@@ -365,14 +398,11 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("in action");
 		if (e.getSource() instanceof JButton) {
 			for(JButton button : buttons) {
 				if (e.getSource().equals(button)) {
-					System.out.println("in button");
 					 switch (button.getText()) {
 						 case "Pouvoir":
-							 System.out.println("in pouvoir");
 							 zoomCard.setVisible(false);
 							 choix.setVisible(false);
 							 instantiateContainer(cardPlayed.getNom());
@@ -536,5 +566,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		power.setVisible(true);
 	}
 
-	
+	public void paintComponent(Graphics g) {
+        Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
+        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+       }
 }

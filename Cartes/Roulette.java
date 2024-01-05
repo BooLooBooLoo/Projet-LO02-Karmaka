@@ -22,33 +22,42 @@ public class Roulette extends Carte{
 		Scanner sc = new Scanner(System.in);
 		int nbCarteDefausse = 0;
 		// Effet de la carte
+		wait(partie);
 		if (partie.getTour() instanceof Human) {
 			System.out.println("Choisir le nombre de carte à défausser :");
-			nbCarteDefausse = sc.nextInt();
-			sc.nextLine();
+			nbCarteDefausse = Integer.parseInt(actions.get(actions.size()-1));
 		} else {
 			nbCarteDefausse = (int) Math.floor(Math.random()*defausse.getCartes().size());
 		}
 		
 		for(int i=0; i<nbCarteDefausse; i++) {
-			int indexCarteDefausse = 0;
 			if (partie.getTour() instanceof Human) {
-				System.out.println("Veuillez choisir l'index de la carte à défausser (entre 0 et " + (partie.getTour().getMain().getCartes().size()-1) + ").");
-				indexCarteDefausse = sc.nextInt();
-				sc.nextLine();
+				for(int j=0; j<partie.getTour().getMain().getCartes().size(); j++) {
+					if(partie.getTour().getMain().getCartes().get(j).getNom() == actions.get(i)) {
+						Carte carteDefausse = partie.getTour().getMain().getCartes().get(j);
+						System.out.println("La carte défaussée est : " + carteDefausse.getNom());
+						// Modification objet "partie"
+						partie.deplacerCarte(main, defausse, carteDefausse);
+						break;
+					}
+					
+				}
 			} else {
-				indexCarteDefausse = (int) Math.floor(Math.random()*main.getCartes().size());
+				int indexCarteDefausse = (int) Math.floor(Math.random()*main.getCartes().size());
+				if (partie.getTour().getMain().getCartes().size() > 0) {
+					Carte carteDefausse = partie.getTour().getMain().getCartes().get(indexCarteDefausse);
+					System.out.println("La carte défaussée est : " + carteDefausse.getNom());
+					// Modification objet "partie"
+					partie.deplacerCarte(main, defausse, carteDefausse);
+				}	
 			}
-			if (partie.getTour().getMain().getCartes().size() > 0) {
-				Carte carteDefausse = partie.getTour().getMain().getCartes().get(indexCarteDefausse);
-				System.out.println("La carte défaussée est : " + carteDefausse.getNom());
-				// Modification objet "partie"
-				partie.deplacerCarte(main, defausse, carteDefausse);
-			}	
 		}
 		System.out.println("Vous piochez " + (nbCarteDefausse+1) + " cartes de la source.");
 		for(int i=0; i<nbCarteDefausse +1; i++) {
-			partie.getTour().piocher();
+			int randomNumber = (int) (Math.random()*partie.getSource().getCartes().size()-1);
+			partie.deplacerCarte(partie.getSource(), main, partie.getSource().getCartes().get(randomNumber));
 		}
+		this.setActions(null); // Pour régler le probleme des choix
 	}
+	
 }

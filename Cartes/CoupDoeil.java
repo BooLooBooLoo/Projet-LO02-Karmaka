@@ -24,7 +24,5 @@ public class CoupDoeil extends Carte{
 			System.out.println(mainAdverse.getCartes().get(i).getNom());
 		}
 		wait(partie);
-		System.out.println("Done coup d'oeil");
-		
 	}
 }

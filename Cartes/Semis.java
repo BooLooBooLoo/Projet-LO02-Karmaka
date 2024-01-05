@@ -22,20 +22,24 @@ public class Semis extends Carte{
 		Pile vieFuture = partie.getTour().getVieFuture();
 		Scanner sc = new Scanner(System.in);
 		// Syso et Scan 
-		System.out.println("Vous piochez deux cartes de la source.");
+		/*System.out.println("Vous piochez deux cartes de la source.");
 		for(int i=0; i<2; i++) {
 			partie.getTour().piocher();
 		}
 		main.removeCarte(this);
+		*/
 		System.out.println("Voici votre main :");
 		for(int i=0; i<main.getCartes().size(); i++) {
 			System.out.println(main.getCartes().get(i).getNom());
 		}
+		
+		wait(partie);
 		for(int i=0; i<2; i++) {
 			String carteSelect = "";
 			if(partie.getTour() instanceof Human) {
 				System.out.println("Choisir une carte à mettre dans votre vie future :");
-				carteSelect = sc.nextLine();
+				// carteSelect = sc.nextLine();
+				this.actions.get(i);
 			} else {
 				if (main.getCartes().size() > 0) {
 					main.getCartes().get(((Bot) partie.getTour()).choisir(main.getCartes().size())).getNom();
@@ -58,5 +62,6 @@ public class Semis extends Carte{
 			partie.deplacerCarte(main, vieFuture, carte);
 		}
 	}
+		this.setActions(null); // Pour régler le probleme des choix :)
 }
 }

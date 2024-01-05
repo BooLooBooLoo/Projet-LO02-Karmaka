@@ -31,6 +31,7 @@ public class RevesBrises extends Carte{
 			// Modification objet "partie"
 			partie.deplacerCarte(vieFutureAdverse, vieFuture, vieFutureAdverse.getCartes().get(vieFutureAdverse.getCartes().size()-1));
 			}
+		wait(partie);
 		}
 }
 

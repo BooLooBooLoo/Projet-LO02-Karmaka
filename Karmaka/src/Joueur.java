@@ -158,11 +158,9 @@ public abstract class Joueur {
 	 * @return La carte choisie.
 	 */
 	public Carte choisirCarte() {
-		System.out.println(getMain().toString());
 		Carte carteAJouer = null;
 		String action = new String();
 		Scanner myObj = new Scanner(System.in);
-		System.out.println("Entrer la carte à jouer (son nom)");
 		action  = myObj.nextLine();
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
 			if (action.equals(getMain().getCartes().get(i).getNom())) {
@@ -171,7 +169,6 @@ public abstract class Joueur {
 				break;
 			}
 		}
-		System.out.println("Fin choix");
 		return carteAJouer;
 	}
 	
@@ -182,7 +179,6 @@ public abstract class Joueur {
 		if (getPile().getCartes().size() > 0) {
 			int rand = (int) Math.floor(Math.random()) * getPile().getCartes().size();
 			Carte temp = getPile().getCartes().get(rand);
-			System.out.println("Vous avez pioché : "+temp.getNom());
 			getPile().removeCarte(temp);
 			getMain().addCarte(temp);
 		}
@@ -193,9 +189,6 @@ public abstract class Joueur {
 	 * @return La vie future du joueur.
 	 */
 	public Pile getVieFuture() {
-		for(int i=0; i<vieFuture.getCartes().size(); i++) {
-			System.out.println(vieFuture.getCartes().get(i).getNom());
-		}
 		return vieFuture;
 	}
 

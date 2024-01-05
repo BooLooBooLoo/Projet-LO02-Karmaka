@@ -16,8 +16,6 @@ public class Incarnation extends Carte{
 	}
 
 	public void effet(Partie partie) {
-		// Variables
-		
 		String carteSelect = "";
 		Pile main = partie.getTour().getMain();
 		Pile oeuvre = partie.getTour().getOeuvre();

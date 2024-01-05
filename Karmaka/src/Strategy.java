@@ -256,9 +256,6 @@ public interface Strategy {
 					mos+= partie.getTour().getMain().getCartes().get(i).getCout();
 				}
 			}
-			System.out.println("bleu : "+bleu);
-			System.out.println("rouge : "+rouge);
-			System.out.println("vert : "+vert);
 			List<Couleur> couleurs = new ArrayList<Couleur>();
 			if (bleu >= rouge && bleu >= vert) {
 				couleurs.add(Couleur.BLEU);
@@ -292,8 +289,6 @@ public interface Strategy {
 		}
 		
 		public Pile combinaison(Partie partie, Couleur col, int nbr) {
-			System.out.println("Combinaison en cours");
-			System.out.println(col);
 			Pile oeuvre = new Pile();
 			Pile fin = new Pile();
 			int iter = 0;
@@ -304,18 +299,15 @@ public interface Strategy {
 					oeuvre.addCarte(j.getMain().getCartes().get(i));
 				}
 			}
-			System.out.println(oeuvre.toString());
 			
 			int ecart = 100;
 			while (iter <= oeuvre.getCartes().size() && val != nbr) {
 				List<List<Carte>> result = Outil.getCombinations(oeuvre.getCartes(), iter);
 				for (List<Carte> cartes : result) {
 					val = partie.getTour().getOeuvre().compterPoint();
-					System.out.println(cartes);
 					for (int i = 0; i < iter; i++) {
 						val += cartes.get(i).getCout();
 					}
-					System.out.println("val : "+val);
 					if (val == nbr) {
 						fin.setCartes(cartes);
 						break;
@@ -327,7 +319,6 @@ public interface Strategy {
 				iter++;
 			}
 			
-			System.out.println("fin : "+fin.toString());
 			return fin;
 			
 		}

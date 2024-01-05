@@ -33,21 +33,21 @@ public class ConteneurLongevite extends JPanel implements ActionListener{
 	}
 	
 	public void propLongevite() {
-		JLabel etiquette = new JLabel("Dernier Souffle", SwingConstants.CENTER);
+		JLabel etiquette = new JLabel("Longévité", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette.setForeground(Color.white);
+		etiquette.setForeground(Color.black);
 		add(etiquette);
 		Joueur adversaire = fenetre.getVue().getController().getModel().getAdversaire();
 		if (adversaire.getMain().getCartes().size() == 0) {
 			JTextArea texte = new JTextArea("Il n'y a pas de carte à voler.");
 			texte.setFont(new Font("Serif",Font.BOLD,20));
-			texte.setForeground(Color.white);
+			texte.setForeground(Color.black);
 			add(texte);
 		} else {
 			JTextArea texte = new JTextArea("Choisir entre vous et l'adversaire, il recevra 2 cartes de la source directement dans sa pile");
 			texte.setBackground(null);
 			texte.setFont(new Font("Serif",Font.BOLD,20));
-			texte.setForeground(Color.white);
+			texte.setForeground(Color.black);
 			add(texte);
 			field = new JTextField();
 			add(field);

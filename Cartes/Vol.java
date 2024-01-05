@@ -32,5 +32,6 @@ public class Vol extends Carte{
 					partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
 				}
 				wait(partie);
+				this.setActions(null); // Pour régler le probleme des choix :)
 	}
 }

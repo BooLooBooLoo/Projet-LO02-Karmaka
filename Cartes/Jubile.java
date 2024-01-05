@@ -31,7 +31,7 @@ public class Jubile extends Carte{
 		}
 		int nbCarte = 0;
 		if (partie.getTour() instanceof Human) {
-			System.out.println("Combien de carte à ajouter dans l'Oeuvre?");
+			System.out.println("Combien de carte à ajouter dans l'Oeuvre ?");
 			nbCarte = Integer.parseInt(actions.get(actions.size()-1));
 			if (nbCarte > 2 || nbCarte < 0) {
 				nbCarte = 0;

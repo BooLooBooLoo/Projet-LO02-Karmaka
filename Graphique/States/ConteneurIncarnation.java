@@ -59,49 +59,55 @@ public class ConteneurIncarnation extends JPanel implements ActionListener{
 	}
 	
 	public void propIncarnation() {
-		JLabel etiquette = new JLabel("Crise");
+		JLabel etiquette = new JLabel("Incarnation");
 		etiquette.setBounds(350,0,100,50);
-		etiquette.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette.setForeground(Color.white);
+		etiquette.setFont(new Font("Serif",Font.BOLD,25));
+		etiquette.setForeground(Color.black);
 		container.add(etiquette);
 		Joueur tour = fenetre.getVue().getController().getModel().getTour();
 		double size = 800/(tour.getOeuvre().getCartes().size()+1);
 		if (tour.getOeuvre().getCartes().size() == 0) {
+			System.out.println("IN case vide INCARNATION");
 			JLabel texte = new JLabel("Il n'y a pas de carte dans votre oeuvre");
+			texte.setBounds(100,100,600,100);
 			container.add(texte);
 			skip = new JButton("Continuer");
+			skip.addActionListener(this);
+			skip.setBounds(350,250,100,50);
 			container.add(skip);
-		}
-		for (int i = 0; i < tour.getOeuvre().getCartes().size();i++) {
-			JPanel card = new JPanel(new GridLayout(2,1));
-			card.setBounds((int)((size/(2*tour.getOeuvre().getCartes().size()+1))+i*(size+size/tour.getOeuvre().getCartes().size()+1)),50,(int) (size),250);
-			Couleur couleur = tour.getOeuvre().getCartes().get(i).getType();
-			switch(couleur) {
-				case BLEU :
-					card.setBackground(Color.BLUE);
-					break;
-				case ROUGE :
-					card.setBackground(Color.RED);
-					break;
-				case VERT :
-					card.setBackground(Color.GREEN);
-					break;
-				case MOSAIQUE :
-					card.setBackground(Color.cyan);
-					break;
+		} else {
+			for (int i = 0; i < tour.getOeuvre().getCartes().size();i++) {
+				JPanel card = new JPanel(new GridLayout(2,1));
+				card.setBounds((int)((size/(2*tour.getOeuvre().getCartes().size()+1))+i*(size+size/tour.getOeuvre().getCartes().size()+1)),50,(int) (size),250);
+				Couleur couleur = tour.getOeuvre().getCartes().get(i).getType();
+				switch(couleur) {
+					case BLEU :
+						card.setBackground(Color.BLUE);
+						break;
+					case ROUGE :
+						card.setBackground(Color.RED);
+						break;
+					case VERT :
+						card.setBackground(Color.GREEN);
+						break;
+					case MOSAIQUE :
+						card.setBackground(Color.cyan);
+						break;
+				}
+				card.setBorder(BorderFactory.createLineBorder(Color.black));
+				JLabel name = new JLabel(tour.getOeuvre().getCartes().get(i).getCout()+" "+tour.getOeuvre().getCartes().get(i).getNom());
+				name.setFont(new Font("Serif", Font.BOLD, 20));
+				card.add(name);
+				JLabel desc = new JLabel(tour.getOeuvre().getCartes().get(i).getDescription());
+				card.add(desc);
+				JButton choix = new JButton("Choisir");
+				choix.setBounds((int)((size/(2*tour.getOeuvre().getCartes().size()+1))+i*(size+size/tour.getOeuvre().getCartes().size()+1)),350,(int) (size),50);
+				choix.addActionListener(this);
+				container.add(card);
+				buttons.add(choix);
+				container.add(choix);
 			}
-			card.setBorder(BorderFactory.createLineBorder(Color.black));
-			JLabel name = new JLabel(tour.getOeuvre().getCartes().get(i).getCout()+" "+tour.getOeuvre().getCartes().get(i).getNom());
-			name.setFont(new Font("Serif", Font.BOLD, 20));
-			card.add(name);
-			JLabel desc = new JLabel(tour.getOeuvre().getCartes().get(i).getDescription());
-			card.add(desc);
-			JButton choix = new JButton("Choisir");
-			choix.setBounds((int)((size/(2*tour.getOeuvre().getCartes().size()+1))+i*(size+size/tour.getOeuvre().getCartes().size()+1)),350,(int) (size),50);
-			choix.addActionListener(this);
-			container.add(card);
-			buttons.add(choix);
-			container.add(choix);
+			
 		}
 		add(container);
 	}
