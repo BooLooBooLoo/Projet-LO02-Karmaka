@@ -43,6 +43,10 @@ public class ConteneurLongevite extends JPanel implements ActionListener{
 			texte.setFont(new Font("Serif",Font.BOLD,20));
 			texte.setForeground(Color.black);
 			add(texte);
+			skip = new JButton("Continuer");
+			skip.addActionListener(this);
+			skip.setBounds(350,250,100,50);
+			add(skip);
 		} else {
 			JTextArea texte = new JTextArea("Choisir entre vous et l'adversaire, il recevra 2 cartes de la source directement dans sa pile");
 			texte.setBackground(null);

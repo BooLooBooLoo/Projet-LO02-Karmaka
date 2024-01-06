@@ -21,8 +21,7 @@ public class RevesBrises extends Carte{
 		Pile main = partie.getTour().getMain();
 		// Check si on peut voler
 		if(vieFutureAdverse.getCartes().isEmpty()) {
-			System.out.println("Il n'y a pas de carte à voler. Veuillez jouer une autre carte.");
-			// partie.getTour().jouer(partie);
+			System.out.println("Il n'y a pas de carte à voler.");
 		}
 		else {
 			// Effet de la carte

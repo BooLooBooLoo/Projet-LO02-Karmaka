@@ -16,6 +16,7 @@ public class Controller implements PropertyChangeListener{
 	private Partie model;
 	private Vue vue;
 	private PropertyChangeSupport diffuseur;
+	private String isNewGame = null;
 	
 	public void addSub(PropertyChangeListener pcl) {
 		diffuseur.addPropertyChangeListener(pcl);
@@ -33,6 +34,8 @@ public class Controller implements PropertyChangeListener{
 
 	public void setModel(Partie model) {
 		this.model = model;
+		this.addSub(model);
+		this.model.addSub(this);
 	}
 
 	public Vue getVue() {
@@ -43,11 +46,26 @@ public class Controller implements PropertyChangeListener{
 		this.vue = vue;
 	}
 	
+	
+
+	public String getIsNewGame() {
+		return isNewGame;
+	}
+
+	public void setIsNewGame(String isNewGame) {
+		this.isNewGame = isNewGame;
+	}
+
 	public void controlerLaPartie() {
+		System.out.println("Begin controlerLaPartie");
 		model.choisirJoueur();
+		System.out.println("OUT choisir joueur");
 		model.getTour().piocher();
+		System.out.println("OUT piocher");
 		this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
+		System.out.println("OUT publish partie");
 		model.tourDeJeu(model.getTour());
+		System.out.println("OUT tourDeJeu");
 		model.refillSource();
 		
 		if (!model.getWin()) {
@@ -82,7 +100,7 @@ public class Controller implements PropertyChangeListener{
 		controller.getVue().addSub(controller);
 		controller.getVue().setFenetre(new Fenetre(controller.getVue()));
 		controller.getVue().render();
-		while (controller.getVue().getFenetre().getJoueurs() == null) {
+		while (controller.getIsNewGame() == null) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
@@ -90,10 +108,19 @@ public class Controller implements PropertyChangeListener{
 				e.printStackTrace();
 			}
 		}
-		controller.getModel().setupJoueur(controller.getVue().getFenetre().getJoueurs());
-		controller.getModel().setupPartie();
-		controller.getModel().choisirJoueur();
-		controller.getVue().getFenetre().publish(new ConteneurPartie(controller.getVue().getFenetre()));
+		if (controller.getIsNewGame().equals("yes")) {
+			while (controller.getVue().getFenetre().getJoueurs() == null) {
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			controller.getModel().setupJoueur(controller.getVue().getFenetre().getJoueurs());
+			controller.getModel().setupPartie();
+			controller.getModel().choisirJoueur();
+		}
 		controller.controlerLaPartie();
 		
 	}

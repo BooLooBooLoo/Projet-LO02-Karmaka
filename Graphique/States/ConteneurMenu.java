@@ -64,13 +64,14 @@ public class ConteneurMenu extends JPanel implements ActionListener{
 					this.etiquette.setText("Vous avez appuyez sur le bouton "+boutons.indexOf(bouton));
 				}
 				if (e.getSource().equals(bouton) && (bouton.getText().equals("Jouer") || bouton.getText().equals("Nouvelle Partie"))) {
-					this.etiquette.setText("Vous avez appuyez sur le bouton Jouer");
+					menu.getVue().getController().setIsNewGame("yes");
 					menu.publish(new ConteneurChoixJoueur(menu));
 				}
 				if (e.getSource().equals(bouton) && (bouton.getText().equals("Reprendre Partie") )) {
-					this.etiquette.setText("Vous avez appuyez sur le bouton Jouer");
+					this.etiquette.setText("Vous avez appuyez sur le bouton Reprendre Partie");
 					ConteneurImport importwindow = new ConteneurImport(menu);
 				}
+				
 			}
 		}
 		if(e.getSource().equals(this.boutons.get((int)index-1))) {
