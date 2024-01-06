@@ -57,15 +57,14 @@ public class Controller implements PropertyChangeListener{
 	}
 
 	public void controlerLaPartie() {
-		System.out.println("Begin controlerLaPartie");
-		model.choisirJoueur();
-		System.out.println("OUT choisir joueur");
-		model.getTour().piocher();
-		System.out.println("OUT piocher");
+		if (!isNewGame.equals("no")) {
+			model.choisirJoueur();
+			model.getTour().piocher();
+		} else {
+			isNewGame = "done";
+		}
 		this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
-		System.out.println("OUT publish partie");
 		model.tourDeJeu(model.getTour());
-		System.out.println("OUT tourDeJeu");
 		model.refillSource();
 		
 		if (!model.getWin()) {
@@ -79,6 +78,7 @@ public class Controller implements PropertyChangeListener{
 		} else {
 			vue.getFenetre().dispatchEvent(new WindowEvent(vue.getFenetre(), WindowEvent.WINDOW_CLOSING));
 		}
+		
 	}
 	
 	@Override

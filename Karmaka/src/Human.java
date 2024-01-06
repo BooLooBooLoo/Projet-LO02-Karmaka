@@ -156,6 +156,8 @@ public class Human extends Joueur implements Serializable{
 	    	partie.getDefausse().addCarte(temp);
 	    	this.getMain().removeCarte(temp);
 	    	if(temp.rejouable) {
+	    		cTPRejouer = null;
+	    		actionRejouer = null;
 				partie.getTour().rejouer(partie);
 			}
 	    	bool = "Pouvoir";
