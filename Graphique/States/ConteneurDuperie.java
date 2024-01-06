@@ -48,6 +48,9 @@ public class ConteneurDuperie extends JPanel implements ActionListener{
 			skip = new JButton("Continuer");
 		}
 		for (int i = 0; i < 3;i++) {
+			if(i > adversaire.getMain().getCartes().size()) {
+				break;
+			}
 			JPanel card = new JPanel(new GridLayout(2,1));
 			card.setBounds((int)((size/8)+i*(size+size/4)),50,(int) (size),250);
 			Couleur couleur = adversaire.getMain().getCartes().get(i).getType();
