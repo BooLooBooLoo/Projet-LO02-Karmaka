@@ -346,8 +346,8 @@ public class Partie implements Serializable, PropertyChangeListener{
 		if (joueur.getMain().getCartes().size() == 0 && joueur.getPile().getCartes().size() == 0) {
 			reincarnation(joueur);
 		} else {
-			//joueur.piocher();
 			if (joueur instanceof Human) {
+				System.out.println("IN while");
 				while (!cardPlayed) {
 					try {
 						Thread.sleep(10);
@@ -356,6 +356,7 @@ public class Partie implements Serializable, PropertyChangeListener{
 						e.printStackTrace();
 					}
 				}
+				System.out.println("OUT while");
 				temp = joueur.jouer(this);
 				cardPlayed = false;	
 			} else {
@@ -656,10 +657,12 @@ public class Partie implements Serializable, PropertyChangeListener{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println("IN propertyChange partie");
 		if (tour instanceof Human && !evt.getOldValue().equals("Rejouer")) {
 			((Human) tour).setAction(evt.getPropertyName());
 			((Human) tour).setCardToPlay((Carte) evt.getNewValue());
 			cardPlayed = true;
+			System.out.println("cardPlayed true");
 		} else if (tour instanceof Human && evt.getOldValue().equals("Rejouer")) {
 			((Human) tour).setActionRejouer(evt.getPropertyName());
 			((Human) tour).setcTPRejouer((Carte) evt.getNewValue());

@@ -58,7 +58,6 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	public ConteneurPartie(Fenetre menu) {
 		super();
 		this.fenetre = menu;
-		System.out.println(fenetre);
 		propConteneurFenetre();
 	}
 	
@@ -269,6 +268,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		layout.setHgap(30);
 		layout.setVgap(30);
 		choix = new JPanel(layout);
+		choix.setOpaque(false);
 		zoomCard = new ImagePanel(null);
 		JPanel top = new JPanel(new FlowLayout());
 		top.setOpaque(false);
@@ -408,7 +408,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("in action");
+		if(fenetre.getImportPartie() != null) {
+			fenetre.setImportPartie(null);
+		}
 		if (e.getSource() instanceof JButton) {
 			for(JButton button : buttons) {
 				if (e.getSource().equals(button)) {
@@ -435,10 +437,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 				}
 			}
 		}
-		if(fenetre.getImportPartie() != null) {
-			fenetre.setImportPartie(null);
-			fenetre.getVue().getController().controlerLaPartie();
-		}
+		
 	}
 
 	@Override
@@ -463,7 +462,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 						zoomCard.setBackground(new Color(72,209,204));
 						break;
 				}
-				boolean visible = (name.getText() != tour.getMain().getCartes().get(index).getNom() || !zoomCard.isVisible());
+				boolean visible = !zoomCard.isVisible();
 				zoomCard.setImg(new ImageIcon("./assets/" + tour.getMain().getCartes().get(index).getNom() + ".png").getImage());
 				zoomCard.repaint();
 				zoomCard.setVisible(visible);

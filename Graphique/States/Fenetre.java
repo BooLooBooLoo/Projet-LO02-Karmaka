@@ -54,7 +54,7 @@ public class Fenetre extends JFrame {
 		try {
 			   GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			   ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("./assets/vinque_rg.ttf")));
-			} catch (IOException|FontFormatException e) {
+			} catch (IOException|FontFormatException e){
 			 //Handle exception
 			}
 		this.setTitle("Projet LO02 - Jeu Karmaka");
@@ -85,6 +85,7 @@ public class Fenetre extends JFrame {
 	}
 	
 	public void render() {	
+		System.out.println(currentPanel);
 		this.setContentPane(currentPanel);
 		this.revalidate();
 	}

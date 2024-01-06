@@ -27,8 +27,9 @@ public class ConteneurImport extends JFileChooser {
 	      try {
 			fenetre.getVue().getController().setModel(Partie.importer(this.getSelectedFile()));
 			fenetre.setImportPartie("import");
-			fenetre.getVue().getController().getVue().getFenetre().publish(new ConteneurPartie(fenetre));
-			// fenetre.getVue().getController().controlerLaPartie();
+			//fenetre.getVue().getController().getVue().getFenetre().publish(new ConteneurPartie(fenetre));
+			fenetre.getVue().getController().setIsNewGame("no");
+			//fenetre.getVue().getController().controlerLaPartie();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
