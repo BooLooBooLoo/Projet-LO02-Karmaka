@@ -43,6 +43,7 @@ public class ConteneurLongevite extends JPanel implements ActionListener{
 			texte.setFont(new Font("Serif",Font.BOLD,20));
 			texte.setForeground(Color.black);
 			add(texte);
+			add(skip);
 			skip = new JButton("Continuer");
 			skip.addActionListener(this);
 			skip.setBounds(350,250,100,50);
