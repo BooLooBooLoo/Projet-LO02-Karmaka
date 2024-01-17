@@ -9,10 +9,21 @@ import java.util.List;
  * @version 1.0
  */
 public interface Strategy {
+	/**
+	 * Méthode permettant à la stratégie de jouer la partie.
+	 * @param partie La partie où se trouve le joeur.
+	 * @return Un string qui permet le bon fonctionnement de la partie.
+	 */
 	public String jouer(Partie partie);
 	
+	/**
+	 * La classe {@code Neutre} est une stratégie qui joue aléatoirement.
+	 */
 	class Neutre implements Strategy{
 		
+		/**
+		 * Méthode permettant de choisir au hasard l'action du {@code Bot}.
+		 */
 		public String jouer(Partie partie) {
 			String bool = new String();
 			String action = new String();
@@ -60,7 +71,11 @@ public interface Strategy {
 		    }
 		    return bool;
 		}
-	}	
+	}
+	
+	/**
+	 * Méthode permettant de choisir au hasard l'action du {@code Bot} mais qui a une tendance à jouer les cartes en mode "Pouvoir".
+	 */
 	class Aggressif implements Strategy{
 
 		public String jouer(Partie partie) {
@@ -120,6 +135,10 @@ public interface Strategy {
 		    return bool;
 		}
 	}
+	
+	/**
+	 * Méthode permettant de choisir au hasard l'action du {@code Bot} mais qui a une tendance à jouer les cartes en mode "Oeuvre".
+	 */
 	class Defensif implements Strategy{
 
 		public String jouer(Partie partie) {
@@ -179,6 +198,10 @@ public interface Strategy {
 		    return bool;
 		}
 	}
+	
+	/**
+	 * Méthode permettant de choisir l'action du {@code Bot} selon sa main. Elle réalise les différents combinaisons de cartes possibles et choisit son action.
+	 */
 	class IA implements Strategy, Serializable {
 		
 		public Pile oeuvre = new Pile();

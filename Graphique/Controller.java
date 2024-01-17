@@ -1,6 +1,7 @@
 package Graphique;
 
 import java.awt.event.WindowEvent;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -11,6 +12,9 @@ import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
 
+/**
+ * Classe qui représente le Controller dans le modèle MVC pour l'interface graphique.
+ */
 public class Controller implements PropertyChangeListener{
 
 	private Partie model;
@@ -22,6 +26,11 @@ public class Controller implements PropertyChangeListener{
 		diffuseur.addPropertyChangeListener(pcl);
 	}
 	
+	/**
+	 * Constructeur de la classe 
+	 * @param m
+	 * @param v
+	 */
 	public Controller(Partie m, Vue v) {
 		this.model = m;
 		this.vue = v;

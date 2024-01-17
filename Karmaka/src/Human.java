@@ -50,7 +50,7 @@ public class Human extends Joueur implements Serializable{
 	}
 	
 	/**
-	 * Getter de l'attribut {@code cardToPlay}.}
+	 * Getter de l'attribut {@code cardToPlay}.
 	 * @return La carte à jouer du joueur.
 	 */
 	public Carte getCardToPlay() {
