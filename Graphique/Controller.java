@@ -23,49 +23,78 @@ public class Controller implements PropertyChangeListener{
 	private PropertyChangeSupport diffuseur;
 	private String isNewGame = null;
 	
+	/**
+	 * Méthode qui permet d'ajouter un listener/observateur à l'attribut {@code diffuseur} qui est responsable de la observabilité du Controller.
+	 * @param pcl Le listener/observateur que l'on ajoute à la liste des listeners du Controller.
+	 */
 	public void addSub(PropertyChangeListener pcl) {
 		diffuseur.addPropertyChangeListener(pcl);
 	}
 	
 	/**
 	 * Constructeur de la classe 
-	 * @param m
-	 * @param v
+	 * @param m Le modèle qui est un objet de type {@code Partie}.
+	 * @param v La vue associée avec le Controller.
 	 */
 	public Controller(Partie m, Vue v) {
 		this.model = m;
 		this.vue = v;
 		diffuseur = new PropertyChangeSupport(this);
 	}
-
+	
+	/**
+	 * Getter de l'attribut {@code model}.
+	 * @return Le modèle qui est un objet de type {@code Partie}.
+	 */
 	public Partie getModel() {
 		return model;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code model}.
+	 * @param model La partie que l'on veut attribuer au Controller.
+	 */
 	public void setModel(Partie model) {
 		this.model = model;
 		this.addSub(model);
 		this.model.addSub(this);
 	}
-
+	
+	/**
+	 * Getter de l'attribut {@code vue}.
+	 * @return La vue associée au Controller.
+	 */
 	public Vue getVue() {
 		return vue;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code vue}.
+	 * @param vue La vue que l'on veut attribuer au Controller.
+	 */
 	public void setVue(Vue vue) {
 		this.vue = vue;
 	}
 	
-	
-
+	/**
+	 * Getter de l'attribut {@code isNewGame}.
+	 * @return Un booléen qui indique si on joue une nouvelle partie.
+	 */
 	public String getIsNewGame() {
 		return isNewGame;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code isNewGame}.
+	 * @param isNewGame Le booléen qui indique si la partie est une nouvelle ou non.
+	 */
 	public void setIsNewGame(String isNewGame) {
 		this.isNewGame = isNewGame;
 	}
-
+	
+	/**
+	 * Méthode qui permet de gérer les tours d'une partie.
+	 */
 	public void controlerLaPartie() {
 		if (!isNewGame.equals("no")) {
 			model.choisirJoueur();

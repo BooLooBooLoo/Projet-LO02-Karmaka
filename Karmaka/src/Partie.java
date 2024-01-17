@@ -65,6 +65,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 		diffuseur = new PropertyChangeSupport(this);
 	}
 	
+	/**
+	 * Méthode qui permet d'ajouter un listener/observateur à l'attribut {@code diffuseur} qui est responsable de la observabilité du Model.
+	 * @param pcl Le listener/observateur que l'on ajoute à la liste des listeners du Model.
+	 */
 	public void addSub(PropertyChangeListener pcl) {
 		diffuseur.addPropertyChangeListener(pcl);
 	}

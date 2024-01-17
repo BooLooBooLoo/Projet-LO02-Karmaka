@@ -23,6 +23,9 @@ import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 
+/**
+ * Classe qui représente le panel avec les informations de la partie et les choix qu'un joueur peux réaliser.
+ */
 public class ConteneurPartie extends JPanel implements ActionListener, MouseListener{
 	
 	private List<JPanel> cards;
@@ -55,13 +58,19 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 	private JPanel transition;
 	private JButton sauvegarder;
 	
+	/**
+	 * Constructeur de la classe.
+	 * @param menu La fenêtre du jeu.
+	 */
 	public ConteneurPartie(Fenetre menu) {
 		super();
 		this.fenetre = menu;
 		propConteneurFenetre();
 	}
 	
-	
+	/**
+	 * Méthode permettant de définir le panel en fixant ses caractéristiques.
+	 */
 	private void propConteneurFenetre() {
 		cards = new ArrayList<JPanel>();
 		buttons = new ArrayList<JButton>();
@@ -91,7 +100,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		
 	}
 	
-	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche les tours.
+	 */
 	private void propTour() {
 		JLabel texte = new JLabel("Tour "+fenetre.getVue().getController().getModel().getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
 		texte.setForeground(Color.white);
@@ -99,6 +110,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(texte);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui permet de sauvegarder.
+	 */
 	private void propSauvegarder() {
 		sauvegarder = new JButton("Sauvegarder");
 		sauvegarder.setForeground(Color.white);
@@ -107,6 +121,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(sauvegarder);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant de transition entre chaque tours.
+	 */
 	private void transition() {
 		transition = new JPanel(new GridLayout(2,1));
 		JLabel texte = new JLabel("Tour "+fenetre.getVue().getController().getModel().getNbrTour()+" : "+fenetre.getVue().getController().getModel().getTour().getNom(), SwingConstants.CENTER);
@@ -123,6 +140,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		transition.addMouseListener(this);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche la source.
+	 */
 	private void propSource() {
 		source = new JPanel(new GridLayout(2,1));
 		source.setBounds(50,325,100,150);
@@ -134,10 +154,12 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		nom.setFont(new Font("Serif", Font.BOLD, 30));
 		source.add(nom);
 		source.add(nbrCartePioche);
-		
 		add(source);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche la pioche.
+	 */
 	private void propPioche() {
 		pioche = new JPanel(new GridLayout());
 		pioche.setBounds(200,600,150,70);
@@ -149,6 +171,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(pioche);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche la fosse.
+	 */
 	private void propFosse() {
 		fosse = new JPanel(new GridLayout(2,1));
 		fosse.setBounds(1050,325,100,150);
@@ -163,6 +188,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(fosse);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche la vie future.
+	 */
 	private void propVieFuture() {
 		vieFuture = new JPanel(new FlowLayout());
 		vieFuture.setBounds(50,600,100,150);
@@ -187,6 +215,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(vieFuture);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche les oeuvres.
+	 */
 	private void propOeuvre() {
 		oeuvre = new JPanel(new FlowLayout());
 		oeuvre.setBounds(1050,600,100,150);
@@ -214,6 +245,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(oeuvre);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche la pioche.
+	 */
 	private void propVieFutureAdverse() {
 		vieFutureAdverse = new JPanel(new FlowLayout());
 		vieFutureAdverse.setBounds(50,50,100,150);
@@ -238,6 +272,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(vieFutureAdverse);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche les oeuvres adverses.
+	 */
 	private void propOeuvreAdverse() {
 		oeuvreAdverse = new JPanel(new FlowLayout());
 		oeuvreAdverse.setBounds(1050,50,100,150);
@@ -263,6 +300,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(oeuvreAdverse);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui permet de "zoomer" sur la carte lorsqu'elle est sélectionnée.
+	 */
 	private void propZoomCard() {
 		GridLayout layout = new GridLayout(4,1);
 		layout.setHgap(30);
@@ -305,6 +345,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		choix.setVisible(false);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche les cartes du joueurs.
+	 */
 	private void propCards() {
 		Joueur tour = fenetre.getVue().getController().getModel().getTour();
 		JPanel cardPanel = new JPanel(new GridLayout());
@@ -372,6 +415,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(cardPanel);
 	}
 	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche l'échelle.
+	 */
 	private void propEchelle() {
 		JPanel echelle = new JPanel();
 		echelle.setLayout(null);
@@ -499,7 +545,9 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/**
+	 * Méthode qui permet de créer le composant qui affiche l'effet de la carte quand elle est jouée.
+	 */
 	public void instantiateContainer(String cardName) {
 		switch (cardName) {
 			case "Bassesse":
@@ -578,7 +626,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		add(power);
 		power.setVisible(true);
 	}
-
+	
 	public void paintComponent(Graphics g) {
         Image backgroundImage = new ImageIcon("./assets/Karmaka_Background.jpg").getImage();
         g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);

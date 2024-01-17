@@ -9,10 +9,16 @@ import javax.swing.filechooser.FileSystemView;
 
 import Karmaka.src.Partie;
 
+/**
+ * Classe qui représente la fenêtre qui permet d'importer une partie.
+ */
 public class ConteneurImport extends JFileChooser {
 	
 	private Fenetre fenetre;
-	
+	/**
+	 * Constructeur de la classe.
+	 * @param fenetre La fenêtre principale qui contient le jeu.
+	 */
 	public ConteneurImport(Fenetre fenetre) {
 		super(Paths.get("").toAbsolutePath().toString());
 		this.fenetre = fenetre;
