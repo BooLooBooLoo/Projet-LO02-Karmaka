@@ -40,10 +40,7 @@ public class ConteneurMenu extends JPanel implements ActionListener{
 	}
 	
 	private void propBoutons() {
-		System.out.println(index);
-		System.out.println("IN");
 		double size = 600/((double)index);
-		System.out.println("size : "+size);
 		double buttonSize = size;
 		for (int j = 0; j < index; j++) {
 			JButton bouton = new JButton();
