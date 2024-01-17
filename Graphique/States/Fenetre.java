@@ -85,7 +85,6 @@ public class Fenetre extends JFrame {
 	}
 	
 	public void render() {	
-		System.out.println(currentPanel);
 		this.setContentPane(currentPanel);
 		this.revalidate();
 	}

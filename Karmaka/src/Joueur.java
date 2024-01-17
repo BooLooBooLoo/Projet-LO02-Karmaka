@@ -151,7 +151,9 @@ public abstract class Joueur implements Serializable {
      * @param anneaux Les anneaux du joueur.
      */
 	public void setAnneaux(int value){
-        anneaux = value;
+		if (value > 0) {
+			anneaux = value;
+		}
     }
 
 	/**

@@ -162,7 +162,7 @@ public class ConteneurIncarnation extends JPanel implements ActionListener{
 			case "Incarnation":
 				copyPanel = new ConteneurIncarnation(fenetre, bait);
 				break;
-			case "Jubile":
+			case "Jubilé":
 				copyPanel = new ConteneurJubile(fenetre, bait);
 				break;
 			case "Lendemain":

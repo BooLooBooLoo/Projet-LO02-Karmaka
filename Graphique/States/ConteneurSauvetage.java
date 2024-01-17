@@ -34,11 +34,9 @@ public class ConteneurSauvetage extends JPanel implements ActionListener{
 	public void propSauvetage() {
 		JLabel etiquette = new JLabel("Sauvetage\n", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette.setForeground(Color.white);
 		add(etiquette);
 		JLabel etiquette2 = new JLabel("Ajouter une des 3 dernières cartes de la fosse dans votre main :\n", SwingConstants.LEFT);
 		etiquette2.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette2.setForeground(Color.white);
 		add(etiquette2);
 		Pile fosse = fenetre.getVue().getController().getModel().getDefausse();
 		double size = 200;
@@ -94,7 +92,7 @@ public class ConteneurSauvetage extends JPanel implements ActionListener{
 				if (e.getSource().equals(button)) {
 					int index = buttons.indexOf(button);
 					cardPlayed.setActions(new ArrayList<String>());
-					cardPlayed.getActions().add(fosse.getCartes().get(index).getNom());
+					cardPlayed.getActions().add(fosse.getCartes().get(fosse.getCartes().size()-(1+index)).getNom());
 				}
 			}
 		}

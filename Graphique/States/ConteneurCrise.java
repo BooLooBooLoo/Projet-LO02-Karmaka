@@ -37,7 +37,7 @@ public class ConteneurCrise extends JPanel implements ActionListener{
 		JLabel etiquette = new JLabel("Crise");
 		etiquette.setBounds(350,0,100,50);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette.setForeground(Color.white);
+		etiquette.setForeground(Color.black);
 		add(etiquette);
 		Joueur adversaire = fenetre.getVue().getController().getModel().getAdversaire();
 		double size = 800/(adversaire.getOeuvre().getCartes().size()+1);

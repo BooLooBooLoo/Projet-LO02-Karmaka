@@ -8,6 +8,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 import Graphique.States.ConteneurCoutKarmique;
+import Graphique.States.ConteneurGagnant;
 import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
@@ -66,15 +67,14 @@ public class Controller implements PropertyChangeListener{
 	}
 
 	public void controlerLaPartie() {
-		System.out.println("Begin controlerLaPartie");
-		model.choisirJoueur();
-		System.out.println("OUT choisir joueur");
-		model.getTour().piocher();
-		System.out.println("OUT piocher");
+		if (!isNewGame.equals("no")) {
+			model.choisirJoueur();
+			model.getTour().piocher();
+		} else {
+			isNewGame = "done";
+		}
 		this.vue.getFenetre().publish(new ConteneurPartie(vue.getFenetre()));
-		System.out.println("OUT publish partie");
 		model.tourDeJeu(model.getTour());
-		System.out.println("OUT tourDeJeu");
 		model.refillSource();
 		
 		if (!model.getWin()) {
@@ -86,8 +86,10 @@ public class Controller implements PropertyChangeListener{
 			}
 			controlerLaPartie();
 		} else {
-			vue.getFenetre().dispatchEvent(new WindowEvent(vue.getFenetre(), WindowEvent.WINDOW_CLOSING));
+			vue.publish(new ConteneurGagnant(vue.getFenetre()));
+			
 		}
+		
 	}
 	
 	@Override
