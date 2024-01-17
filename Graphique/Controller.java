@@ -7,6 +7,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 import Graphique.States.ConteneurCoutKarmique;
+import Graphique.States.ConteneurGagnant;
 import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
 import Karmaka.src.*;
@@ -76,7 +77,8 @@ public class Controller implements PropertyChangeListener{
 			}
 			controlerLaPartie();
 		} else {
-			vue.getFenetre().dispatchEvent(new WindowEvent(vue.getFenetre(), WindowEvent.WINDOW_CLOSING));
+			vue.publish(new ConteneurGagnant(vue.getFenetre()));
+			
 		}
 		
 	}

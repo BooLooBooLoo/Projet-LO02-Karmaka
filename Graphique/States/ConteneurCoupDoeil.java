@@ -61,7 +61,7 @@ public class ConteneurCoupDoeil extends JPanel implements ActionListener{
 			JLabel name = new JLabel(tour.getMain().getCartes().get(i).getCout()+" "+tour.getMain().getCartes().get(i).getNom());
 			name.setFont(new Font("Serif", Font.BOLD, 20));
 			card.add(name);
-			JLabel desc = new JLabel(tour.getMain().getCartes().get(i).getDescription());
+			JLabel desc = new JLabel();
 			card.add(desc);
 			cards.add(card);
 		}

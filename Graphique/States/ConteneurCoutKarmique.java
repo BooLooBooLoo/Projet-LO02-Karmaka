@@ -34,7 +34,7 @@ public class ConteneurCoutKarmique extends JPanel implements ActionListener{
 	}
 	
 	public void propPouvoir() {
-		JLabel etiquette = new JLabel("Voulez vous récuperer la carte : "+cardPlayed.getNom(), SwingConstants.CENTER);
+		JLabel etiquette = new JLabel(fenetre.getVue().getController().getModel().getAdversaire().getNom()+", Voulez vous récuperer la carte : "+cardPlayed.getNom(), SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
 		add(etiquette);
 		button = new JButton("Oui");

@@ -33,16 +33,14 @@ public class ConteneurTransmigration extends JPanel implements ActionListener{
 	public void propVoyage() {
 		JLabel etiquette = new JLabel("Transmigration\n", SwingConstants.CENTER);
 		etiquette.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette.setForeground(Color.white);
 		add(etiquette);
 		JLabel etiquette2 = new JLabel("Choisir une carte de votre vie future à ajouter dans votre main.", SwingConstants.LEFT);
 		etiquette2.setFont(new Font("Serif",Font.BOLD,30));
-		etiquette2.setForeground(Color.white);
 		add(etiquette2);
 		Joueur joueur = fenetre.getVue().getController().getModel().getTour();
 		double size = 200;
 		if (joueur.getVieFuture().getCartes().size() == 0) {
-			JLabel texte = new JLabel("Il n'y a pas de carte dans la main adverse");
+			JLabel texte = new JLabel("Il n'y a pas de carte dans votre vie future");
 			add(texte);
 			skip = new JButton("Continuer");
 			skip.addActionListener(this);

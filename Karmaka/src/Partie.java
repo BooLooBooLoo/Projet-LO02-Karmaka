@@ -347,7 +347,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 			reincarnation(joueur);
 		} else {
 			if (joueur instanceof Human) {
-				System.out.println("IN while");
 				while (!cardPlayed) {
 					try {
 						Thread.sleep(10);
@@ -356,7 +355,6 @@ public class Partie implements Serializable, PropertyChangeListener{
 						e.printStackTrace();
 					}
 				}
-				System.out.println("OUT while");
 				temp = joueur.jouer(this);
 				cardPlayed = false;	
 			} else {
@@ -421,13 +419,13 @@ public class Partie implements Serializable, PropertyChangeListener{
 	 * Méthode permettant de regénérer la source à partir de la défausse.
 	 */
 	public void refillSource() {
-		if (source.getCartes().size() <= 3) {
+		if (source.getCartes().size() <= 6) {
 			Collections.shuffle(defausse.getCartes());
 			for (int i = 0; i < defausse.getCartes().size() - 3; i++) {
 				source.addCarte(defausse.getCartes().get(0));
 				defausse.removeCarte(defausse.getCartes().get(0));
-				
 			}
+			Collections.shuffle(source.getCartes());
 		}
 	}
 	
@@ -451,6 +449,9 @@ public class Partie implements Serializable, PropertyChangeListener{
 		switch (joueur.getEchelleKarmique()) {
 		case BOUSIER :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 4) {
+				if (joueur.getOeuvre().compterPoint() < 4) {
+					joueur.setAnneaux(joueur.getAnneaux() - 4 + joueur.getOeuvre().compterPoint());
+				}
 				joueur.setEchelleKarmique(Echelle.SERPENT);
 				System.out.println("Vous vous êtes réincarné en serpent");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
@@ -488,6 +489,9 @@ public class Partie implements Serializable, PropertyChangeListener{
 			break;
 		case SERPENT :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 5) {
+				if (joueur.getOeuvre().compterPoint() < 5) {
+					joueur.setAnneaux(joueur.getAnneaux() - 5 + joueur.getOeuvre().compterPoint());
+				}
 				joueur.setEchelleKarmique(Echelle.LOUP);
 				System.out.println("Vous vous êtes réincarné en loup");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
@@ -525,6 +529,9 @@ public class Partie implements Serializable, PropertyChangeListener{
 			break;
 		case LOUP :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 6) {
+				if (joueur.getOeuvre().compterPoint() < 6) {
+					joueur.setAnneaux(joueur.getAnneaux() - 6 + joueur.getOeuvre().compterPoint());
+				}
 				joueur.setEchelleKarmique(Echelle.SINGE);
 				System.out.println("Vous vous êtes réincarné en serpent");
 				for (int i = 0; i < joueur.getOeuvre().getCartes().size(); i++) {
@@ -562,6 +569,9 @@ public class Partie implements Serializable, PropertyChangeListener{
 			break;
 		case SINGE :
 			if (joueur.getAnneaux() + joueur.getOeuvre().compterPoint() >= 7) {
+				if (joueur.getOeuvre().compterPoint() < 7) {
+					joueur.setAnneaux(joueur.getAnneaux() - 7 + joueur.getOeuvre().compterPoint());
+				}
 				this.setWin(true);
 				System.out.println("Vous avez atteint la transcendance");
 				System.out.println(joueur.getNom() + " a gagné cette partie !");
@@ -657,12 +667,10 @@ public class Partie implements Serializable, PropertyChangeListener{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println("IN propertyChange partie");
 		if (tour instanceof Human && !evt.getOldValue().equals("Rejouer")) {
 			((Human) tour).setAction(evt.getPropertyName());
 			((Human) tour).setCardToPlay((Carte) evt.getNewValue());
 			cardPlayed = true;
-			System.out.println("cardPlayed true");
 		} else if (tour instanceof Human && evt.getOldValue().equals("Rejouer")) {
 			((Human) tour).setActionRejouer(evt.getPropertyName());
 			((Human) tour).setcTPRejouer((Carte) evt.getNewValue());
