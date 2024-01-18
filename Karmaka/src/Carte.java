@@ -17,10 +17,18 @@ public abstract class Carte implements Serializable{
     protected boolean rejouable;
     protected List<String> actions = null;
     
+    /**
+     * Getter de l'attribut {@code actions}
+     * @return La liste des actions.
+     */
     public List<String> getActions() {
 		return actions;
 	}
 
+    /**
+     * Setter de l'attribut {@code actions}
+     * @param actions La liste des actions.
+     */
 	public void setActions(List<String> actions) {
 		this.actions = actions;
 	}
@@ -41,6 +49,10 @@ public abstract class Carte implements Serializable{
     	this.rejouable = false;
     }
     
+	/**
+	 * Méthode qui permet d'attendre l'action d'un joueur Humain.
+	 * @param partie La partie jouée en cours.
+	 */
 	public void wait(Partie partie) {
 		if (partie.getTour() instanceof Human) {
 			while(actions == null) {

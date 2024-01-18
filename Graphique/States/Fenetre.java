@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 
 import Graphique.Vue;
 
+/**
+ * Classe qui représente et caractérise la fenêtre de l'interface graphique.
+ */
 public class Fenetre extends JFrame {
 	
 	private Container currentPanel;
@@ -18,22 +21,42 @@ public class Fenetre extends JFrame {
 	private String[] joueurs = null;
 	private String importPartie;
 	
+	/**
+	 * Getter de l'attribut {@code joueurs}.
+	 * @return La liste des joueurs de la partie.
+	 */
 	public String[] getJoueurs() {
 		return joueurs;
 	}
 
+	/**
+	 * Setter de l'attribut {@code joueurs}.
+	 * @param joueurs La liste des joueurs de la partie.
+	 */
 	public void setJoueurs(String[] joueurs) {
 		this.joueurs = joueurs;
 	}
-
+	
+	/**
+	 * Getter de l'attribut {@code currentPanel}.
+	 * @return Le panel actif sur l'interface graphique.
+	 */
 	public Container getPanel() {
 		return currentPanel;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code currentPanel}.
+	 * @return Le panel à afficher sur l'interface graphique.
+	 */
 	public void setPanel(Container panel) {
 		this.currentPanel = panel;
 	}
 
+	/**
+	 * Constructeur de la classe.
+	 * @param vue La vue à associer à la fenêtre.
+	 */
 	public Fenetre(Vue vue) {
 		super();
 		this.setImportPartie(null);
@@ -42,6 +65,9 @@ public class Fenetre extends JFrame {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Méthode qui permet de définir la fenêtre.
+	 */
 	private void propFenetre() {
 		try {
 			   GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -62,29 +88,52 @@ public class Fenetre extends JFrame {
 		this.setContentPane(this.currentPanel);
 	}
 	
+	/**
+	 * Getter de l'attribut {@code vue}.
+	 * @return La vue assoiciée à la fenêtre.
+	 */
 	public Vue getVue() {
 		return vue;
 	}
-
+	
+	/**
+	 * Setter de l'attribut {@code vue}.
+	 * @param vue La vue à associer.
+	 */
 	public void setVue(Vue vue) {
 		this.vue = vue;
 	}
-
+	
+	/**
+	 * Méthode permettant de réactualiser graphiquement la fenêtre lors du changement de panel.
+	 * @param panel Le nouveau panel de la fenêtre.
+	 */
 	public void publish(Container panel) {
 		setPanel(panel);
 		this.getContentPane().repaint();
 		render();
 	}
 	
+	/**
+	 * Méthode permettant de réactualiser graphiquement la fênetre lors du changement de panel.
+	 */
 	public void render() {	
 		this.setContentPane(currentPanel);
 		this.revalidate();
 	}
-
+	
+	/**
+	 * Getter de l'attribut {@code importPartie}
+	 * @return La partie importée.
+	 */
 	public String getImportPartie() {
 		return importPartie;
 	}
 
+	/**
+	 * Setter de l'attribut {@code importPartie}.
+	 * @param importPartie La partie à importer.
+	 */
 	public void setImportPartie(String importPartie) {
 		this.importPartie = importPartie;
 	}

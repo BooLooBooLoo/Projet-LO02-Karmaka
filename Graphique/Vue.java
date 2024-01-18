@@ -30,15 +30,26 @@ public class Vue{
 		return fenetre;
 	}
 
+	/**
+	 * Méthode qui permet d'ajouter un listener/observateur à l'attribut {@code diffuseur} qui est responsable de la observabilité du la Vue.
+	 * @param pcl Le listener/observateur que l'on ajoute à la liste des listeners de la Vue.
+	 */
 	public void addSub(PropertyChangeListener pcl) {
 		diffuseur.addPropertyChangeListener(pcl);
 	}
-
-
+	
+	/**
+	 * Getter de l'attribut {@code diffuseur}.
+	 * @return Le diffuseur/observable de l'objet.
+	 */
 	public PropertyChangeSupport getDiffuseur() {
 		return diffuseur;
 	}
 
+	/**
+	 * Setter de l'attribut {@code diffuseur}.
+	 * param diffuseur Le diffuseur/observable à attribuer à l'objet.
+	 */
 	public void setDiffuseur(PropertyChangeSupport diffuseur) {
 		this.diffuseur = diffuseur;
 	}
