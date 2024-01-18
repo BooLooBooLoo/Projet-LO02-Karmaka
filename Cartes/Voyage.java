@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Human;
@@ -28,11 +26,10 @@ public class Voyage extends Carte{
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		this.setActions(null); // Pour régler le probleme des choix :)
+		this.setActions(null);
 	}
 }

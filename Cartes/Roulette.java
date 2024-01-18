@@ -5,7 +5,6 @@ import java.util.Scanner;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Human;
-import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
 
@@ -19,7 +18,6 @@ public class Roulette extends Carte{
 		// Déclaration des variables utilisés dans cette classe
 		Pile defausse = partie.getDefausse();
 		Pile main = partie.getTour().getMain();
-		Scanner sc = new Scanner(System.in);
 		int nbCarteDefausse = 0;
 		// Effet de la carte
 		wait(partie);
@@ -57,7 +55,7 @@ public class Roulette extends Carte{
 			int randomNumber = (int) (Math.random()*partie.getSource().getCartes().size()-1);
 			partie.deplacerCarte(partie.getSource(), main, partie.getSource().getCartes().get(randomNumber));
 		}
-		this.setActions(null); // Pour régler le probleme des choix
+		this.setActions(null); 
 	}
 	
 }

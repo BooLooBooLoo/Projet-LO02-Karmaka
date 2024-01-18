@@ -1,17 +1,24 @@
 package Graphique.States;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
-
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -21,14 +28,13 @@ import Graphique.ImagePanel;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
-import Karmaka.src.Partie;
 
 public class ConteneurRejouer extends JPanel implements ActionListener, MouseListener{
 	
 	private List<JPanel> cards;
 	
 	//Variables pour la main
-	private ImagePanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
+	private ImagePanel zoomCard; private JLabel name,cout; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
 	
 	//Variables pour la source
 	private JPanel source;
@@ -260,7 +266,7 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 		choix = new JPanel(layout);
 		zoomCard = new ImagePanel(null);
 		JPanel top = new JPanel(new FlowLayout());
-		top.setOpaque(false);
+		choix.setOpaque(false);
 		zoomCard.setBounds(400,250,200,300);
 		choix.setBounds(610,250,200,300);
 		JButton passer = new JButton("Passer");
@@ -276,7 +282,7 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 		name = new JLabel();
 		cout = new JLabel();
 		cout.setFont(new Font("Serif", Font.BOLD, 20));
-		desc = new JLabel();
+		new JLabel();
 		top.add(cout);
 		top.add(name);
 		
@@ -350,7 +356,6 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 			name.setFont(new Font("Vinque Rg", Font.PLAIN, 14));
 			JLabel cout = new JLabel(""+tour.getMain().getCartes().get(i).getCout());
 			cout.setFont(new Font("Serif", Font.BOLD, 20));
-			//cout.setForeground(Color.white);
 			cards.add(card);
 			card.addMouseListener(this);
 			card.add(cout);
@@ -445,7 +450,7 @@ public class ConteneurRejouer extends JPanel implements ActionListener, MouseLis
 						zoomCard.setBackground(new Color(72,209,204));
 						break;
 				}
-				boolean visible = (name.getText() != tour.getMain().getCartes().get(index).getNom() || !zoomCard.isVisible());
+				boolean visible = !zoomCard.isVisible();
 				zoomCard.setImg(new ImageIcon("./assets/" + tour.getMain().getCartes().get(index).getNom() + ".png").getImage());
 				zoomCard.repaint();
 				zoomCard.setVisible(visible);

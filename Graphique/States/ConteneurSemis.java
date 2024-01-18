@@ -8,7 +8,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
@@ -33,7 +38,7 @@ public class ConteneurSemis extends JPanel implements ActionListener{
 	}
 	
 	public void propSemis() {
-		// Jouer la premère partie de l'effet de la carte :
+		// Jouer la premère partie de l'effet de la carte
 		Partie partie = fenetre.getVue().getController().getModel();
 		Joueur joueur = partie.getTour();
 		Pile main = joueur.getMain();

@@ -1,17 +1,16 @@
 package Graphique;
 
-import java.awt.event.WindowEvent;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.Serializable;
 
 import Graphique.States.ConteneurCoutKarmique;
 import Graphique.States.ConteneurGagnant;
 import Graphique.States.ConteneurPartie;
 import Graphique.States.Fenetre;
-import Karmaka.src.*;
+import Karmaka.src.Carte;
+import Karmaka.src.Human;
+import Karmaka.src.Partie;
 
 /**
  * Classe qui représente le Controller dans le modèle MVC pour l'interface graphique.

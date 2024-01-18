@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
@@ -23,7 +21,6 @@ public class Vengeance extends Carte{
 		// Check si on peut voler
 		if(oeuvreAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à voler. Veuillez jouer une autre carte.");
-			// partie.getTour().jouer(partie);
 		}
 		else {
 			// Effet de la carte
@@ -34,6 +31,6 @@ public class Vengeance extends Carte{
 			partie.deplacerCarte(oeuvreAdverse, defausse, carteDefausse);
 			}
 			wait(partie);
-			this.setActions(null); // Pour régler le probleme des choix :)
+			this.setActions(null);
 		}
 }

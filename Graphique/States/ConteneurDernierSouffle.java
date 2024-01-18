@@ -7,7 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Joueur;
@@ -62,7 +66,6 @@ public class ConteneurDernierSouffle extends JPanel implements ActionListener{
 		if (e.getSource().equals(skip)) {
 			cardPlayed.setActions(new ArrayList<String>());
 		} else if (field.getText() != null && Integer.parseInt(field.getText()) <= fenetre.getVue().getController().getModel().getAdversaire().getMain().getCartes().size()-1 && Integer.parseInt(field.getText()) > 0) {
-			System.out.println("IN");
 			cardPlayed.setActions(new ArrayList<String>());
 			cardPlayed.getActions().add(field.getText());
 		}

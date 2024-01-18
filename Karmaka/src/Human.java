@@ -87,11 +87,9 @@ public class Human extends Joueur implements Serializable{
 	 * @return Un string qui permet de vérifier le bon fonctionnement du jeu.
 	 */
 	public String jouer(Partie partie) {
-		System.out.println("IN Jouer");
 		String bool = new String();
 
 		Carte temp = cardToPlay;
-		//myObj.close();
 		bool = null;
 	    if (action.equals("Passer")) {
 	    	if (getPile().getCartes().size() > 0) {
@@ -134,14 +132,13 @@ public class Human extends Joueur implements Serializable{
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}	
 		String bool = new String();
 		String action = new String();
 
-	    action  = actionRejouer;  // Read user input
+	    action  = actionRejouer; 
 	    Carte temp = cTPRejouer;
 		bool = null;
 	    if (action.equals("Passer")) {
@@ -183,8 +180,9 @@ public class Human extends Joueur implements Serializable{
 	public Carte choisirCarte() {
 		Carte carteAJouer = null;
 		String action = new String();
-		Scanner myObj = new Scanner(System.in);
-		action  = myObj.nextLine();
+		try (Scanner myObj = new Scanner(System.in)) {
+			action  = myObj.nextLine();
+		}
 		for (int i = 0; i < getMain().getCartes().size(); i++) {
 			if (action.equals(getMain().getCartes().get(i).getNom())) {
 				carteAJouer = getMain().getCartes().get(i);
@@ -203,11 +201,9 @@ public class Human extends Joueur implements Serializable{
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		//myObj.close();
 		if (actionCK.equals("Y")) {
 			partie.getAdversaire().getVieFuture().addCarte(carte);
 		}else if (actionCK.equals("N")) {

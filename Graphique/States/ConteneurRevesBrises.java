@@ -5,19 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Karmaka.src.Carte;
 
 public class ConteneurRevesBrises extends JPanel implements ActionListener{
 
-	private Fenetre fenetre;
 	private Carte cardPlayed;
 	
 	public ConteneurRevesBrises(Fenetre menu, Carte carte) {
 		super();
-		this.fenetre = menu;
 		this.cardPlayed = carte;
 		propVoyage();
 		this.setBounds(200,150,800,400);

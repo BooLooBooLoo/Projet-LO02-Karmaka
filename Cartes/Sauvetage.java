@@ -23,7 +23,6 @@ public class Sauvetage extends Carte{
 		if (partie.getDefausse().getCartes().size() > 0) {
 			Pile main = partie.getTour().getMain();
 			Pile defausse = partie.getDefausse();
-			Scanner sc = new Scanner(System.in);
 			// Syso et Scan 
 			System.out.println("Dernières Cartes de la Fosse :");
 			for(int i= 0; i< loop; i++) {
@@ -58,6 +57,6 @@ public class Sauvetage extends Carte{
 		} else {
 			System.out.println("Il n'y a pas de carte dans la Fosse...Dommage");
 		}
-		this.setActions(null); // Pour régler le probleme des choix
+		this.setActions(null);
 	}
 }

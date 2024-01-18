@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
@@ -27,7 +25,6 @@ public class Jubile extends Carte{
 			if(i>main.getCartes().size()) {
 				break;
 			}
-			//System.out.println(Main.getCartes().get(i).getNom());
 		}
 		int nbCarte = 0;
 		if (partie.getTour() instanceof Human) {
@@ -39,7 +36,6 @@ public class Jubile extends Carte{
 		} else {
 			nbCarte = (int) Math.floor(Math.random()*2);
 		}
-		System.out.println("IN Jubilé");
 		for(int i=0; i<nbCarte; i++) {
 			System.out.println(i);
 			String carteSelect = "";
@@ -57,7 +53,6 @@ public class Jubile extends Carte{
 			int indiceCarteSelect = -1;
 			for(int j=0; j<main.getCartes().size(); j++) {
 				if(main.getCartes().get(j).getNom().equals(carteSelect)) {
-					System.out.println("IN check carte");
 					indiceCarteSelect = j;
 					break;
 				}

@@ -15,18 +15,16 @@ public class Panique extends Carte{
 		super.rejouable = true;
 	}
 
-	@Override
 	public void effet(Partie partie) {
 		wait(partie);
 		// Déclaration des variables utilisés dans cette classe
 		Joueur adversaire = partie.getAdversaire();
 		Pile pileAdverse = adversaire.getPile();
 		Pile defausse = partie.getDefausse();
-		Scanner sc = new Scanner(System.in);
+
 		// Check si on peut voler
 		if(pileAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à défausser. Veuillez jouer une autre carte.");
-			// partie.getTour().jouer(partie);
 		}
 		else {
 			// Effet de la carte

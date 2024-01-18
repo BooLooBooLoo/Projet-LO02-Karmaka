@@ -2,17 +2,18 @@ package Graphique.States;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import Cartes.Incarnation;
 import Karmaka.src.Carte;
-import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
 import Karmaka.src.Oeuvre;
 

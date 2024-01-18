@@ -8,7 +8,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
@@ -95,7 +100,6 @@ public class ConteneurJubile extends JPanel implements ActionListener{
 			for (JCheckBox check : checkbox) {
 				if (check.isSelected()) {
 					counter++;
-					System.out.println("Add CARTE : "+main.getCartes().get(checkbox.indexOf(check)).getNom());
 					actions.add(main.getCartes().get(checkbox.indexOf(check)).getNom());
 				}
 			}

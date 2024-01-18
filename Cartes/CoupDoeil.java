@@ -2,7 +2,6 @@ package Cartes;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
-import Karmaka.src.Human;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;

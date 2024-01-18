@@ -12,7 +12,7 @@ import Karmaka.src.Pile;
 public class Transmigration extends Carte{
 	
 	public Transmigration() {
-		super("Transmigration",1,Couleur.BLEU,"Placez dans votre Main n’importe quelle carte de votre Vie Future.");
+		super("Transmigration",1,Couleur.BLEU,"description");
 	}
 
 	@Override
@@ -23,13 +23,11 @@ public class Transmigration extends Carte{
 		Pile main = partie.getTour().getMain();
 		wait(partie);
 		if (vieFuture.getCartes().size() != 0) {
-			Scanner sc = new Scanner(System.in);
-			// Syso et Scan 
+
 			System.out.println("Cartes dans la Vie Future :");
 			vieFuture.toString();
 			System.out.println("Choisir une carte à placer dans votre main.");
 			if (partie.getTour() instanceof Human) {
-				// carteSelect = sc.nextLine();
 				carteSelect = actions.get(0);
 			} else if (partie.getTour() instanceof Bot) {
 				carteSelect = vieFuture.getCartes().get(((Bot) partie.getTour()).choisir(vieFuture.getCartes().size())).getNom();
@@ -53,7 +51,7 @@ public class Transmigration extends Carte{
 		} else {
 			System.out.println("Il n'y a pas de carte dans la vie future...");
 		}
-		this.setActions(null); // Pour régler le probleme des choix :)
+		this.setActions(null); 
 	}
 		
 }

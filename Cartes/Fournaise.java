@@ -16,12 +16,10 @@ public class Fournaise extends Carte{
 		// Déclaration des variables utilisés dans cette classe
 		Joueur adversaire = partie.getAdversaire();
 		Pile vieFutureAdverse = adversaire.getOeuvre();
-		Pile main = partie.getTour().getMain();
 		Pile defausse = partie.getDefausse();
 		// Check si on peut voler
 		if(vieFutureAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à défausser. Veuillez jouer une autre carte.");
-			// partie.getTour().jouer(partie);
 		}
 		else {
 			// Effet de la carte

@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import Cartes.Incarnation;
 import Karmaka.src.Carte;
@@ -24,8 +28,6 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 	private JPanel copyPanel; 
 	private Carte bait = new Incarnation(); 
 	private Carte card;
-	private boolean one = false;
-	
 	private JButton skip;
 	private List<JButton> buttons = new ArrayList<JButton>();
 	
@@ -120,11 +122,8 @@ public class ConteneurDeni extends JPanel implements ActionListener{
 				if (e.getSource().equals(button) && !(fenetre.getVue().getController().getModel().getTour().getMain().getCartes().get(buttons.indexOf(button)).getNom().equals("Déni"))) {
 					int index = buttons.indexOf(button);
 					card = fenetre.getVue().getController().getModel().getTour().getMain().getCartes().get(index);
-					/*cardPlayed.setActions(new ArrayList<String>());
-					cardPlayed.getActions().add(fenetre.getVue().getController().getModel().getAdversaire().getOeuvre().getCartes().get(index).getNom());*/
 					container.setVisible(false);
 					instantiateContainer(card.getNom());
-					//this.setVisible(false);
 				}
 			}
 		}

@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
@@ -32,6 +30,6 @@ public class Vol extends Carte{
 					partie.deplacerCarte(oeuvreAdverse, main, oeuvreAdverse.getCartes().get(oeuvreAdverse.getCartes().size()-1));
 				}
 				wait(partie);
-				this.setActions(null); // Pour régler le probleme des choix :)
+				this.setActions(null);
 	}
 }

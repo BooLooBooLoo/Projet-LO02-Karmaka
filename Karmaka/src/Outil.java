@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import Cartes.*;
-
 /**
  * La classe {@code Outil} permet de stocker des fonctions un peu générales.
  */

@@ -13,10 +13,30 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
-import Cartes.*;
-import Graphique.Controller;
+import Cartes.Bassesse;
+import Cartes.CoupDoeil;
+import Cartes.Crise;
+import Cartes.Deni;
+import Cartes.DernierSouffle;
+import Cartes.Destinee;
+import Cartes.Duperie;
+import Cartes.Fournaise;
+import Cartes.Incarnation;
+import Cartes.Jubile;
+import Cartes.Lendemain;
+import Cartes.Longevite;
+import Cartes.Mimetisme;
+import Cartes.Panique;
+import Cartes.Recyclage;
+import Cartes.RevesBrises;
+import Cartes.Roulette;
+import Cartes.Sauvetage;
+import Cartes.Semis;
+import Cartes.Transmigration;
+import Cartes.Vengeance;
+import Cartes.Vol;
+import Cartes.Voyage;
 
 /**
  * La classe {@code Partie} représente une session de jeu du jeu de cartes "Karmaka".
@@ -292,9 +312,7 @@ public class Partie implements Serializable, PropertyChangeListener{
 		for (int i = 0; i < 5; i++) {
 			source.addCarte(carte9);
 		}
-		//Ajouter les cartes à la source
-		
-		
+
 		//Mélanger les cartes
 		List<Carte> cartes = source.getCartes();
 		Collections.shuffle(cartes);

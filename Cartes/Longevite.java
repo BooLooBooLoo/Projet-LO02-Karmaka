@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Human;
@@ -21,13 +19,10 @@ public class Longevite extends Carte{
 		Pile pileAdverse = adversaire.getPile();
 		Pile pile = partie.getTour().getPile();
 		Pile source = partie.getSource();
-		Pile main = partie.getTour().getMain();
-		
 		wait(partie);
 		// Check si on peut piocher dans la source
 		if(partie.getSource().getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à piocher. Veuillez jouer une autre carte.");
-			// partie.getTour().jouer(partie);
 		}
 		else {
 			// Effet de la carte
@@ -57,7 +52,6 @@ public class Longevite extends Carte{
 					break;
 				case "Adversaire" :
 					for(int i=0; i<2; i++) {
-						// Pioche Carte + syso
 						Carte cartePioche = source.getCartes().get(source.getCartes().size()-1);
 						System.out.println("On pioche la carte : " + cartePioche.getNom());
 						// Modification objet "partie"

@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import Cartes.Incarnation;
 import Karmaka.src.Carte;
@@ -122,11 +126,8 @@ public class ConteneurIncarnation extends JPanel implements ActionListener{
 				if (e.getSource().equals(button)) {
 					int index = buttons.indexOf(button);
 					card = fenetre.getVue().getController().getModel().getTour().getOeuvre().getCartes().get(index);
-					/*cardPlayed.setActions(new ArrayList<String>());
-					cardPlayed.getActions().add(fenetre.getVue().getController().getModel().getAdversaire().getOeuvre().getCartes().get(index).getNom());*/
 					container.setVisible(false);
 					instantiateContainer(card.getNom());
-					//this.setVisible(false);
 				}
 			}
 		}

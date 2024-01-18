@@ -2,7 +2,6 @@ package Cartes;
 
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
-import Karmaka.src.Human;
 import Karmaka.src.Joueur;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
@@ -21,7 +20,6 @@ public class Bassesse extends Carte{
 		// Check si on peut voler
 		if(mainAdverse.getCartes().isEmpty()) {
 			System.out.println("Il n'y a pas de carte à défausser. Veuillez jouer une autre carte.");
-			// partie.getTour().jouer(partie);
 		}
 		else {
 			// Effet de la carte

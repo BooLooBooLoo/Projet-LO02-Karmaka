@@ -15,7 +15,7 @@ public class Lendemain extends Carte{
 	public void effet(Partie partie) {
 		// Déclaration des variables utilisés dans cette classe
 		Pile main = partie.getTour().getMain();
-		// Syso et Scan 
+
 		System.out.println("Vous piochez une carte de la source.");
 		main.addCarte(partie.getSource().getCartes().get(0));
 		partie.getSource().removeCarte(partie.getSource().getCartes().get(0));

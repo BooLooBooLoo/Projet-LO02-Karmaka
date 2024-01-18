@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Human;

@@ -2,7 +2,10 @@ package Karmaka.src;
 
 import java.io.Serializable;
 
-import Karmaka.src.Strategy.*;
+import Karmaka.src.Strategy.Aggressif;
+import Karmaka.src.Strategy.Defensif;
+import Karmaka.src.Strategy.IA;
+import Karmaka.src.Strategy.Neutre;
 /**
  * La classe Bot est une classe qui hérite de Joueur et représente un Bot.
  */
@@ -31,7 +34,6 @@ public class Bot extends Joueur implements Serializable{
 			strat = new IA();
 			break;
 		}
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -118,10 +120,8 @@ public class Bot extends Joueur implements Serializable{
 	 */
 	public void coutKarmique(Carte carte, Partie partie) {
 		String action = new String();
-		// TODO Auto-generated method stub
 		double rand = Math.random();
 		action = (rand >= 0.5) ? "Y" : "N";
-		//myObj.close();
 		if (action.equals("Y")) {
 			partie.getAdversaire().getVieFuture().addCarte(carte);
 		} else if (action.equals("N")) {

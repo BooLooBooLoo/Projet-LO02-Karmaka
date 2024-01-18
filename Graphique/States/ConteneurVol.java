@@ -1,28 +1,24 @@
 package Graphique.States;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import Karmaka.src.Carte;
-import Karmaka.src.Couleur;
-import Karmaka.src.Joueur;
 
 public class ConteneurVol extends JPanel implements ActionListener{
 
-	private Fenetre fenetre;
 	private Carte cardPlayed;
 	
 	public ConteneurVol(Fenetre menu, Carte carte) {
 		super();
-		this.fenetre = menu;
 		this.cardPlayed = carte;
 		propVol();
 		this.setBounds(200,150,800,400);

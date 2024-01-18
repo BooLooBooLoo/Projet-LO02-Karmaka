@@ -1,13 +1,10 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Human;
 import Karmaka.src.Joueur;
-import Karmaka.src.Oeuvre;
 import Karmaka.src.Partie;
 import Karmaka.src.Pile;
 

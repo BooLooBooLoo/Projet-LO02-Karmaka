@@ -1,7 +1,5 @@
 package Cartes;
 
-import java.util.Scanner;
-
 import Karmaka.src.Bot;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
@@ -58,6 +56,5 @@ public class Destinee extends Carte{
 				partie.deplacerCarte(source, vieFuture, carte);
 			}		
 		}
-		//sc.close();
 	}
 }

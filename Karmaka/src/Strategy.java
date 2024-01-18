@@ -211,11 +211,8 @@ public interface Strategy {
 		private int nbr = 0;
 		
 		public String jouer(Partie partie) {
-			System.out.println("Le bot joue");
-			
 			String bool = "";
 			if (ancienneEchelle != partie.getTour().getEchelleKarmique()) {
-				System.out.println("IN");
 				ancienneEchelle = partie.getTour().getEchelleKarmique();
 				nbr = setupNbr(partie);
 				colOeuvre = compterPoint(partie, nbr);
@@ -231,7 +228,6 @@ public interface Strategy {
 				partie.getTour().getOeuvre().addCarte(carte);
 				partie.getTour().setDerniereCarteJoue(carte);
 				partie.getTour().getMain().removeCarte(carte);
-				System.out.println("Oeuvre : "+carte.getNom());
 				bool = "done";
 			} else if (partie.getTour().getMain().getCartes().get(0).getType().equals(colOeuvre.get(1)) 
 					|| partie.getTour().getMain().getCartes().get(0).getType().equals(Couleur.MOSAIQUE)){
@@ -240,14 +236,13 @@ public interface Strategy {
 				partie.getTour().setDerniereCarteJoue(carte);
 				partie.getTour().getMain().removeCarte(carte);
 				bool = "done";
-				System.out.println("Vie Future : "+carte.getNom());
 			} else {
 				Carte carte1 = partie.getTour().getMain().getCartes().get(0);
 				carte1.effet(partie);
 				partie.getTour().setDerniereCarteJoue(carte1);
 				partie.getTour().getMain().removeCarte(carte1);
 				bool = "Pouvoir";
-				System.out.println("Pouvoir : "+carte1.getNom());
+
 			}
 			return bool;
 		}

@@ -1,17 +1,24 @@
 package Graphique.States;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
-
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -21,14 +28,13 @@ import Graphique.ImagePanel;
 import Karmaka.src.Carte;
 import Karmaka.src.Couleur;
 import Karmaka.src.Joueur;
-import Karmaka.src.Partie;
 
 public class ConteneurPartie extends JPanel implements ActionListener, MouseListener{
 	
 	private List<JPanel> cards;
 	
 	//Variables pour la main
-	private ImagePanel zoomCard; private JLabel name,cout, desc; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
+	private ImagePanel zoomCard; private JLabel name,cout; private JPanel choix; private List<JButton> buttons; private Carte cardPlayed;
 	
 	//Variables pour la source
 	private JPanel source;
@@ -287,7 +293,7 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		name = new JLabel();
 		cout = new JLabel();
 		cout.setFont(new Font("Serif", Font.BOLD, 20));
-		desc = new JLabel();
+		new JLabel();
 		top.add(cout);
 		top.add(name);
 		
@@ -358,7 +364,6 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 			name.setFont(new Font("Vinque Rg", Font.PLAIN, 14));
 			JLabel cout = new JLabel(""+tour.getMain().getCartes().get(i).getCout());
 			cout.setFont(new Font("Serif", Font.BOLD, 20));
-			//cout.setForeground(Color.white);
 			Border raisedbevel = BorderFactory.createRaisedBevelBorder();
 			Border loweredbevel = BorderFactory.createLoweredBevelBorder();
 			Border cardBoarder = BorderFactory.createCompoundBorder(raisedbevel, loweredbevel);
@@ -414,10 +419,8 @@ public class ConteneurPartie extends JPanel implements ActionListener, MouseList
 		if (e.getSource() instanceof JButton) {
 			for(JButton button : buttons) {
 				if (e.getSource().equals(button)) {
-					System.out.println("in button");
 					 switch (button.getText()) {
 						 case "Pouvoir":
-							 System.out.println("in pouvoir");
 							 zoomCard.setVisible(false);
 							 choix.setVisible(false);
 							 instantiateContainer(cardPlayed.getNom());

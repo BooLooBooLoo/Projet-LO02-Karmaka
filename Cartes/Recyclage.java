@@ -17,8 +17,6 @@ public class Recyclage extends Carte{
 
 	@Override
 	public void effet(Partie partie) {
-		// Déclaration des variables utilisés dans cette classe
-		Pile vieFuture = partie.getTour().getVieFuture();
 		Pile main = partie.getTour().getMain();
 		Pile defausse = partie.getDefausse();
 		Pile pile = new Pile();
